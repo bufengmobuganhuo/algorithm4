@@ -2,12 +2,19 @@ package chapter1.chapter103;
 
 public class TestMain {
     public static void main(String[] args) {
-        Stack<Integer> stack=new Stack<Integer>();
+/*        StackBasedOnArr<Integer> stackBasedOnArr =new StackBasedOnArr<Integer>();
         for (int i=0;i<10;i++){
-            stack.push(i);
+            stackBasedOnArr.push(i);
         }
-        for (Integer item:stack){
-            System.out.println(stack.pop());
+        for (Integer item: stackBasedOnArr){
+            System.out.println(stackBasedOnArr.pop());
+        }*/
+        StackBasedOnLinkedList<Integer> stackBasedOnLinkedList=new StackBasedOnLinkedList<Integer>();
+        for (int i=0;i<10;i++){
+            stackBasedOnLinkedList.push(i);
+        }
+        for (int i=0;i<11;i++){
+            System.out.println(stackBasedOnLinkedList.pop());
         }
     }
 }

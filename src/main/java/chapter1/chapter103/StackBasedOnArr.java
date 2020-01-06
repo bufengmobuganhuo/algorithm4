@@ -3,9 +3,9 @@ package chapter1.chapter103;
 import java.util.Iterator;
 
 /**
- * 动态调整大小的栈
+ * 动态调整数组大小的栈
  */
-public class Stack<T> implements Iterable<T>{
+public class StackBasedOnArr<T> implements Iterable<T>{
     private int count=0;
     private T[] arr= (T[]) new Object[1];
 
