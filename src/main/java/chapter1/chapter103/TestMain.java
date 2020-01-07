@@ -1,5 +1,8 @@
 package chapter1.chapter103;
 
+import edu.princeton.cs.algs4.StdIn;
+import jdk.nashorn.internal.ir.WhileNode;
+
 import java.util.Iterator;
 
 public class TestMain {
@@ -21,6 +24,22 @@ public class TestMain {
         Iterator<Integer> iterator=stackBasedOnLinkedList.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next());
+        }
+
+        QueueBasedOnLinkedList<String> queue=new QueueBasedOnLinkedList<String>();
+        while (!StdIn.isEmpty()){
+            String item=StdIn.readString();
+            if (!"-".equals(item)){
+                queue.enqueue(item);
+            }else if(!queue.isEmpty()){
+                System.out.print(queue.dequeue()+" ");
+            }
+        }
+        System.out.println(queue.length+" left on queue");
+
+        Iterator<String> iteratorQueue=queue.iterator();
+        while (iteratorQueue.hasNext()){
+            System.out.println(iteratorQueue.next());
         }
     }
 }
