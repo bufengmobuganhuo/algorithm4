@@ -1,5 +1,6 @@
 package chapter1.chapter103;
 
+import java.io.FileReader;
 import java.util.Iterator;
 
 /**
@@ -40,6 +41,25 @@ public class StackBasedOnLinkedList<T> implements Iterable{
     }
 
     public Iterator iterator() {
-        return null;
+        return new StackIterator();
+    }
+    private class StackIterator implements Iterator{
+        private Node current=first;
+        public boolean hasNext() {
+            return current!=null;
+        }
+
+        public T next() {
+            if (!hasNext()){
+                throw new  IndexOutOfBoundsException("栈为空");
+            }
+            T item=current.item;
+            current=current.next;
+            return item;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 }
