@@ -38,6 +38,7 @@ public class EX_1_3_10_InfixToPostfix {
             }
             if (Character.isDigit(str.charAt(0))){
                 res.append(str);
+                res.append(",");
             }else if("(".equals(str.toString())){
                 options.push(str.toString());
             }else if(")".equals(str.toString())){
@@ -45,19 +46,22 @@ public class EX_1_3_10_InfixToPostfix {
                 String pop=options.pop();
                 while (!options.isEmpty()&&!"(".equals(pop)){
                     res.append(pop);
+                    res.append(",");
                     pop=options.pop();
                 }
             }else{
                 while (!options.isEmpty()&&!isHigherOperator(str.toString())&&!"(".equals(options.peek())){
                     res.append(options.pop());
+                    res.append(",");
                 }
                 options.push(str.toString());
             }
         }
         while (!options.isEmpty()){
             res.append(options.pop());
+            res.append(",");
         }
-        return res.toString();
+        return res.toString().substring(0,res.length()-1);
     }
     //判断option的优先级是否高于栈顶运算符
     private static boolean isHigherOperator(String option){
