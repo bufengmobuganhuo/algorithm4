@@ -9,7 +9,7 @@ import java.util.Iterator;
  * 链表相关练习
  */
 public class LinkedList<T extends Comparable> implements Iterable{
-    private Node first;
+    public Node first;
     private Node last;
     private int size;
     private T maxValue;
@@ -73,6 +73,36 @@ public class LinkedList<T extends Comparable> implements Iterable{
         maxValue=currentHead.item.compareTo(maxValue)>0?currentHead.item:maxValue;
         return max(currentHead.next);
     }
+
+    /**
+     * @param head 练习1.3.30 链表反转
+     * @return 使用迭代方式反转链表
+     */
+    public Node reverseListByIterate(Node head){
+        Node first=head;
+        //反转后的头结点
+        Node reversedHead=null;
+        while (first!=null){
+            Node second=first.next;
+            first.next=reversedHead;
+            reversedHead=first;
+            first=second;
+        }
+        return reversedHead;
+    }
+    public Node reverseByRecursive(Node head){
+        if (head==null){
+            return null;
+        }
+        if(head.next==null){
+            return head;
+        }
+        Node second=head.next;
+        Node reversedHead=reverseByRecursive(second);
+        head.next=null;
+        second.next=head;
+        return reversedHead;
+    }
     public Iterator iterator() {
         return new LinkedListIterator();
     }
@@ -95,7 +125,7 @@ public class LinkedList<T extends Comparable> implements Iterable{
             throw new UnsupportedOperationException();
         }
     }
-    private class Node{
+    public class Node{
         T item;
         Node next;
     }
