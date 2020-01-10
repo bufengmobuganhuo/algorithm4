@@ -7,9 +7,9 @@ import java.util.Iterator;
  * 双向链表
  */
 public class EX_1_3_31_DoublyLinkedList<T> implements Iterable{
-    DoubleNode head;
-    DoubleNode end;
-    int size;
+    public DoubleNode head;
+    public DoubleNode end;
+    public int size;
     public boolean isEmpty(){
         return size==0;
     }
@@ -136,8 +136,8 @@ public class EX_1_3_31_DoublyLinkedList<T> implements Iterable{
         }
     }
     public class DoubleNode{
-        DoubleNode last;
+        public DoubleNode last;
         T item;
-        DoubleNode next;
+        public DoubleNode next;
     }
 }
