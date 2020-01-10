@@ -1,5 +1,6 @@
 package chapter1_Fundamentals.chapter1_3_BagsQueuesStacks.exercises.linkedlist;
 
+import chapter1_Fundamentals.chapter1_3_BagsQueuesStacks.exercises.EX_1_3_49;
 import edu.princeton.cs.algs4.StdOut;
 
 import javax.xml.soap.Node;
@@ -42,7 +43,7 @@ public class TestMain {
             head=head.next;
         }*/
 
-        EX_1_3_31_DoublyLinkedList<Integer> list=new EX_1_3_31_DoublyLinkedList<Integer>();
+     /*   EX_1_3_31_DoublyLinkedList<Integer> list=new EX_1_3_31_DoublyLinkedList<Integer>();
         list.addAtEnd(2);
         list.addAtEnd(3);
         list.addAtHead(1);
@@ -54,7 +55,15 @@ public class TestMain {
         list.insertAfter(list.head.next,3);
         print(list);
         list.insertBefore(list.head,0);
-        print(list);
+        print(list);*/
+
+        EX_1_3_49<Integer> queue=new EX_1_3_49<Integer>();
+        for (int i=0;i<10;i++){
+            queue.enqueue(i);
+        }
+        for (int i=0;i<11;i++){
+            StdOut.println(queue.dequeue());
+        }
     }
     private static void print(EX_1_3_31_DoublyLinkedList list){
         Iterator<Integer> iterator=list.iterator();
