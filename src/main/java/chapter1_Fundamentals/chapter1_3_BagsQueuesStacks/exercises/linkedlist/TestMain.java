@@ -61,6 +61,9 @@ public class TestMain {
         for (int i=0;i<10;i++){
             queue.enqueue(i);
         }
+        StdOut.println(queue.dequeue());
+        StdOut.println(queue.dequeue());
+        queue.enqueue(10);
         for (int i=0;i<11;i++){
             StdOut.println(queue.dequeue());
         }
