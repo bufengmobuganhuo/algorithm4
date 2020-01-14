@@ -13,6 +13,7 @@ public class TwoSum {
         int[] arr= StdIn.readAllInts();
         System.out.println(getResult(arr));
     }
+
     public static int getResult(int[] arr){
         if (arr==null||arr.length==0){
             return 0;
