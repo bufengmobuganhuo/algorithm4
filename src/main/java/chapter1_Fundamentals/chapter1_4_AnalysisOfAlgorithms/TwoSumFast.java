@@ -15,7 +15,7 @@ public class TwoSumFast {
             if (length<=0){
                 continue;
             }
-            int[] arr= ArrayUtil.create(length,500);
+            int[] arr= ArrayUtil.createInt(length,500);
             int count1=TwoSum.getResult(arr);
             int count2=getResult(arr);
             if (count1!=count2){

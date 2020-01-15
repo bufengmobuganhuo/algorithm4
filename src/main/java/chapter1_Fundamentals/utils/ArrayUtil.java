@@ -8,7 +8,7 @@ public class ArrayUtil {
     /**
      * @return 生成不重复的数组(有正有负)
      */
-    public static int[] create(int length,int max){
+    public static int[] createInt(int length, int max){
         if (length>max){
             return null;
         }
@@ -23,6 +23,24 @@ public class ArrayUtil {
                 res[size]=item;
                 size++;
             }
+        }
+        return res;
+    }
+
+    /**
+     * @return 生成不重复的数组(有正有负)
+     */
+    public static double[] createDouble(int length, int max){
+        if (length>max){
+            return null;
+        }
+        int size=0;
+        Random random=new Random();
+        double[] res=new double[length];
+        while (size<length){
+            double item=(Math.random()>0.5?-1:1)*random.nextInt(max)*Math.random();
+            res[size]=item;
+            size++;
         }
         return res;
     }
