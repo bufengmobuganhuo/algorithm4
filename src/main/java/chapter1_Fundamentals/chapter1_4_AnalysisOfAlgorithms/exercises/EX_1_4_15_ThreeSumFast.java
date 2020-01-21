@@ -18,7 +18,7 @@ public class EX_1_4_15_ThreeSumFast {
             if (length <= 0) {
                 continue;
             }
-            int[] arr = ArrayUtil.createInt(length, 300);
+            int[] arr = ArrayUtil.createInt(length, 300,true);
             int count1= ThreeSum.getResult(arr);
             int count2=get3SumCount(arr,0);
             if (count1!=count2){
