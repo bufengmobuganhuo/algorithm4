@@ -19,7 +19,7 @@ public class EX_1_4_18 {
             if (length<=0){
                 continue;
             }
-            int[] arr= ArrayUtil.createInt(length,100,false);
+            Integer[] arr= ArrayUtil.createInt(length,100,false);
             int idx=  run(arr);
             if (idx==-1&&arr.length>2){
                 StdOut.println("idx:"+idx+" "+Arrays.toString(arr));
@@ -32,7 +32,7 @@ public class EX_1_4_18 {
         }
     }
 
-    private static int run(int[] arr){
+    private static int run(Integer[] arr){
         if (arr==null||arr.length<=1){
             return -1;
         }
@@ -48,7 +48,7 @@ public class EX_1_4_18 {
      *  （3）\（中间数>中间数的右边）：享有递归查找（这个数的左边已经满足了）
      *  （4）/\：不可能，因为有边界条件（递归是从小到大范围，如果边界条件满足，已经返回了）
      */
-    private static int findLocalMinimumRecursive(int[] arr, int start, int end){
+    private static int findLocalMinimumRecursive(Integer[] arr, int start, int end){
         //判断边界
         if(arr[start]<arr[start+1]){
             return start;

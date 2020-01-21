@@ -18,7 +18,7 @@ public class EX_1_4_15_ThreeSumFast {
             if (length <= 0) {
                 continue;
             }
-            int[] arr = ArrayUtil.createInt(length, 300,true);
+            Integer[] arr = ArrayUtil.createInt(length, 300,true);
             int count1= ThreeSum.getResult(arr);
             int count2=get3SumCount(arr,0);
             if (count1!=count2){
@@ -28,7 +28,7 @@ public class EX_1_4_15_ThreeSumFast {
         }
         System.out.println("Sus");
     }
-    public static int get3SumCount(int[] arr,int target){
+    public static int get3SumCount(Integer[] arr,int target){
         if (arr==null||arr.length==0){
             return 0;
         }
@@ -39,7 +39,7 @@ public class EX_1_4_15_ThreeSumFast {
         }
         return count;
     }
-    public static int get2SumCount(int[] arr,int start,int end,int target){
+    public static int get2SumCount(Integer[] arr,int start,int end,int target){
         if (arr==null||arr.length==0||start>=end||start<0||end>arr.length){
             return 0;
         }

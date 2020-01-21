@@ -6,7 +6,7 @@ import java.lang.reflect.UndeclaredThrowableException;
  * 二分查找
  */
 public class BinarySerach {
-    public static int find(int target,int[] arr){
+    public static int find(int target,Integer[] arr){
         int left=0;
         int right=arr.length-1;
         int mid=0;

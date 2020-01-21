@@ -1,21 +1,20 @@
 package chapter1_Fundamentals.utils;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import javax.swing.text.html.MinimalHTMLWriter;
+import java.util.*;
 
 public class ArrayUtil {
+    private static Set<Integer> set=new HashSet<Integer>();
     /**
      * @return 生成不重复的数组(有正有负)
      */
-    public static int[] createInt(int length, int max,boolean needN){
+    public static Integer[] createInt(int length, int max,boolean needN){
         if (length>max){
             return null;
         }
-        Set<Integer> set=new HashSet<Integer>(length);
         int size=0;
         Random random=new Random();
-        int[] res=new int[length];
+        Integer[] res=new Integer[length];
         while (size<length){
             int item;
             if (needN){
@@ -49,7 +48,22 @@ public class ArrayUtil {
         }
         return res;
     }
-
+    public static Integer[] createDoubleToneInt(int length,int max){
+        Integer[] left=createInt(length/2,max,false);
+        Arrays.sort(left);
+        Integer[] right=createInt(length/2,left[left.length-1],false);
+        Comparator<Integer> cmp=new Comparator<Integer>() {
+            public int compare(Integer o1, Integer o2) {
+                return o2-o1;
+            }
+        };
+        Arrays.sort(right,cmp);
+        Integer[] res=new Integer[length];
+        System.arraycopy(left,0,res,0,left.length);
+        System.arraycopy(right,0,res,left.length,right.length);
+        set.clear();
+        return res;
+    }
     public static int[][] createMatrix(int maxRow,int maxCol,int maxValue){
         HashSet<Integer> set=new HashSet<Integer>(maxRow*maxCol);
         Random random=new Random();

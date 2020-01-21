@@ -8,9 +8,11 @@ import java.util.Arrays;
 public class ThreeSum {
     public static void main(String[] args) {
         int[] arr= StdIn.readAllInts();
-        System.out.println(getResult(arr));
+        Integer[] arr2=new Integer[arr.length];
+        System.arraycopy(arr,0,arr2,0,arr.length);
+        System.out.println(getResult(arr2));
     }
-    public static int getResult(int[] arr){
+    public static int getResult(Integer[] arr){
         if (arr==null||arr.length==0){
             return 0;
         }
