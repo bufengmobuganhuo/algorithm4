@@ -8,6 +8,7 @@ public class UF_QuickFind extends UF{
     /**
      * 1.如果两个触点已经连通，则不作任何操作
      * 2.否则，将两个触点所在的连通分量的id改成同一个值
+     * 缺点：需要遍历数组来实现归并两个分量
      */
     @Override
     public void union(int point1, int point2) {
@@ -25,6 +26,9 @@ public class UF_QuickFind extends UF{
         super.count--;
     }
 
+    /**
+     * 同一连通分量中的触点在connectedComponentId[]中的值必须全部相同
+     */
     @Override
     public int find(int point) {
         return connectedComponentId[point];
