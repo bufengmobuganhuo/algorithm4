@@ -9,6 +9,7 @@ public class UF_WeightedQuickUnion extends UF{
 
     public UF_WeightedQuickUnion(int length) {
         super(length);
+        treeSize=new int[length];
         for (int i=0;i<treeSize.length;i++){
             treeSize[i]=1;
         }
