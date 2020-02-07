@@ -18,5 +18,9 @@ public class TestMain {
         InsertionSort insertionSort=new InsertionSort();
         insertionSort.sort(arr);
         insertionSort.show("插入排序后：",arr);
+
+        ShellSort shellSort=new ShellSort();
+        shellSort.sort(arr);
+        shellSort.show("希尔排序后：",arr);
     }
 }
