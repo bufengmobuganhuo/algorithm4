@@ -1,10 +1,23 @@
 package chapter1_Fundamentals.utils;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdRandom;
+
 import javax.swing.text.html.MinimalHTMLWriter;
 import java.util.*;
 
 public class ArrayUtil {
     private static Set<Integer> set=new HashSet<Integer>();
+    public static Integer[] createInt(int length,int max){
+        if (length>max){
+            return null;
+        }
+        Integer[] arr=new Integer[length];
+        for (int i=0;i<arr.length;i++){
+            arr[i]= StdRandom.uniform(max);
+        }
+        return arr;
+    }
     /**
      * @return 生成不重复的数组(有正有负)
      */
@@ -53,6 +66,7 @@ public class ArrayUtil {
         Arrays.sort(left);
         Integer[] right=createInt(length/2,left[left.length-1],false);
         Comparator<Integer> cmp=new Comparator<Integer>() {
+            @Override
             public int compare(Integer o1, Integer o2) {
                 return o2-o1;
             }
