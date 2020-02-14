@@ -25,7 +25,7 @@ public class EX_2_2_11_ImproveMerge implements Template {
             return;
         }
         int mid=(left+right)/2;
-        //此处交换了位置，src内的小数组选择排序
+        //此处交换了位置，对src内的小数组选择排序
         sort(dst,src,left,mid);
         sort(dst,src,mid+1,right);
         //改进二：如果src[mid]<=src[mid+1]则跳过归并过程，（src[mid]前后的两个数组都是有序的）此时递归调用不受影响，
@@ -35,6 +35,7 @@ public class EX_2_2_11_ImproveMerge implements Template {
             System.arraycopy(src,left,dst,left,right-left+1);
             return;
         }
+        //src中是已经小数组排好序的，dst是小数组排序之前的，所以要将src归并到dst
         merge(src,dst, left,mid,right);
     }
 
