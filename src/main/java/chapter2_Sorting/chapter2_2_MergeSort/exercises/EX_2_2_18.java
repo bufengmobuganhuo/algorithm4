@@ -1,8 +1,6 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
-import edu.princeton.cs.algs4.StdOut;
+import utils.ArrayUtil;
 
 import java.util.Arrays;
 import java.util.Random;

@@ -1,11 +1,13 @@
-package chapter2_Sorting.chapter2_1_ElementarySorts;
+package chapter2_Sorting;
 
 import edu.princeton.cs.algs4.StdOut;
+
+import java.util.Random;
 
 /**
  * 模板类
  */
-public interface Template {
+public interface SortTemplate {
     /**
      * @return 判断value1是否小于value2
      */
@@ -36,5 +38,16 @@ public interface Template {
         StdOut.println();
     }
 
-    void sort(Comparable[] arr);
+    default void sort(Comparable[] arr){};
+    default void shuffle(Comparable[] arr){
+        if (arr==null||arr.length==0){
+            return;
+        }
+        Random random=new Random();
+        int len=arr.length;
+        for (int i=0;i<len;i++){
+            int index=i+random.nextInt(len-i);
+            exchange(arr,index,i);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
+import utils.ArrayUtil;
 import chapter2_Sorting.chapter2_1_ElementarySorts.InsertionSort;
 
 import java.util.Arrays;

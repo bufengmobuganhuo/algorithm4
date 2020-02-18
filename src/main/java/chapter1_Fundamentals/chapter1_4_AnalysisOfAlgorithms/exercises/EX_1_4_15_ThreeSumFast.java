@@ -1,7 +1,7 @@
 package chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms.exercises;
 
 import chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms.ThreeSum;
-import chapter1_Fundamentals.utils.ArrayUtil;
+import utils.ArrayUtil;
 
 import java.util.Arrays;
 import java.util.Random;

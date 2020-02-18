@@ -1,9 +1,6 @@
 package chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
 import edu.princeton.cs.algs4.StdOut;
-import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.*;
 

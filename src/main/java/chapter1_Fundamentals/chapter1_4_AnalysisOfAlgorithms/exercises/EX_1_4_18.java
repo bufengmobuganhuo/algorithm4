@@ -1,11 +1,9 @@
 package chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
+import utils.ArrayUtil;
 import edu.princeton.cs.algs4.StdOut;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 /**

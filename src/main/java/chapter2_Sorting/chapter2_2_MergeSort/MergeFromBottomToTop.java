@@ -1,13 +1,13 @@
 package chapter2_Sorting.chapter2_2_MergeSort;
 
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
+import chapter2_Sorting.SortTemplate;
 
 /**
  * @author zhangyu
  * 2020/2/8 17:18
  * 自底向上归并
  */
-public class MergeFromBottomToTop implements Template {
+public class MergeFromBottomToTop implements SortTemplate {
     private Comparable[] temp;
     @Override
     public void sort(Comparable[] arr) {

@@ -1,6 +1,6 @@
 package chapter2_Sorting.chapter2_3_QuickSort;
 
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
+import chapter2_Sorting.SortTemplate;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
@@ -8,13 +8,13 @@ import edu.princeton.cs.algs4.StdRandom;
  * 2020/2/16 16:24
  * 快速排序
  */
-public class QuickSort implements Template {
+public class QuickSort implements SortTemplate {
     @Override
     public void sort(Comparable[] arr) {
         if (arr==null||arr.length==0){
             return;
         }
-        StdRandom.shuffle(arr);
+        //StdRandom.shuffle(arr);
         sort(arr,0,arr.length-1);
     }
     public void sort(Comparable[] arr,int start,int end){
@@ -33,14 +33,14 @@ public class QuickSort implements Template {
         //切分元素
         Comparable partitionKey=arr[start];
         while (true){
-            //左指针向左扫描，直到遇到一个元素>=切分元素
+            //左指针向右扫描，直到遇到一个元素>=切分元素
             while (less(arr[++left],partitionKey)){
                 //到达边界，则跳出循环
                 if (left==end){
                     break;
                 }
             }
-            //右指针向右扫描，直到遇到一个元素<=切分元素
+            //右指针向左扫描，直到遇到一个元素<=切分元素
             while (less(partitionKey,arr[--right])){
                 if (right==start){
                     break;
@@ -52,6 +52,7 @@ public class QuickSort implements Template {
             }
             exchange(arr,left,right);
         }
+        //上述循环找到了切分元素应该在的位置，则将其放到应该在的位置上
         exchange(arr,right,start);
         return right;
     }

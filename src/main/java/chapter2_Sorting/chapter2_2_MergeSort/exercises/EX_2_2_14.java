@@ -1,11 +1,10 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
+import utils.ArrayUtil;
 import chapter2_Sorting.chapter2_1_ElementarySorts.SelectionSort;
 import chapter2_Sorting.chapter2_2_MergeSort.InPlaceMergeSort;
 
 import java.util.ArrayDeque;
-import java.util.LinkedList;
 import java.util.Queue;
 
 /**

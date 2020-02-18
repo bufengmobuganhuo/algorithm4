@@ -1,7 +1,6 @@
 package chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+import utils.ArrayUtil;
 
 import java.util.Arrays;
 import java.util.Random;

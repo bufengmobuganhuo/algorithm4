@@ -1,9 +1,11 @@
 package chapter2_Sorting.chapter2_1_ElementarySorts;
 
+import chapter2_Sorting.SortTemplate;
+
 /**
  * 选择排序
  */
-public class SelectionSort implements Template{
+public class SelectionSort implements SortTemplate {
 
     @Override
     public void sort(Comparable[] arr){

@@ -1,9 +1,7 @@
-package chapter1_Fundamentals.utils;
+package utils;
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 
-import javax.swing.text.html.MinimalHTMLWriter;
 import java.util.*;
 
 public class ArrayUtil {

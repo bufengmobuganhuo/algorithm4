@@ -1,7 +1,6 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
+import utils.ArrayUtil;
 
 /**
  * @author zhangyu

@@ -1,7 +1,6 @@
 package chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
-import edu.princeton.cs.algs4.RandomSeq;
+import utils.ArrayUtil;
 
 import java.util.Arrays;
 import java.util.Random;

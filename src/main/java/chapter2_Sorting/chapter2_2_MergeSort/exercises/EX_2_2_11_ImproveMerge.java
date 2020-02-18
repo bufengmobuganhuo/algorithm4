@@ -1,13 +1,13 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
+import chapter2_Sorting.SortTemplate;
 
 /**
  * @author zhangyu
  * 2020/2/10 16:40
  * 练习2.2.11：改进归并排序算法，只改进了前两项
  */
-public class EX_2_2_11_ImproveMerge implements Template {
+public class EX_2_2_11_ImproveMerge implements SortTemplate {
     private int CUTOFF=15;
     @Override
     public void sort(Comparable[] arr) {

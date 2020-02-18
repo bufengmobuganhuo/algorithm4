@@ -1,17 +1,14 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
-import sun.java2d.pipe.OutlineTextRenderer;
-
-import javax.sound.midi.MidiChannel;
+import utils.ArrayUtil;
+import chapter2_Sorting.SortTemplate;
 
 /**
  * @author zhangyu
  * 2020/2/11 11:46
  * 练习2.2.16：自然地归并排序
  */
-public class EX_2_2_16 implements Template {
+public class EX_2_2_16 implements SortTemplate {
     private static Comparable[] temp;
 
     public static void main(String[] args) {

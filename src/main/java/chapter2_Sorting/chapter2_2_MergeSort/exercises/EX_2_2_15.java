@@ -1,6 +1,6 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
+import utils.ArrayUtil;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

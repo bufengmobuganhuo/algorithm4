@@ -1,6 +1,6 @@
 package chapter2_Sorting.chapter2_3_QuickSort;
 
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
+import chapter2_Sorting.SortTemplate;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdRandom;
  * 2020/2/16 17:27
  * 三向切分的快速排序
  */
-public class Quick3WaySort implements Template {
+public class Quick3WaySort implements SortTemplate {
     @Override
     public void sort(Comparable[] arr) {
         if (arr==null||arr.length==0){

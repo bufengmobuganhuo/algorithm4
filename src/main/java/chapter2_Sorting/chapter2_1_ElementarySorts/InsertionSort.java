@@ -1,11 +1,13 @@
 package chapter2_Sorting.chapter2_1_ElementarySorts;
 
+import chapter2_Sorting.SortTemplate;
+
 /**
  * @author zhangyu
  * 2020/2/7 9:37
  * 插入排序
  */
-public class InsertionSort implements Template{
+public class InsertionSort implements SortTemplate {
     @Override
     public void sort(Comparable[] arr) {
         if (arr==null||arr.length==0){

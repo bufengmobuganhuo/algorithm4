@@ -1,9 +1,8 @@
 package chapter2_Sorting.chapter2_2_MergeSort.exercises;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
+import utils.ArrayUtil;
+import chapter2_Sorting.SortTemplate;
 
-import javax.print.attribute.standard.PrinterResolution;
 import java.util.Arrays;
 
 /**
@@ -11,7 +10,7 @@ import java.util.Arrays;
  * 2020/2/14 11:41
  * 练习2.2.20：间接排序
  */
-public class EX_2_2_20 implements Template {
+public class EX_2_2_20 implements SortTemplate {
     private static int[] temp;
     private static int[] index;
 

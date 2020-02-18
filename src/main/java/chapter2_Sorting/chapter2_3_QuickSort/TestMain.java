@@ -1,6 +1,6 @@
 package chapter2_Sorting.chapter2_3_QuickSort;
 
-import chapter1_Fundamentals.utils.ArrayUtil;
+import utils.ArrayUtil;
 
 /**
  * @author zhangyu
@@ -9,7 +9,8 @@ import chapter1_Fundamentals.utils.ArrayUtil;
  */
 public class TestMain {
     public static void main(String[] args) {
-        Comparable[] arr= ArrayUtil.createInt(15,20);
+        //Comparable[] arr= ArrayUtil.createInt(15,20);
+        Comparable[] arr={3, 0, 2, 1, 5, 4, 6, 7,};
         QuickSort quickSort=new QuickSort();
         quickSort.show("排序前:",arr);
         quickSort.sort(arr);

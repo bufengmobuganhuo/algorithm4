@@ -1,13 +1,13 @@
 package chapter2_Sorting.chapter2_2_MergeSort;
 
-import chapter2_Sorting.chapter2_1_ElementarySorts.Template;
+import chapter2_Sorting.SortTemplate;
 
 /**
  * @author zhangyu
  * 2020/2/7 11:55
  * 基于原地归并的归并排序
  */
-public class InPlaceMergeSort implements Template {
+public class InPlaceMergeSort implements SortTemplate {
     private static Comparable[] temp;
 
     @Override
