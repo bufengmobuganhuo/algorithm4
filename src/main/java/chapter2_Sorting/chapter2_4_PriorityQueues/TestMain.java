@@ -7,12 +7,12 @@ package chapter2_Sorting.chapter2_4_PriorityQueues;
  */
 public class TestMain {
     public static void main(String[] args) {
-        Heap<Integer> heap=new Heap<>(10);
-        for (int i=0;i<10;i++){
-            heap.insert(i);
+        PriorityQueue<Integer> priorityQueue =new PriorityQueue<>(20);
+        for (int i=0;i<20;i++){
+            priorityQueue.insert(i);
         }
-        System.out.println(heap.max());
-        System.out.println(heap.delMax());
-        System.out.println(heap.max());
+        for (int i=0;i<20;i++){
+            System.out.println(priorityQueue.delMax());
+        }
     }
 }

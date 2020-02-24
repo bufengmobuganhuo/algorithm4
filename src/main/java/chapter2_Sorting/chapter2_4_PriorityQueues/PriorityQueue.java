@@ -7,17 +7,34 @@ import chapter2_Sorting.SortTemplate;
  * 2020/2/20 11:04
  * 大顶堆
  */
-public class Heap<T extends Comparable<T>>{
+public class PriorityQueue<T extends Comparable<T>>{
     private T[] pq;
+
     //优先队列的大小
     private int N;
 
-    public Heap(int size) {
+    public PriorityQueue(int size) {
         pq=(T[]) new Comparable[size+1];
     }
 
-    public Heap() {
+    public PriorityQueue() {
         pq=(T[]) new Comparable[16];
+    }
+
+    public int getN() {
+        return N;
+    }
+
+    public void setN(int n) {
+        N = n;
+    }
+
+    public T[] getPq() {
+        return pq;
+    }
+
+    public void setPq(T[] pq) {
+        this.pq = pq;
     }
 
     public T delMax(){
@@ -26,11 +43,11 @@ public class Heap<T extends Comparable<T>>{
         }
         //将根节点与最后一个元素交换
         exchange(1,N);
-        //令交换后的根节点下沉，以在正确位置
-        sink(1);
         T max=pq[N];
         pq[N--]=null;
-        if (N>=(pq.length+1)/4){
+        //令交换后的根节点下沉，以在正确位置
+        sink(1);
+        if (N<=pq.length/4){
             resize(pq.length/2);
         }
         return max;
@@ -51,7 +68,7 @@ public class Heap<T extends Comparable<T>>{
      * @param value 插入元素
      */
     public void insert(T value){
-        if (N==pq.length+1){
+        if (N==pq.length-1){
             resize(pq.length*2);
         }
         pq[++N]=value;
