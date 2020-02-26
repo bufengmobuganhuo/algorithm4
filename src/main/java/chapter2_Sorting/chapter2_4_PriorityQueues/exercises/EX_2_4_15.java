@@ -132,7 +132,7 @@ public class EX_2_4_15<T extends Comparable<T>> {
                 break;
             }
             exch(k,j);
-            k=2*k;
+            k=j;
         }
     }
 
