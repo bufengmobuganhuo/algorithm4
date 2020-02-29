@@ -5,15 +5,21 @@ import utils.ArrayUtil;
 /**
  * @author zhangyu
  * 2020/2/24 15:46
- * 练习2.4.24：使用链接的优先队列
+ * 练习2.4.24：使用链接的优先队列 见笔记
  * https://www.cnblogs.com/ikesnowy/p/9470750.html
  */
 public class EX_2_4_24<T extends Comparable<T>> {
     public static void main(String[] args) {
         EX_2_4_24<Integer> ex_2_4_24=new EX_2_4_24<>();
-        Integer[] arr= ArrayUtil.createInt(8,15);
+        Integer[] arr= ArrayUtil.createInt(20,100);
+        //Integer[] arr={4,1,12,5,12,3,12,6};
         for (int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
             ex_2_4_24.insert(arr[i]);
+        }
+        System.out.println();
+        for(int i=0;i<arr.length;i++){
+            System.out.print(ex_2_4_24.delMax()+" ");
         }
     }
     private TreeNode root;
@@ -45,10 +51,29 @@ public class EX_2_4_24<T extends Comparable<T>> {
             last=lastFather.leftChild;
         }else{
             while (lastFather!=root){
-
+                //保证当前遍历节点在其父节点的左子树上
+                if(lastFather!=lastFather.father.leftChild){
+                    break;
+                }
+                lastFather=lastFather.father;
+            }
+            //如果是last指向根节点左子树，则从根节点开始一直向右找
+            if (lastFather==root){
+                while (lastFather.rightChild!=null){
+                    lastFather=lastFather.rightChild;
+                }
+                last.father.leftChild=null;
+                last=lastFather;
+            }else{
+                //换一个方向，一直向右找
+                lastFather=lastFather.father.leftChild;
+                while (lastFather.rightChild!=null){
+                    lastFather=lastFather.rightChild;
+                }
+                last.father.leftChild=null;
+                last=lastFather;
             }
         }
-
         sink(root);
         size--;
         return max;
@@ -61,6 +86,7 @@ public class EX_2_4_24<T extends Comparable<T>> {
             root.value=item;
             root.no=1;
             last=root;
+            size++;
             return;
         }
         TreeNode node = new TreeNode();
@@ -71,6 +97,7 @@ public class EX_2_4_24<T extends Comparable<T>> {
             node.father=root;
             last=node;
             swim(last);
+            size++;
             return;
         }
         TreeNode lastFather=last.father;
@@ -82,6 +109,7 @@ public class EX_2_4_24<T extends Comparable<T>> {
             last=node;
             //最后一个节点是右子节点
         }else{
+            //保证被遍历元素一直在根节点的左子树
             //向上回溯，如果是从根节点的右子树开始向上回溯，到达根节点，
             // 如果是从根节点的左子树向上回溯，最高到达lasfFather.father的左子节点
             while (lastFather!=root){
@@ -118,11 +146,11 @@ public class EX_2_4_24<T extends Comparable<T>> {
             if (node.rightChild!=null&&less(temp.value,node.rightChild.value)){
                 temp=node.rightChild;
             }
-            if (less(node.value,temp.value)){
+            if (less(temp.value,node.value)){
                 break;
             }
             exch(node,temp);
-            node=temp.leftChild;
+            node=temp;
         }
     }
 
