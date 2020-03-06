@@ -101,4 +101,48 @@ public class ArrayUtil {
         }
         return arr;
     }
+
+    /**
+     * @param len
+     * @return 生成含有连接词的字符串
+     */
+    public static String[] createCompoundStrs(int len){
+        Random random=new Random();
+        String[] res=new String[len];
+        int compoundStrNum=random.nextInt(len-2);
+        for (int i=0;i<len-compoundStrNum;i++){
+            res[i]=createStr(5);
+        }
+        for (int i=len-compoundStrNum;i<len;i++){
+            int idx1=random.nextInt(len-compoundStrNum);
+            int idx2=random.nextInt(len-compoundStrNum);
+            res[i]=res[idx1]+res[idx2];
+        }
+        return res;
+    }
+
+    public static String createDepStr(int maxLen){
+        Random random=new Random();
+        int len=random.nextInt(maxLen);
+        while (len<=2){
+            len=random.nextInt(maxLen);
+        }
+        String str=createStr(len);
+        return str+str.substring(0,str.length()-2);
+    }
+
+    public static String createStr(int maxLen){
+        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random=new Random();
+        StringBuilder sb=new StringBuilder();
+        int len=random.nextInt(maxLen);
+        while (len<=2){
+            len=random.nextInt(maxLen);
+        }
+        while (sb.length()<len){
+            int idx=random.nextInt(62);
+            sb.append(str.charAt(idx));
+        }
+        return sb.toString();
+    }
 }
