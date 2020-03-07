@@ -23,7 +23,7 @@ public class InPlaceMergeSort implements SortTemplate {
         if (right<=left){
             return;
         }
-        int mid=(left+right)/2;
+        int mid=left+(left+right)/2;
         //对左半边排序
         sort(arr,left,mid);
         //对右半边排序

@@ -1,85 +1,105 @@
 package chapter2_Sorting.chapter2_5_Applications.exercises;
 
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import utils.ArrayUtil;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
  * @author zhangyu
- * 2020/3/6 21:16
- * 练习2.5.4：找出第k小的元素
+ * 2020/3/5 18:45
+ * 练习2.5.4：去除数组中的重复元素
  */
 public class EX_2_5_4 {
     public static void main(String[] args) {
-        Integer[] arr= ArrayUtil.createInt(10,20);
-        System.out.println(Arrays.toString(arr));
-        System.out.println(solution2(arr,3));
-    }
-    public static Comparable solution2(Comparable[] arr,int k){
-        if (arr==null||arr.length==0||k<0){
-            return null;
-        }
-        return findMinK(arr,0,arr.length-1,k);
-    }
-
-    public static Comparable findMinK(Comparable[] arr,int start,int end,int k){
-        if (start>end){
-            return null;
-        }
-        int partitionIdx=partition(arr,start,end);
-        if (partitionIdx==k){
-            return arr[k];
-        }else if(partitionIdx>k){
-            return findMinK(arr,start,partitionIdx-1,k);
-        }else{
-            return findMinK(arr,partitionIdx+1,end,k);
-        }
-    }
-
-    public static Comparable solution1(Comparable[] arr,int k){
-        if (arr==null||arr.length==0||k<0){
-            return null;
-        }
-        int start=0,end=arr.length-1;
-        while (start<=end){
-            //切分返回的索引就是切分元素在排序后应该在的位置，故可以用来获取第k小的元素
-            int partitionIdx=partition(arr,start,end);
-            if (partitionIdx==k){
-                return arr[k];
-            }else if(partitionIdx>k){
-                end=partitionIdx-1;
-            }else{
-                start=partitionIdx+1;
+        for (int j=0;j<10;j++){
+          char[] a= ArrayUtil.createDepStr(15).toCharArray();
+            String[] arr=new String[a.length];
+            for (int i=0;i<a.length;i++){
+                arr[i]=String.valueOf(a[i]);
+            }
+            //String[] arr={"p","5","v","p"};
+            String[] res= solution(arr);
+            if (isDep(res)){
+                System.out.print("{");
+                for (int i=0;i<a.length;i++){
+                    System.out.print("\""+arr[i]+"\",");
+                }
+                System.out.println("}");
             }
         }
-        return null;
+
     }
-    private static int partition(Comparable[] arr,int start,int end){
+    public static String[] solution(String[] a){
+        if (a==null||a.length==0){
+            return null;
+        }
+        quickSort(a);
+        String[] res=new String[a.length];
+        res[0]=a[0];
+        int j=1;
+        for (int i=1;i<a.length;i++){
+            if (a[i].compareTo(a[i-1])!=0){
+                res[j++]=a[i];
+            }
+        }
+        return res;
+    }
+
+    public static boolean isDep(String[] arr){
+        for (int i=1;i<arr.length;i++){
+            if (arr[i]!=null&&arr[i-1]!=null&&arr[i-1].equals(arr[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void quickSort(String[] arr){
+        if (arr==null||arr.length==0){
+            return;
+        }
+        quickSort(arr,0,arr.length-1);
+    }
+
+    private static void quickSort(String[] arr,int start,int end){
+        if (start>=end){
+            return;
+        }
+        int partitionIdx=partition(arr,start,end);
+        quickSort(arr,start,partitionIdx-1);
+        quickSort(arr,partitionIdx+1,end);
+    }
+
+    private static int partition(String[] arr,int start,int end){
         int left=start,right=end+1;
-        Comparable partitionKey=arr[start];
+        String partitionKey=arr[start];
         while (true){
+            //左指针向右查找，直到遇到一个元素>=partitionKey
             while (partitionKey.compareTo(arr[++left])>0){
-                if(left==end){
+                if (left==end){
                     break;
                 }
             }
+            //右指针向左查找，直到遇到一个元素<=partitionKey
             while (partitionKey.compareTo(arr[--right])<0){
                 if (right==start){
                     break;
                 }
             }
-            if (left>=right){
+            if (left >=right){
                 break;
             }
             exch(arr,left,right);
         }
-        exch(arr,start,right);
+        //找到悲切分匀速应该在的位置
+        exch(arr,right,start);
         return right;
     }
-    private static void exch(Comparable[] arr,int i,int j){
-        Comparable temp=arr[i];
+    private static void exch(String[] arr,int i,int j){
+        String temp=arr[i];
         arr[i]=arr[j];
         arr[j]=temp;
     }
-
 }
