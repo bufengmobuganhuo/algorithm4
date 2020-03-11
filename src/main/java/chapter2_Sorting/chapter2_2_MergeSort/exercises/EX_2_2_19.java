@@ -18,10 +18,11 @@ public class EX_2_2_19 {
         Random random=new Random();
         for (int i=0;i<10000;i++){
             int length=random.nextInt(100);
-            Comparable[] arr= ArrayUtil.createInt(length,length*2);
+            Comparable[] arr= {0,3,1,6,2,5,4};
             Comparable[] aux=arr.clone();
             Comparable[] arr2=arr.clone();
             InsertionSort insertionSort=new InsertionSort();
+            int count=solution(arr2);
             if (insertionSort.sortCountExchange(arr)!=solution(arr2)){
                 System.out.println("fail:"+ Arrays.toString(aux));
                 solution(aux);
