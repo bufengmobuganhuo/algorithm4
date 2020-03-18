@@ -43,4 +43,5 @@ public interface SymbolTableTemplate<Key,Value> extends Iterable<Key>{
     default boolean isEmpty(int size){
         return size==0;
     }
+
 }
