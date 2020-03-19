@@ -24,13 +24,13 @@ public class EX_3_2_29 {
         EX_3_2_29 ex_3_2_29=new EX_3_2_29();
         System.out.println(ex_3_2_29.isBinaryTree(binarySearchTree.root));
     }
-    public <Key extends Comparable<Key>,Value> boolean isBinaryTree(TreeNode<Key,Value> node){
+    public boolean isBinaryTree(TreeNode<Integer,Integer> node){
         if (node==null){
             return false;
         }
         return node.nodeCount==nodeCount(node);
     }
-    private <Key extends Comparable<Key>,Value> int nodeCount(TreeNode<Key, Value> node){
+    private int nodeCount(TreeNode<Integer, Integer> node){
         if (node==null){
             return 0;
         }

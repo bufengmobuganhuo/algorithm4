@@ -22,7 +22,7 @@ public class EX_3_2_31 {
         binarySearchTree.put(95,95);
         System.out.println(ex_3_2_31.hasNoDuplicates(binarySearchTree.root));
     }
-    public <Key extends Comparable<Key>,Value> boolean hasNoDuplicates(TreeNode<Key,Value> node){
+    public boolean hasNoDuplicates(TreeNode<Integer,Integer> node){
         if (node==null){
             return true;
         }

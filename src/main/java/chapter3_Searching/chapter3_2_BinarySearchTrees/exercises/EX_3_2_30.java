@@ -3,8 +3,6 @@ package chapter3_Searching.chapter3_2_BinarySearchTrees.exercises;
 import chapter3_Searching.chapter3_2_BinarySearchTrees.BinarySearchTree;
 import chapter3_Searching.chapter3_2_BinarySearchTrees.TreeNode;
 
-import javax.swing.text.html.MinimalHTMLWriter;
-
 /**
  * @author zhangyu
  * 2020/3/19 10:07
@@ -23,7 +21,7 @@ public class EX_3_2_30 {
         binarySearchTree.put(95,95);
         System.out.println(ex_3_2_30.isOrdered(binarySearchTree.root,85,125));
     }
-    public <Key extends Comparable<Key>,Value> boolean isOrdered(TreeNode<Key,Value> node, Key min,Key max){
+    public boolean isOrdered(TreeNode<Integer, Integer> node, Integer min, Integer max){
         if (node==null){
             return true;
         }
