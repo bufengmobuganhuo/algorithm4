@@ -35,7 +35,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
         }
         System.out.println(binarySearchTree.randomKey());
     }
-    private TreeNode<Key,Value> root;
+    public TreeNode<Key,Value> root;
     @Override
     public int size() {
         return size(root);
