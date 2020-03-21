@@ -49,7 +49,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
     }
 
     @Override
-    public Value get(Key key) {
+    public TreeNode<Key,Value> get(Key key) {
         if (key==null){
             throw new IllegalArgumentException();
         }
@@ -62,7 +62,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
      * @param key
      * @return
      */
-    private Value getRecursive(TreeNode<Key,Value> root,Key key){
+    private TreeNode<Key,Value> getRecursive(TreeNode<Key,Value> root,Key key){
         if (root==null){
             return null;
         }
@@ -75,7 +75,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
             return getRecursive(root.right,key);
         }else{
             //相等，则查找命中
-            return root.value;
+            return root;
         }
     }
 

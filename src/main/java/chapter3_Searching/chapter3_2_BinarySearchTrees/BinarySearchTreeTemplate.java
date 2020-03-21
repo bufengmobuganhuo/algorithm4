@@ -15,7 +15,7 @@ public interface BinarySearchTreeTemplate<Key extends Comparable<Key>,Value> {
      * @param key 查找
      * @return
      */
-    Value get(Key key);
+    TreeNode<Key,Value> get(Key key);
 
     /**
      * @param key 插入

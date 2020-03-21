@@ -41,7 +41,7 @@ public class EX_3_2_13_BinarySearchTreeLoop<Key extends Comparable<Key>,Value> i
     }
 
     @Override
-    public Value get(Key key) {
+    public TreeNode<Key,Value> get(Key key) {
         if (key==null){
             throw new IllegalArgumentException();
         }
@@ -49,7 +49,7 @@ public class EX_3_2_13_BinarySearchTreeLoop<Key extends Comparable<Key>,Value> i
         while (node!=null){
             int compareRes=node.key.compareTo(key);
             if (compareRes==0){
-                return node.value;
+                return node;
             }else if(compareRes>0){
                 node=node.left;
             }else{
