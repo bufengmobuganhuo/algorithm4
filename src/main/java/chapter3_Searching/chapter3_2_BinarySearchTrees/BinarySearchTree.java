@@ -86,6 +86,9 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
 
     @Override
     public TreeNode<Key,Value> min() {
+        if (root==null){
+            return null;
+        }
         return minRecursive(root);
     }
 
@@ -100,6 +103,9 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
 
     @Override
     public TreeNode<Key,Value> max() {
+        if (root==null){
+            return null;
+        }
         return maxRecursive(root);
     }
 

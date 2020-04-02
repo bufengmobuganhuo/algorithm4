@@ -35,8 +35,7 @@ public class LinkedList<T extends Comparable> implements Iterable{
         if (isEmpty()){
             return;
         }
-        Node current=first;
-        Node lastCurrent=first;
+
         //先删除头结点，如果头结点一直都是要删除的元素，则一直删除
         while (first!=null){
             if (!first.item.equals(item)){
@@ -45,14 +44,16 @@ public class LinkedList<T extends Comparable> implements Iterable{
             first=first.next;
             size--;
         }
+        Node current=first;
+        Node lastCurrent=first;
         while (current!=null){
             if (current.item.equals(item)){
                 lastCurrent.next=current.next;
+                size--;
             }else{
                 lastCurrent=current;
             }
             current=current.next;
-            size--;
         }
     }
 
