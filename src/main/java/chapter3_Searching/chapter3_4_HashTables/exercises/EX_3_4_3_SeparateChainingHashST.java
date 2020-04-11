@@ -3,6 +3,8 @@ package chapter3_Searching.chapter3_4_HashTables.exercises;
 import chapter3_Searching.chapter3_4_HashTables.SequentialSearchST;
 
 import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Random;
  * 2020/4/2 10:32
  * TODO
  */
-public class EX_3_4_3_SeparateChainingHashST<Key extends Comparable<Key>,Value> {
+public class EX_3_4_3_SeparateChainingHashST<Key extends Comparable<Key>,Value> implements Iterable<Key>{
     public static void main(String[] args) {
         EX_3_4_3_SeparateChainingHashST<Integer,Integer> ex_3_4_3_separateChainingHashST=new EX_3_4_3_SeparateChainingHashST<>(5);
         Random random=new Random();
@@ -26,6 +28,11 @@ public class EX_3_4_3_SeparateChainingHashST<Key extends Comparable<Key>,Value> 
         ex_3_4_3_separateChainingHashST.put(5,5);
         ex_3_4_3_separateChainingHashST.delete((Integer) delte);
         ex_3_4_3_separateChainingHashST.delete(5);
+        Iterator<Integer> iterator=ex_3_4_3_separateChainingHashST.iterator();
+        System.out.println();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next()+" ");
+        }
     }
     private int size;
     private int hashTableSize;
@@ -64,8 +71,37 @@ public class EX_3_4_3_SeparateChainingHashST<Key extends Comparable<Key>,Value> 
         }
     }
 
+
     public int hashCode(Key key){
         return (key.hashCode()&0x7fffffff)%hashTableSize;
     }
 
+    @Override
+    public Iterator<Key> iterator() {
+        return new iterator();
+    }
+
+    class iterator implements Iterator<Key>{
+        private int idxOuter;
+        private int idxInner;
+        private int count;
+        @Override
+        public boolean hasNext() {
+            return count<size;
+        }
+
+        @Override
+        public Key next() {
+            count++;
+            if (sequentialSearchSTS[idxOuter]!=null&&idxInner<sequentialSearchSTS[idxOuter].size){
+                return sequentialSearchSTS[idxOuter].get(idxInner++);
+            }
+            idxOuter++;
+            while (sequentialSearchSTS[idxOuter].size==0){
+                idxOuter=(idxOuter+1)%hashTableSize;
+            }
+            idxInner=0;
+            return sequentialSearchSTS[idxOuter].get(idxInner++);
+        }
+    }
 }

@@ -67,15 +67,29 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value> {
         return null;
     }
 
+    public Key get(int idx){
+        if (idx>size){
+            throw new IndexOutOfBoundsException();
+        }
+        int index=0;
+        SequentialSearchNode temp=first;
+        while (index<size&&index<idx){
+            temp=temp.next;
+            index++;
+        }
+        return temp.key;
+    }
+
+
     public void reverse(){
         SequentialSearchNode prev=null;
-        SequentialSearchNode cur= first;
-        while (cur!=null){
-            SequentialSearchNode next=cur.next;
-            cur.next=prev;
-            prev=cur;
-            cur=next;
+        while (first!=null){
+            SequentialSearchNode next=first.next;
+            first.next=prev;
+            prev=first;
+            first=next;
         }
+        first=prev;
     }
 
     public void delete(Key key){

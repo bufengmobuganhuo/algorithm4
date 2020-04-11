@@ -14,12 +14,23 @@ public class LinearProbingHashST<Key extends Comparable<Key>,Value> {
     public static void main(String[] args) {
         Random random=new Random();
         LinearProbingHashST<Integer,Integer> linearProbingHashST=new LinearProbingHashST<>(5);
+        Integer keyToDel=null;
+        Integer keyToLazyDel=null;
         for (int i=0;i<10;i++){
             int key=random.nextInt(10);
-            linearProbingHashST.put(key,random.nextInt());
+            if (i==5){
+                keyToDel=key;
+            }else if(i==6){
+                keyToLazyDel=key;
+            }
+            linearProbingHashST.put(key,key);
             System.out.print(key+" ");
         }
-        System.out.println(linearProbingHashST.get(5));
+        System.out.println(linearProbingHashST.get(keyToDel));
+        linearProbingHashST.delete(keyToDel);
+        System.out.println(linearProbingHashST.get(keyToDel));
+        linearProbingHashST.lazyDelete(keyToLazyDel);
+        System.out.println(linearProbingHashST.get(keyToLazyDel));
     }
     //键值对总数
     private int size;
@@ -102,6 +113,19 @@ public class LinearProbingHashST<Key extends Comparable<Key>,Value> {
         }
     }
 
+    public void lazyDelete(Key key){
+        if (key==null){
+            throw new IllegalArgumentException();
+        }else if(contains(key)){
+            int idx=hashCode(key);
+            while (!key.equals(keys[idx])){
+                idx=(idx+1)%hashTableSize;
+            }
+            size--;
+            values[idx]=null;
+        }
+    }
+
     public boolean contains(Key key){
         return get(key)!=null;
     }
@@ -109,8 +133,9 @@ public class LinearProbingHashST<Key extends Comparable<Key>,Value> {
     //因为是hash，所以元素不一定是从0到size存储，不可以用arraycopy
     private void resize(int cap){
         LinearProbingHashST<Key,Value> linearProbingHashST=new LinearProbingHashST<>(cap);
+        //延时删除时，只是把value=null，而key依然存在，此处只移动key,value都存在的
         for (int i=0;i<hashTableSize;i++){
-            if (keys[i]!=null){
+            if (keys[i]!=null&&values[i]!=null){
                 linearProbingHashST.put(keys[i],values[i]);
             }
         }

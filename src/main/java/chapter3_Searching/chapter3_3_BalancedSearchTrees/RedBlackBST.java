@@ -201,6 +201,10 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         if (!isRed(root.left)&&!isRed(root.right)){
             root.color=RED;
         }
+        root=deleteRecursive(root,key);
+        if (!isEmpty()){
+            root.color=BLACK;
+        }
     }
 
     private RedBlackTreeNode<Key,Value> deleteRecursive(RedBlackTreeNode<Key,Value> node,Key key){
@@ -263,6 +267,10 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         return balance(node);
     }
 
+    /**
+     * @param node 从左子树中移动节点到右边（移动的是传入的父节点：node）
+     * @return
+     */
     private RedBlackTreeNode<Key,Value> moveRedRight(RedBlackTreeNode<Key,Value> node){
         //先将node，node.left，node.right中的某几个拉平
         flipColors(node);

@@ -3,6 +3,7 @@ package chapter3_Searching.chapter3_4_HashTables;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.lang.reflect.Array;
+import java.util.function.Function;
 
 /**
  * @author zhangyu

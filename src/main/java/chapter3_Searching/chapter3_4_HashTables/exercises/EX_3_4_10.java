@@ -1,13 +1,14 @@
 package chapter3_Searching.chapter3_4_HashTables.exercises;
 
 import java.lang.reflect.Array;
+import java.util.Iterator;
 
 /**
  * @author zhangyu
  * 2020/4/2 14:21
  * 练习3.4.10：重新实现基于线性探测法的散列表
  */
-public class EX_3_4_10<Key extends Comparable<Key>,Value> {
+public class EX_3_4_10<Key extends Comparable<Key>,Value> implements Iterable<Key>{
     public static void main(String[] args) {
         EX_3_4_10<String,String> ex_3_4_10=new EX_3_4_10<>(16);
         ex_3_4_10.put("E","E");
@@ -24,6 +25,10 @@ public class EX_3_4_10<Key extends Comparable<Key>,Value> {
         ex_3_4_10.delete("Q");
         System.out.println(ex_3_4_10.get("Q"));
         System.out.println(ex_3_4_10.get("S"));
+        Iterator<String> iterator=ex_3_4_10.iterator();
+        while (iterator.hasNext()){
+            System.out.print(iterator.next()+" ");
+        }
     }
     private EX_3_4_10_Node[] nodes;
     private int hashTableSize;
@@ -103,6 +108,8 @@ public class EX_3_4_10<Key extends Comparable<Key>,Value> {
         return get(key)!=null;
     }
 
+
+
     private void resize(int cap){
         EX_3_4_10<Key,Value> ex_3_4_10=new EX_3_4_10<>(cap);
         for (int i=0;i<nodes.length;i++){
@@ -112,6 +119,29 @@ public class EX_3_4_10<Key extends Comparable<Key>,Value> {
         }
         hashTableSize=cap;
         nodes=ex_3_4_10.nodes;
+    }
+
+    @Override
+    public Iterator<Key> iterator() {
+        return new iterator();
+    }
+
+    class iterator implements Iterator<Key>{
+        private int idx;
+        private int count;
+        @Override
+        public boolean hasNext() {
+            return count<size;
+        }
+
+        @Override
+        public Key next() {
+            while (nodes[idx]==null){
+                idx=(idx+1)%hashTableSize;
+            }
+            count++;
+            return nodes[idx++].key;
+        }
     }
 
     class EX_3_4_10_Node{
