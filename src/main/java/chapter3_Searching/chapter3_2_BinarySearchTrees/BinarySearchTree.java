@@ -168,7 +168,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
 
     private TreeNode<Key,Value> deleteMinRecursive(TreeNode<Key,Value> root){
         if (root.left==null){
-            //如果一直向左找，直到无法再向左，那么在递归的第N层返回这个节点的右子节点
+            //如果一直向左找，直到无法再向左，那么在递归的第N层返回这个节点的右子节点以替换被删除节点
             return root.right;
         }
         //将下一层递归（第N层返回的root.left.right）返回的值赋值给root.left

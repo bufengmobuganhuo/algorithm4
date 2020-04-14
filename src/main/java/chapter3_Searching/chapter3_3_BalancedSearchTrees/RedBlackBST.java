@@ -33,12 +33,17 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         System.out.println(redBlackBST.select(3).key);
         System.out.println(redBlackBST.floor("G").key);
         System.out.println(redBlackBST.ceil("G").key);
+        redBlackBST.delete("x");
         //redBlackBST.deleteMin();
         //redBlackBST.deleteMin();
     }
     private final boolean RED=true;
     private final boolean BLACK=false;
     protected RedBlackTreeNode<Key,Value> root;
+
+    public boolean contains(Key key){
+        return get(key)!=null;
+    }
 
     /**
      * @param key >=key的最小值
@@ -198,9 +203,13 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
     }
 
     public void delete(Key key){
+        if (!contains(key)){
+            return;
+        }
         if (!isRed(root.left)&&!isRed(root.right)){
             root.color=RED;
         }
+
         root=deleteRecursive(root,key);
         if (!isEmpty()){
             root.color=BLACK;
@@ -218,6 +227,7 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
             if (isRed(node.left)){
                 node=rotateRight(node);
             }
+            //如果找到了，并且这个节点是子节点，直接删除，不需要替换
             if (key.compareTo(node.key)==0&&(node.right==null)){
                 return null;
             }
@@ -227,8 +237,9 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
             }
             if (key.compareTo(node.key)==0){
                 //找到后继节点替换
-                node.value=getRecursive(node.right,minRecursive(node.right).key).value;
-                node.key=minRecursive(node.right).key;
+                RedBlackTreeNode<Key,Value> susNode=minRecursive(node.right);
+                node.value=susNode.value;
+                node.key=susNode.key;
                 node.right=deleteMinRecursive(node.right);
             }else{
                 node.right=deleteRecursive(node.right,key);
@@ -276,6 +287,7 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         flipColors(node);
         if (!isRed(node.left.left)){
             node=rotateRight(node);
+            flipColors(node);
         }
         return node;
     }
@@ -324,6 +336,7 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
             node=rotateLeft(node);
             //经过上述两步，可以将node的右子节点中较小值上移到根节点，原来的根节点变成了左子节点，
             //从而node.left,node至少组成了一个3-节点
+            flipColors(node);
         }
         return node;
     }
@@ -331,10 +344,6 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
     private RedBlackTreeNode<Key,Value> balance(RedBlackTreeNode<Key,Value> node){
         //如果红链接在右边，左旋转
         if (isRed(node.right)){
-            node=rotateLeft(node);
-        }
-        //如果右子节点是红色，左子节点是黑色，则左旋转
-        if(isRed(node.right)&&!isRed(node.left)){
             node=rotateLeft(node);
         }
         //如果有两条连续红链接，则上层先右旋转

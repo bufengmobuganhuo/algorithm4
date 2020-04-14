@@ -24,7 +24,7 @@ public class EX_3_5_1_SET<Key extends Comparable<Key>> {
     private final boolean RED=true;
     private final boolean BLACK=false;
     private RedBlackSetNode root;
-    private int size;
+    protected int size;
 
     public void delete(Key key){
         if (key==null){
@@ -105,10 +105,6 @@ public class EX_3_5_1_SET<Key extends Comparable<Key>> {
         if (isRED(node.right)){
             node=rotateLeft(node);
         }
-        //如果右边是红色，而左边是黑色，则向左旋转
-        if (!isRED(node.left)&&isRED(node.right)){
-            node=rotateLeft(node);
-        }
         //如果左子树出现连续红色链接，则将上层红色向右旋转
         if (isRED(node.left)&&isRED(node.left.left)){
             node=rotateRight(node);
@@ -131,6 +127,7 @@ public class EX_3_5_1_SET<Key extends Comparable<Key>> {
             node.right=rotateRight(node.right);
             //左旋转，将较小值下移到左子树
             node=rotateLeft(node);
+            flipColors(node);
         }
         return node;
     }
@@ -144,6 +141,7 @@ public class EX_3_5_1_SET<Key extends Comparable<Key>> {
         if (!isRED(node.left.left)){
             //右旋转将当前节点移入右边
             node=rotateRight(node);
+            flipColors(node);
         }
         return node;
     }
