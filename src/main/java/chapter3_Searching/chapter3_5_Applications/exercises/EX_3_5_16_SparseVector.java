@@ -12,25 +12,44 @@ import java.util.HashMap;
  */
 public class EX_3_5_16_SparseVector {
     public static void main(String[] args) {
-        EX_3_5_16_SparseVector sparseVector1=new EX_3_5_16_SparseVector();
+        EX_3_5_16_SparseVector sparseVector1=new EX_3_5_16_SparseVector(5);
         sparseVector1.put(2,0.36);
         sparseVector1.put(3,0.36);
         sparseVector1.put(4,0.18);
-        EX_3_5_16_SparseVector sparseVector2=new EX_3_5_16_SparseVector();
+        EX_3_5_16_SparseVector sparseVector2=new EX_3_5_16_SparseVector(5);
         sparseVector2.put(0,0.47);
         sparseVector2.put(2,0.47);
         EX_3_5_16_SparseVector res=sparseVector1.add(sparseVector2);
         for (Integer i:res.map.keySet()){
             System.out.println(i+":"+res.map.get(i));
         }
+        System.out.println(sparseVector1.dot(sparseVector2));
+
     }
     private HashMap<Integer,Double> map ;
+    //n维向量
+    private int n;
 
-    public EX_3_5_16_SparseVector() {
+    public EX_3_5_16_SparseVector(int n) {
         this.map = new HashMap<>();
+        this.n=n;
     }
 
-    public void put(int i,double value){
+    public EX_3_5_16_SparseVector(Double[] values){
+        n=values.length;
+        map=new HashMap<>();
+        for (int i=0;i<values.length;i++){
+            if (values[i]!=0){
+                map.put(i,values[i]);
+            }
+        }
+    }
+
+    public int getN() {
+        return n;
+    }
+
+    public void put(int i, double value){
         map.put(i,value);
     }
 
@@ -43,7 +62,7 @@ public class EX_3_5_16_SparseVector {
     }
 
     public double dot(double[] vector){
-        if (vector==null||vector.length<map.size()){
+        if (vector==null||vector.length!=n){
             return 0;
         }
         double sum=0;
@@ -53,11 +72,28 @@ public class EX_3_5_16_SparseVector {
         return sum;
     }
 
+    public double dot(EX_3_5_16_SparseVector vector){
+        if (n!=vector.n){
+            throw new IllegalArgumentException();
+        }
+        double sum=0;
+        if (map.size()>=vector.map.size()){
+            for (Integer key:vector.map.keySet()){
+                sum+=vector.get(key)*getOrDefault(key,0);
+            }
+        }else{
+            for (Integer key:map.keySet()){
+                sum+=map.get(key)*vector.getOrDefault(key,0);
+            }
+        }
+        return sum;
+    }
+
     public EX_3_5_16_SparseVector add(EX_3_5_16_SparseVector sparseVector){
         if (sparseVector==null){
             return null;
         }
-        EX_3_5_16_SparseVector res=new EX_3_5_16_SparseVector();
+        EX_3_5_16_SparseVector res=new EX_3_5_16_SparseVector(n);
         //先把被加数放入res的map
         for (Integer i:sparseVector.map.keySet()){
             res.put(i,sparseVector.map.get(i));
@@ -72,5 +108,12 @@ public class EX_3_5_16_SparseVector {
             }
         }
         return res;
+    }
+
+    public void println(){
+        for(int i=0;i<n;i++){
+            System.out.print(map.getOrDefault(i,0d)+" ");
+        }
+        System.out.println();
     }
 }
