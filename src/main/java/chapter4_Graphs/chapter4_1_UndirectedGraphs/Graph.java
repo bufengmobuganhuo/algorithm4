@@ -26,6 +26,12 @@ public class Graph{
         }
     }
 
+    public Graph(Graph graph){
+        this.vertexNum=graph.getVertexNum();
+        adj=new LinkedList[vertexNum];
+        adj=graph.adj;
+    }
+
     public Graph(In in){
         this(in.readInt());
         int edgeNum=in.readInt();
@@ -34,6 +40,15 @@ public class Graph{
             int vertex2=in.readInt();
             addEdge(vertex1,vertex2);
         }
+    }
+
+    /**
+     * @param vertex1
+     * @param vertex2
+     * @return 返回两个顶点之间是否有边相连
+     */
+    public boolean hasEdge(int vertex1,int vertex2){
+        return adj[vertex1].contains(vertex2);
     }
 
     /**
@@ -56,6 +71,12 @@ public class Graph{
      * @param vertex2
      */
     public void addEdge(int vertex1,int vertex2){
+        if (vertex1==vertex2){
+            throw new IllegalArgumentException("不允许自环");
+        }
+        /*if (adj[vertex1].contains(vertex2)){
+            throw new IllegalArgumentException("不允许含有平行边");
+        }*/
         adj[vertex1].add(vertex2);
         adj[vertex2].add(vertex1);
         edgeNum++;

@@ -32,7 +32,7 @@ public class Cycle {
             if (!marked[vertex]){
                 dfs(graph,vertex,start);
                 //如果这个顶点被标记过，而且不是上一层的顶点
-                // （从0 -> 1为上一层，从1 -> 0是下一层），
+                // （从0 -> 1为上一层，在下一层中从1 -> 0又被访问一遍），
                 // 说明存在一条路径，让起点经过这个路径后又回到了起点（环）
             }else if(vertex!=lastLevelVertex){
                 hasCycle=true;
