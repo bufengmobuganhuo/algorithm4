@@ -18,7 +18,7 @@ public class DepthFirstSearch {
 
     /**
      * @param graph 深度优先搜索
-     * @param start
+     * @param start 起点
      */
     private void dfs(Graph graph, int start){
         marked[start]=true;
