@@ -19,7 +19,7 @@ public class Topological {
         if (topological.isDAG()){
             Stack<Integer> order= (Stack<Integer>) topological.getOrder();
             while (!order.isEmpty()){
-                System.out.print(order.pop()+"-");
+                System.out.print(order.pop()+",");
             }
         }
     }

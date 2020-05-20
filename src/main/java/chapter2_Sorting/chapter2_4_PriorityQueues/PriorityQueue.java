@@ -121,7 +121,7 @@ public class PriorityQueue<T extends Comparable<T>>{
             if (j<N&&less(j,j+1)){
                 j++;
             }
-            //如果子结点中较小值<要移动的父节点，则停止移动父节点
+            //如果子结点中较大值<要移动的父节点，则停止移动父节点
             if (less(j,k)){
                 break;
             }

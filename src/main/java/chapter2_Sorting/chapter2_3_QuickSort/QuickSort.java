@@ -14,7 +14,7 @@ public class QuickSort implements SortTemplate {
         if (arr==null||arr.length==0){
             return;
         }
-        //StdRandom.shuffle(arr);
+        StdRandom.shuffle(arr);
         sort(arr,0,arr.length-1);
     }
     public void sort(Comparable[] arr,int start,int end){

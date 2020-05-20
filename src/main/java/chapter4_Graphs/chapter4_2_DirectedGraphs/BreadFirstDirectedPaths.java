@@ -27,12 +27,14 @@ public class BreadFirstDirectedPaths {
     private boolean[] marked;
     private int[] edgeTo;
     private final Digraph digraph;
+    private int[]distTo;
 
     public BreadFirstDirectedPaths(Digraph digraph,int start) {
         this.digraph = digraph;
         this.start = start;
         marked=new boolean[digraph.getVertexNum()];
         edgeTo=new int[digraph.getVertexNum()];
+        distTo=new int[digraph.getVertexNum()];
         bfs(start);
     }
 
@@ -47,9 +49,14 @@ public class BreadFirstDirectedPaths {
                     queue.add(vertex);
                     edgeTo[vertex]=tempStart;
                     marked[vertex]=true;
+                    distTo[vertex]=distTo[tempStart]+1;
                 }
             }
         }
+    }
+
+    public int distTo(int vertex){
+        return distTo[vertex];
     }
 
     /**

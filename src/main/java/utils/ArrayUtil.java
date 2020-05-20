@@ -145,4 +145,14 @@ public class ArrayUtil {
         }
         return sb.toString();
     }
+
+    public static void shuffle(Object[] arr){
+        Random random=new Random();
+        for (int i=0;i<arr.length;i++){
+            int randomIdx=i+random.nextInt(arr.length-i);
+            Object temp=arr[randomIdx];
+            arr[randomIdx]=arr[i];
+            arr[i]=temp;
+        }
+    }
 }

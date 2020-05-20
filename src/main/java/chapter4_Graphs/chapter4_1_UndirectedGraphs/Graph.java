@@ -17,6 +17,8 @@ public class Graph{
     private int edgeNum;
     //邻接表数组
     private LinkedList<Integer>[] adj;
+    //每个顶点的度数
+    private int[] degree;
 
     public Graph(int vertexNum) {
         this.vertexNum = vertexNum;
@@ -52,6 +54,14 @@ public class Graph{
     }
 
     /**
+     * @param vertex
+     * @return 获取某个顶点的度数
+     */
+    public int degree(int vertex){
+        return degree[vertex];
+    }
+
+    /**
      * @return 获取顶点数
      */
     public int getVertexNum(){
@@ -78,7 +88,9 @@ public class Graph{
             throw new IllegalArgumentException("不允许含有平行边");
         }*/
         adj[vertex1].add(vertex2);
+        degree[vertex1]+=1;
         adj[vertex2].add(vertex1);
+        degree[vertex2]+=1;
         edgeNum++;
     }
 
