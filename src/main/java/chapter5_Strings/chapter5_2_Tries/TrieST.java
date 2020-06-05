@@ -213,7 +213,7 @@ public class TrieST<Value> {
     }
 
     public static class Node{
-        private Object val;
-        private Node[] next=new Node[R];
+        public Object val;
+        public Node[] next=new Node[R];
     }
 }
