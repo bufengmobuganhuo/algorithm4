@@ -1,6 +1,8 @@
 package chapter4_Graphs.chapter4_4_ShortestPaths;
 
 import edu.princeton.cs.algs4.BellmanFordSP;
+import edu.princeton.cs.algs4.DijkstraAllPairsSP;
+import edu.princeton.cs.algs4.DijkstraSP;
 import edu.princeton.cs.algs4.In;
 import jdk.internal.org.objectweb.asm.tree.MultiANewArrayInsnNode;
 
@@ -81,6 +83,7 @@ public class BellmanFordShortestPaths {
                     onQue[end] = true;
                 }
             }
+
             //放松了vertexNum轮之后，可以尝试查找负权重环
             if (cost++%weightDigraph.getVertexNum()==0){
                 findNegativeCycle();

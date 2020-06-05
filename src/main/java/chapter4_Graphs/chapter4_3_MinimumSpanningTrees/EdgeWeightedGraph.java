@@ -66,6 +66,20 @@ public class EdgeWeightedGraph {
     }
 
     /**
+     * @param degree
+     * @return 找到给定度数的顶点
+     */
+    public int findVertexGivenDegree(int degree){
+        for (int i = 0; i < adj.length; i++) {
+            if (adj[i].size()==degree){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    /**
      * @param vertex
      * @return 返回vertex的边
      */

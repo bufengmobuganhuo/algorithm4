@@ -23,12 +23,10 @@ public class AcyclicShortestPath {
             System.out.println(edge.getStart()+"->"+edge.getEnd()+" "+edge.getWeight());
         }
     }
-    private IndexMinPQ<Double> indexMinPQ;
     private double[] distTo;
     private DirectedEdge[] edgeTo;
 
     public AcyclicShortestPath(EdgeWeightDigraph weightDigraph, int start) {
-        indexMinPQ=new IndexMinPQ<>(weightDigraph.getVertexNum());
         distTo=new double[weightDigraph.getVertexNum()];
         for (int i=0;i<distTo.length;i++){
             distTo[i]=Double.POSITIVE_INFINITY;
@@ -49,11 +47,6 @@ public class AcyclicShortestPath {
             if (distTo[end]>adjEdge.getWeight()+distTo[vertex]){
                 distTo[end]=distTo[vertex]+adjEdge.getWeight();
                 edgeTo[end]=adjEdge;
-                if (indexMinPQ.contains(end)){
-                    indexMinPQ.changeKey(end,distTo[end]);
-                }else{
-                    indexMinPQ.insert(end,distTo[end]);
-                }
             }
         }
     }

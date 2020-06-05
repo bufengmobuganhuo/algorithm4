@@ -12,7 +12,6 @@ import java.util.Stack;
  */
 public class DijkstraSP {
     public static void main(String[] args) {
-
     }
     private IndexMinPQ<Double> indexMinPQ;
     private double[] distTo;
@@ -25,6 +24,7 @@ public class DijkstraSP {
         for (int i=0;i<weightDigraph.getVertexNum();i++){
             distTo[i]=Double.POSITIVE_INFINITY;
         }
+        distTo[start]=0.0;
         indexMinPQ.insert(start,0.0);
         while (!indexMinPQ.isEmpty()){
             //从权重最小的顶点开始松弛，松弛的过程实际上就是更新最短路径的过程

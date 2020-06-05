@@ -104,15 +104,18 @@ public class LinkedList<T extends Comparable> implements Iterable{
         second.next=head;
         return reversedHead;
     }
+    @Override
     public Iterator iterator() {
         return new LinkedListIterator();
     }
     private class LinkedListIterator implements Iterator<T>{
         private Node current=first;
+        @Override
         public boolean hasNext() {
             return current!=null;
         }
 
+        @Override
         public T next() {
             if (!hasNext()){
                 throw new IndexOutOfBoundsException();
@@ -122,12 +125,13 @@ public class LinkedList<T extends Comparable> implements Iterable{
             return item;
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
     }
     public class Node{
-        T item;
-        Node next;
+        public T item;
+        public Node next;
     }
 }
