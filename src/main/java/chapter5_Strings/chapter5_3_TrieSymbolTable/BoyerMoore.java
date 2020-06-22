@@ -10,8 +10,8 @@ import java.util.Map;
  */
 public class BoyerMoore {
     public static void main(String[] args) {
-        String target="FINDINAHAYSTACKNEEDLEINA";
-        String pattern="NEEDLE";
+        String target="ababababca";
+        String pattern="abababca";
         BoyerMoore boyerMoore=new BoyerMoore(pattern);
         int start=boyerMoore.search(target);
         if (start<target.length()){
@@ -33,11 +33,11 @@ public class BoyerMoore {
     public int search(String target){
         //i要向右移动的步数
         int skipStep;
-        for (int i = 0; i < target.length()-pattern.length(); i+=skipStep) {
+        for (int i = 0; i <= target.length()-pattern.length(); i+=skipStep) {
             skipStep=0;
             for (int j = pattern.length()-1; j >= 0; j--) {
                 if (target.charAt(i+j)!=pattern.charAt(j)){
-                    skipStep=j-right.getOrDefault(target.charAt(j),-1);
+                    skipStep=j-right.getOrDefault(target.charAt(i+j),-1);
                     //如果无法让i增大，则直接向右移动一步
                     skipStep=skipStep<1?1:skipStep;
                     break;

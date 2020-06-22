@@ -165,7 +165,7 @@ public class EX_2_4_29<T extends Comparable<T>> implements UtilTemplate<T>{
                     break;
                 }
                 exch(k,j);
-                k*=2;
+                k=j;
             }
         }
 
