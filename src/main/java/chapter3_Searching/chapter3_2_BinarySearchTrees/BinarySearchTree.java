@@ -168,7 +168,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
 
     private TreeNode<Key,Value> deleteMinRecursive(TreeNode<Key,Value> root){
         if (root.left==null){
-            //如果一直向左找，直到无法再向左，那么在递归的第N层返回这个节点的右子节点以替换被删除节点
+            //如果一直向左找，直到无法再向左，那么在递归的第N层返回这个节点（被删除结点）的右子节点以替换被删除节点
             return root.right;
         }
         //将下一层递归（第N层返回的root.left.right）返回的值赋值给root.left
@@ -307,9 +307,10 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> implements Bina
 
     private TreeNode<Key,Value> deleteMaxRecursive(TreeNode<Key,Value> root){
         if (root.right==null){
-            //一直向右找，直到无法再向右时，在第N层递归返回该节点的左子节点
+            //一直向右找，直到无法再向右时，在第N层递归返回该节点（被删除结点）的左子节点
             return root.left;
         }
+        // 这是第N-1层
         root.right=deleteMaxRecursive(root.right);
         root.nodeCount=size(root.left)+size(root.right)+1;
         root.height=Math.max(height(root.left),height(root.right))+1;
