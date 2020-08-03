@@ -26,8 +26,8 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         redBlackBST.put("A","P");
         redBlackBST.put("E","L");
         redBlackBST.put("S","L");
-        redBlackBST.deleteMin();
         System.out.println(redBlackBST.min().key);
+        redBlackBST.deleteMin();
         System.out.println(redBlackBST.max().key);
         System.out.println(redBlackBST.rank("H"));
         System.out.println(redBlackBST.select(3).key);

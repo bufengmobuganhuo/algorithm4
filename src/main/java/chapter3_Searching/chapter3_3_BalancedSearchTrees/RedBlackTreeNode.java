@@ -6,11 +6,11 @@ package chapter3_Searching.chapter3_3_BalancedSearchTrees;
  * TODO
  */
 public class RedBlackTreeNode<Key extends Comparable<Key>,Value> {
-    protected Key key;
-    protected Value value;
-    protected RedBlackTreeNode<Key,Value> left,right;
-    protected boolean color;
-    protected int nodeCount;
+    public Key key;
+    public Value value;
+    public RedBlackTreeNode<Key,Value> left,right;
+    public boolean color;
+    public int nodeCount;
 
     public RedBlackTreeNode(Key key, Value value, boolean color, int nodeCount) {
         this.key = key;
