@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class EX_4_1_35 {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         EX_4_1_35 ex_4_1_35=new EX_4_1_35(graph);
 
@@ -42,6 +42,13 @@ public class EX_4_1_35 {
 
     public int components() { return bridges + 1; }
 
+    /**
+     * 给每个结点按照遍历顺序从小到大编号，对于一个结点，一定有一条从较小编号到该结点的路径（上层结点->该结点）
+     * 如果该结点还可以从一个更大编号的路径到达其上一层结点，则不是桥
+     * @param graph
+     * @param father
+     * @param child
+     */
     private void dfs(Graph graph, int father, int child) {
         dfn[child] = cnt++;
         low[child] = dfn[child];
@@ -50,7 +57,7 @@ public class EX_4_1_35 {
                 dfs(graph, child, grandson);
                 low[child] = Math.min(low[child], low[grandson]);
                 //low[grandson]>=dfn[grandson]，说明只能从儿子顶点到达孙子顶点（往下走）
-                //而不能使用不经过父顶点的路径来往上走（往dfn更小的地方走）
+                //而不能使用不经过父顶点的路径来往上走（根据访问顺序，编号是从小->大的，往dfn更小的地方走）
                 //则说明child-grandson是一个桥
                 if (low[grandson] >= dfn[grandson]) {
                     StdOut.println(child + "-" + grandson + " is a bridge");
@@ -59,7 +66,7 @@ public class EX_4_1_35 {
                 //保证方向，是从child -> grandson，而不是 grandson(father) -> child
             } else if (grandson != father){
                 //因为规定了方向：father -> child -> grandson，并且除去了父顶点
-                //所以与child相连顶点的最小dfn值只能是dfn[grandson]和其本身
+                //所以与child相连顶点的最小dfn值只能是dfn[grandson](grandson已经访问过了，所以有可能会更小)和其本身
                 low[child] = Math.min(low[child], dfn[grandson]);
             }
         }

@@ -11,7 +11,7 @@ import sun.security.x509.GeneralSubtree;
  */
 public class ConnectedComponent {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         ConnectedComponent connectedComponent=new ConnectedComponent(graph);
         System.out.print(connectedComponent.count);

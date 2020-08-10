@@ -21,8 +21,8 @@ public class EX_4_2_22 {
     }
     public int shortestAncestorLength(Digraph digraph,int vertex1, int vertex2){
         //分别以vertex1,vertex2为起点做bfs
-        BreadFirstDirectedPaths breadFirstDirectedPaths1=new BreadFirstDirectedPaths(digraph,vertex1);
-        BreadFirstDirectedPaths breadFirstDirectedPaths2=new BreadFirstDirectedPaths(digraph,vertex2);
+        BreadFirstDirectedPaths breadFirstDirectedPaths1=new BreadFirstDirectedPaths(digraph.reverse(),vertex1);
+        BreadFirstDirectedPaths breadFirstDirectedPaths2=new BreadFirstDirectedPaths(digraph.reverse(),vertex2);
 
         Integer minLen=Integer.MAX_VALUE;
         for (int i=0;i<digraph.getVertexNum();i++){

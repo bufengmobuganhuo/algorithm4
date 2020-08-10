@@ -14,7 +14,7 @@ import java.util.Stack;
  */
 public class BreadthFirstPaths {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         BreadthFirstPaths breadthFirstPaths=new BreadthFirstPaths(graph,0);
         Stack<Integer> paths= (Stack<Integer>) breadthFirstPaths.pathTo(5);

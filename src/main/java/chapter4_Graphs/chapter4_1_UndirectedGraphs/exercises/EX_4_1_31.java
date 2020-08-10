@@ -14,7 +14,7 @@ import java.util.Queue;
  */
 public class EX_4_1_31 {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         EX_4_1_31 ex_4_1_31=new EX_4_1_31(graph);
         System.out.println(ex_4_1_31.count());

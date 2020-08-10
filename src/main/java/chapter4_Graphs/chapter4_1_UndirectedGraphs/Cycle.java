@@ -9,7 +9,7 @@ import edu.princeton.cs.algs4.In;
  */
 public class Cycle {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         Cycle cycle=new Cycle(graph);
         System.out.print(cycle.hasCycle);
@@ -39,4 +39,6 @@ public class Cycle {
             }
         }
     }
+
+
 }

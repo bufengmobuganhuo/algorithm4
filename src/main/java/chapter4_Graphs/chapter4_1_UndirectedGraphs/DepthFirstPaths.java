@@ -13,7 +13,7 @@ import java.util.Stack;
  */
 public class DepthFirstPaths {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         DepthFirstPaths depthFirstPaths=new DepthFirstPaths(graph,0);
         Stack<Integer> paths= (Stack<Integer>) depthFirstPaths.pathTo(5);

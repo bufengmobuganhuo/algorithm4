@@ -49,6 +49,7 @@ public class EX_4_2_23_StrongComponent {
 
         //二者取交集
         vertexCanReachSet.retainAll(vertexCanBeReachedSet);
+
         return vertexCanReachSet;
     }
 }

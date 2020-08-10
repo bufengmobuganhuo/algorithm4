@@ -16,7 +16,7 @@ import java.util.Stack;
  */
 public class EX_4_2_20_DirectedEulerCycle {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyDG";
+        String path="/Volumes/F/Algorithm4/src/main/resources/EulerCycle.txt";
         In in=new In(path);
 
         Digraph digraph=new Digraph(in);

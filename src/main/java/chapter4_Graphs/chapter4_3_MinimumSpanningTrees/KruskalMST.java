@@ -44,7 +44,7 @@ public class KruskalMST {
             Edge edge=priorityQueue.poll();
             int vertex1=edge.either();
             int vertex2=edge.other(vertex1);
-            //如果两个顶点已经相连，如果再相连则会出现环
+            //如果两个顶点已经用别的边相连，如果再相连则会出现环
             if (unionFind.connected(vertex1,vertex2)){
                 continue;
             }

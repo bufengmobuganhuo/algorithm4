@@ -23,6 +23,7 @@ public class Graph{
     public Graph(int vertexNum) {
         this.vertexNum = vertexNum;
         adj=new LinkedList[vertexNum];
+        degree=new int[vertexNum];
         for (int i=0;i<vertexNum;i++){
             adj[i]=new LinkedList<>();
         }
