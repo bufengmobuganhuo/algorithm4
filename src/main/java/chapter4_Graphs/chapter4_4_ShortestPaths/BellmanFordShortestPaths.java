@@ -85,7 +85,7 @@ public class BellmanFordShortestPaths {
             }
 
             //放松了vertexNum轮之后，可以尝试查找负权重环
-            if (cost++%weightDigraph.getVertexNum()==0){
+            if (++cost%weightDigraph.getVertexNum()==0){
                 findNegativeCycle();
                 if (hasNegativeCyle()){
                     return;

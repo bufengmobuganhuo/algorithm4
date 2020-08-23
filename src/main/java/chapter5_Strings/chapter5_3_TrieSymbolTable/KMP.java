@@ -41,6 +41,7 @@ public class KMP {
         next=new int[pat.length()];
         next[0]=-1;
         int i=0,j=-1;
+        // 只是求前后缀的重合长度，所以只需要到pat.length()-2即可
         while (i<pat.length()-1){
             //next[i]表示长度为i的最长前后缀重合长度
             if (j==-1||pat.charAt(i)==pat.charAt(j)){

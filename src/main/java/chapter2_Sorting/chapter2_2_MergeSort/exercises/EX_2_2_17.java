@@ -117,5 +117,9 @@ public class EX_2_2_17<T extends Comparable> {
     private class ListNode {
         T value;
         ListNode next;
+
+        public ListNode(T value) {
+            this.value = value;
+        }
     }
 }

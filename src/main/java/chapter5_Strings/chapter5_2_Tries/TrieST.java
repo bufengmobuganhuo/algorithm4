@@ -60,8 +60,10 @@ public class TrieST<Value> {
         }
         //找到了要被删除键，则将其值设为空
         if (len==key.length()){
-            node.val=null;
-            size--;
+            if (node.val!=null){
+                node.val=null;
+                size--;
+            }
         }else{
             char chr=key.charAt(len);
             node.next[chr]=delete(node.next[chr],key,len+1);

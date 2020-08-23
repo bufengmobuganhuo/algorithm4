@@ -61,7 +61,7 @@ public class PrimMST {
         }
     }
 
-    private void visit(EdgeWeightedGraph weightedGraph,int vertex){
+    private void visit(EdgeWeightedGraph weightedGraph, int vertex){
         //将顶点vertex加入到树中
         marked[vertex]=true;
         for (Edge edge:weightedGraph.adj(vertex)){
