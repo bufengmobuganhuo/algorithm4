@@ -17,7 +17,7 @@ public class BreadthFirstPaths {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
         Graph graph=new Graph(new In(path));
         BreadthFirstPaths breadthFirstPaths=new BreadthFirstPaths(graph,0);
-        Stack<Integer> paths= (Stack<Integer>) breadthFirstPaths.pathTo(5);
+        Stack<Integer> paths= (Stack<Integer>) breadthFirstPaths.pathTo(7);
         while (!paths.isEmpty()){
             System.out.print(paths.pop()+"-");
         }
