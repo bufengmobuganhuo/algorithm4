@@ -6,7 +6,7 @@ import utils.ArrayUtil;
 /**
  * @author zhangyu
  * 2020/2/20 15:52
- * TODO
+ * 从小到大排序
  */
 public class HeapSort implements SortTemplate {
     public static void main(String[] args) {
