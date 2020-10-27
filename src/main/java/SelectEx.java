@@ -7,8 +7,8 @@ import java.util.Random;
  */
 public class SelectEx {
     public static void main(String[] args) {
-        //System.out.println(witchOne(14));
-        System.out.println(witchOne(5));
+        System.out.println(witchOne(14));
+        System.out.println(witchOne(16));
     }
     private static int witchOne(int bound){
         Random random = new Random();

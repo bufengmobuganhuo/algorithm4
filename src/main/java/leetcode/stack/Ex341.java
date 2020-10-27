@@ -1,7 +1,7 @@
 package leetcode.stack;
 
-import leetcode.stack.NestedInteger;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
@@ -44,5 +44,39 @@ public class Ex341 implements Iterator<Integer> {
         return iterator.hasNext();
     }
 
+    static class NestedInteger {
+        Integer value;
+        List<NestedInteger> list;
 
+        public NestedInteger(int value) {
+            this.value = value;
+        }
+
+        public NestedInteger() {
+        }
+
+        public Integer getInteger(){
+            return this.value;
+        }
+
+        public boolean isInteger() {
+            return value != null;
+        }
+
+        public List<NestedInteger> getList() {
+            return list;
+        }
+
+        public void setInteger(int value) {
+            this.value = value;
+        }
+
+        public void add(NestedInteger ni) {
+            if (list == null) {
+                list = new ArrayList<>();
+            }
+            list.add(ni);
+        }
+
+    }
 }
