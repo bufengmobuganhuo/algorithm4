@@ -10,9 +10,9 @@ public class EX_2_2_17<T extends Comparable> {
 
     }
 
-    public void solution(ListNode head) {
+    public ListNode solution(ListNode head) {
         if (head == null) {
-            return;
+            return null;
         }
 
         while (true) {
@@ -21,7 +21,7 @@ public class EX_2_2_17<T extends Comparable> {
             ListNode mid = findSortedBlockSize(lo);
             // 为null，说明已经有序
             if (mid.next == null) {
-                return;
+                return head;
             }
             while (mid != null && mid.next != null) {
                 // 第二个有序子链表的结尾
@@ -106,7 +106,7 @@ public class EX_2_2_17<T extends Comparable> {
         }
         ListNode endNode = listNode;
         while (endNode.next != null) {
-            if (endNode.next == null || endNode.value.compareTo(endNode.next.value) > 0) {
+            if (endNode.value.compareTo(endNode.next.value) > 0) {
                 break;
             }
             endNode = endNode.next;

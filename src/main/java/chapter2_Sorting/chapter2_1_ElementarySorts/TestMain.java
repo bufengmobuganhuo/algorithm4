@@ -22,5 +22,9 @@ public class TestMain {
         ShellSort shellSort=new ShellSort();
         shellSort.sort(arr);
         shellSort.show("希尔排序后：",arr);
+
+        BubbleSort bubbleSort = new BubbleSort();
+        bubbleSort.sort(arr);
+        bubbleSort.show("冒泡排序后：",arr);
     }
 }
