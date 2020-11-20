@@ -13,34 +13,34 @@ public class Ex_4_2_24_1 {
     private Stack<Integer> reversePostOrder;
     private boolean[] marked;
 
-    public boolean hasHimltonPath(Digraph digraph){
+    public boolean hasHimltonPath(Digraph digraph) {
         getTopologicalOrder(digraph);
-        int vertex1=reversePostOrder.pop();
-        while (!reversePostOrder.isEmpty()){
-            int vertex2=reversePostOrder.pop();
-            if (digraph.hasEdge(vertex1,vertex2)){
+        int vertex1 = reversePostOrder.pop();
+        while (!reversePostOrder.isEmpty()) {
+            int vertex2 = reversePostOrder.pop();
+            if (digraph.hasEdge(vertex1, vertex2)) {
                 return false;
             }
-            vertex1=vertex2;
+            vertex1 = vertex2;
         }
         return true;
     }
 
-    private void getTopologicalOrder(Digraph digraph){
-        reversePostOrder=new Stack<>();
-        marked=new boolean[digraph.getVertexNum()];
+    private void getTopologicalOrder(Digraph digraph) {
+        reversePostOrder = new Stack<>();
+        marked = new boolean[digraph.getVertexNum()];
         for (int i = 0; i < digraph.getVertexNum(); i++) {
-            if (!marked[i]){
-                dfs(digraph,i);
+            if (!marked[i]) {
+                dfs(digraph, i);
             }
         }
     }
 
-    private void dfs(Digraph digraph, int vertex){
-        marked[vertex]=true;
-        for (int adjVertex:digraph.adj(vertex)){
-            if (!marked[vertex]){
-                dfs(digraph,adjVertex);
+    private void dfs(Digraph digraph, int vertex) {
+        marked[vertex] = true;
+        for (int adjVertex : digraph.adj(vertex)) {
+            if (!marked[vertex]) {
+                dfs(digraph, adjVertex);
             }
         }
         reversePostOrder.push(vertex);

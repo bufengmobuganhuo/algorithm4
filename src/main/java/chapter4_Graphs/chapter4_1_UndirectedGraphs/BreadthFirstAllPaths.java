@@ -1,7 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
 import edu.princeton.cs.algs4.In;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.*;
 
@@ -13,7 +12,7 @@ import java.util.*;
 public class BreadthFirstAllPaths {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         BreadthFirstAllPaths bfs=new BreadthFirstAllPaths(graph,0);
         bfs.pathsTo(7);
     }
@@ -23,7 +22,7 @@ public class BreadthFirstAllPaths {
      */
     private List<List<Integer>>[] edgeTo;
 
-    public BreadthFirstAllPaths(Graph graph, int start) {
+    public BreadthFirstAllPaths(Digraph graph, int start) {
         distTo=new int[graph.getVertexNum()];
         Arrays.fill(distTo,Integer.MAX_VALUE);
         edgeTo=new List[graph.getVertexNum()];
@@ -34,7 +33,7 @@ public class BreadthFirstAllPaths {
         bfs(graph,start);
     }
 
-    private void bfs(Graph graph, int start){
+    private void bfs(Digraph graph, int start){
         Queue<List<Integer>> queue=new LinkedList<>();
         List<Integer> beginList=new ArrayList<>();
         beginList.add(start);

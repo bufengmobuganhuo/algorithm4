@@ -19,20 +19,20 @@ public class Digraph {
 
     public Digraph(int vertexNum) {
         this.vertexNum = vertexNum;
-        adj=new LinkedList[vertexNum];
-        indegree=new int[vertexNum];
-        for (int i=0;i<vertexNum;i++){
-            adj[i]=new LinkedList<>();
+        adj = new LinkedList[vertexNum];
+        indegree = new int[vertexNum];
+        for (int i = 0; i < vertexNum; i++) {
+            adj[i] = new LinkedList<>();
         }
     }
 
-    public Digraph(In in){
+    public Digraph(In in) {
         this(in.readInt());
-        int edgeNum=in.readInt();
-        for (int i=0;i<edgeNum;i++){
-            int vertex1=in.readInt();
-            int vertex2=in.readInt();
-            addEdge(vertex1,vertex2);
+        int edgeNum = in.readInt();
+        for (int i = 0; i < edgeNum; i++) {
+            int vertex1 = in.readInt();
+            int vertex2 = in.readInt();
+            addEdge(vertex1, vertex2);
         }
     }
 
@@ -40,7 +40,7 @@ public class Digraph {
      * @param vertex
      * @return 顶点vertex的出度
      */
-    public int outdegree(int vertex){
+    public int outdegree(int vertex) {
         return adj[vertex].size();
     }
 
@@ -48,16 +48,17 @@ public class Digraph {
      * @param vertex
      * @return 顶点vertex的入度
      */
-    public int indegree(int vertex){
+    public int indegree(int vertex) {
         return indegree[vertex];
     }
 
     /**
      * 添加一条从vertex1 -> vertex2的有向边
+     *
      * @param vertex1
      * @param vertex2
      */
-    public void addEdge(int vertex1,int vertex2){
+    public void addEdge(int vertex1, int vertex2) {
         adj[vertex1].add(vertex2);
         indegree[vertex2]++;
         edgeNum++;
@@ -68,7 +69,7 @@ public class Digraph {
      * @param vertex2
      * @return 是否有一条 vertex1 -> vertex2的边
      */
-    public boolean hasEdge(int vertex1,int vertex2){
+    public boolean hasEdge(int vertex1, int vertex2) {
         return adj[vertex1].contains(vertex2);
     }
 
@@ -76,18 +77,18 @@ public class Digraph {
      * @param vertex
      * @return 获取vertex能到达的边
      */
-    public Iterable<Integer> adj(int vertex){
+    public Iterable<Integer> adj(int vertex) {
         return adj[vertex];
     }
 
     /**
      * @return 将当前有向图翻转
      */
-    public Digraph reverse(){
-        Digraph digraph=new Digraph(vertexNum);
-        for (int i=0;i<vertexNum;i++){
-            for (int vertex:adj(i)){
-                digraph.addEdge(vertex,i);
+    public Digraph reverse() {
+        Digraph digraph = new Digraph(vertexNum);
+        for (int i = 0; i < vertexNum; i++) {
+            for (int vertex : adj(i)) {
+                digraph.addEdge(vertex, i);
             }
         }
         return digraph;

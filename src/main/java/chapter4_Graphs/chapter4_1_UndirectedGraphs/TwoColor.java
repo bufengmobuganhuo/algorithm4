@@ -1,6 +1,5 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
-import chapter1_Fundamentals.chapter1_4_AnalysisOfAlgorithms.TwoSum;
 import edu.princeton.cs.algs4.In;
 
 /**
@@ -11,7 +10,7 @@ import edu.princeton.cs.algs4.In;
 public class TwoColor {
     public static void main(String[] args) {
         String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         TwoColor twoColor=new TwoColor(graph);
         System.out.print(twoColor.isTwoColorable);
     }
@@ -20,7 +19,7 @@ public class TwoColor {
     private boolean[] color;
     private boolean isTwoColorable;
 
-    public TwoColor(Graph graph) {
+    public TwoColor(Digraph graph) {
         marked=new boolean[graph.getVertexNum()];
         color=new boolean[graph.getVertexNum()];
         isTwoColorable=true;
@@ -31,7 +30,7 @@ public class TwoColor {
         }
     }
 
-    private void dfs(Graph graph,int start){
+    private void dfs(Digraph graph, int start){
         marked[start]=true;
         for (int vertex:graph.adj(start)){
             //如果未被标记过，在使用上一层顶点的反颜色为其着色

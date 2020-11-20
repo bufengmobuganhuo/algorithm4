@@ -1,7 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Cycle;
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 /**
@@ -12,14 +11,14 @@ import edu.princeton.cs.algs4.In;
 public class CycleTry {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         CycleTry cycle=new CycleTry(graph);
         System.out.print(cycle.hasCycle);
     }
     private boolean[] marked;
     private boolean hasCycle;
 
-    public CycleTry(Graph graph) {
+    public CycleTry(Digraph graph) {
         marked=new boolean[graph.getVertexNum()];
         for (int i = 0; i < graph.getVertexNum(); i++) {
             if (!marked[i]){
@@ -28,7 +27,7 @@ public class CycleTry {
         }
     }
 
-    private void dfs(Graph graph,int start,int lastLayerVertex){
+    private void dfs(Digraph graph, int start, int lastLayerVertex){
         marked[start]=true;
         for (int adjVertex:graph.adj(start)){
             if (!marked[adjVertex]){

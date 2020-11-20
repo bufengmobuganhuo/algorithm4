@@ -13,7 +13,7 @@ public class Ex148 {
         head.next = new ListNode(2);
         head.next.next = new ListNode(4);
         //head.next.next.next = new ListNode(3);
-        Ex148 ex148=new Ex148();
+        Ex148 ex148 = new Ex148();
         ex148.sortList(head);
     }
 
@@ -29,7 +29,7 @@ public class Ex148 {
             if (mid.next == null) {
                 break;
             }
-            while (mid!=null&&mid.next != null) {
+            while (mid != null && mid.next != null) {
                 ListNode hi = findSortedBlock(mid.next);
                 if (lo == head) {
                     head = merge(lo, mid, hi);
@@ -56,7 +56,7 @@ public class Ex148 {
         // 将原链表截成三部分：左有序子链表，右有序子链表，剩余链表
         ListNode last = hi.next;
         mid.next = null;
-        hi.next=null;
+        hi.next = null;
         ListNode current = null;
 
         //决定新链表的起点

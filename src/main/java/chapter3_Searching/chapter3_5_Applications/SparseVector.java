@@ -22,61 +22,63 @@ public class SparseVector {
          * */
         //使用稀疏矩阵每一行的非零项构造矩阵
 
-        SparseVector[] matrix=new SparseVector[5];
-        for (int i=0;i<5;i++){
-            matrix[i]=new SparseVector();
+        SparseVector[] matrix = new SparseVector[5];
+        for (int i = 0; i < 5; i++) {
+            matrix[i] = new SparseVector();
         }
-        matrix[0].put(1,0.9);
+        matrix[0].put(1, 0.9);
 
-        matrix[1].put(2,0.36);
-        matrix[1].put(3,0.36);
-        matrix[1].put(4,0.18);
+        matrix[1].put(2, 0.36);
+        matrix[1].put(3, 0.36);
+        matrix[1].put(4, 0.18);
 
-        matrix[2].put(3,0.9);
+        matrix[2].put(3, 0.9);
 
-        matrix[3].put(0,0.9);
+        matrix[3].put(0, 0.9);
 
-        matrix[4].put(0,0.47);
-        matrix[4].put(2,0.47);
+        matrix[4].put(0, 0.47);
+        matrix[4].put(2, 0.47);
 
-        Double[] vector={0.05,0.04,0.36,0.37,0.19};
-        Double[] result=new Double[5];
-        for (int i=0;i<5;i++){
-            result[i]=matrix[i].dot(vector);
+        Double[] vector = {0.05, 0.04, 0.36, 0.37, 0.19};
+        Double[] result = new Double[5];
+        for (int i = 0; i < 5; i++) {
+            result[i] = matrix[i].dot(vector);
         }
         System.out.println(Arrays.toString(result));
     }
-    private Map<Integer,Double> map;
+
+    private Map<Integer, Double> map;
 
     public SparseVector() {
-        map=new HashMap<>();
+        map = new HashMap<>();
     }
 
-    public int size(){
+    public int size() {
         return map.size();
     }
 
-    public Double get(Integer key){
+    public Double get(Integer key) {
         return map.get(key);
     }
 
     /**
-     * @param key 这一行第i个数
+     * @param key   这一行第i个数
      * @param value 这一行第i个数的值
      */
-    public void put(Integer key,Double value){
-        map.put(key,value);
+    public void put(Integer key, Double value) {
+        map.put(key, value);
     }
 
     /**
      * 这一行与该向量的点乘
+     *
      * @param vector 向量
      * @return
      */
-    public Double dot(Double[] vector){
-        double sum=0.0;
-        for (Integer key:map.keySet()){
-            sum+=map.get(key)*vector[key];
+    public Double dot(Double[] vector) {
+        double sum = 0.0;
+        for (Integer key : map.keySet()) {
+            sum += map.get(key) * vector[key];
         }
         return sum;
     }

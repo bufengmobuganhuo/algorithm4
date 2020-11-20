@@ -1,6 +1,6 @@
 package chapter4_Graphs.chapter4_2_DirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -15,7 +15,7 @@ import java.util.Stack;
 public class EX_4_2_20_EulerCycle {
     private Stack<Integer> cycle;
 
-    public EX_4_2_20_EulerCycle(Graph graph) {
+    public EX_4_2_20_EulerCycle(Digraph graph) {
         if (graph.getEdgeNum()==0){
             return;
         }
@@ -25,7 +25,6 @@ public class EX_4_2_20_EulerCycle {
                 return;
             }
         }
-
 
         Queue<Edge>[] adj=new LinkedList[graph.getVertexNum()];
         for (int i=0;i<adj.length;i++){
@@ -40,7 +39,7 @@ public class EX_4_2_20_EulerCycle {
                     adj[i].offer(edge);
                     adj[vertex].offer(edge);
                     selfLoops++;
-                    //实际上此处已经规定了方向
+                    //规定了从小顶点到大顶点开始构建有向图，避免了重复构建边
                 }else if(i<vertex){
                     Edge edge=new Edge(i,vertex);
                     adj[i].offer(edge);
@@ -76,7 +75,7 @@ public class EX_4_2_20_EulerCycle {
         return cycle!=null;
     }
 
-    private int getNonIsolateVertex(Graph graph){
+    private int getNonIsolateVertex(Digraph graph){
         for (int i=0;i<graph.getVertexNum();i++){
             if (graph.degree(i)>0){
                 return i;

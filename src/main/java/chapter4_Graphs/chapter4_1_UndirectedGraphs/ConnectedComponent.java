@@ -1,8 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
-import com.sun.jmx.snmp.agent.SnmpMibOid;
 import edu.princeton.cs.algs4.In;
-import sun.security.x509.GeneralSubtree;
 
 /**
  * @author zhangyu
@@ -12,7 +10,7 @@ import sun.security.x509.GeneralSubtree;
 public class ConnectedComponent {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         ConnectedComponent connectedComponent=new ConnectedComponent(graph);
         System.out.print(connectedComponent.count);
     }
@@ -27,7 +25,7 @@ public class ConnectedComponent {
      */
     private int count;
 
-    public ConnectedComponent(Graph graph) {
+    public ConnectedComponent(Digraph graph) {
         id=new int[graph.getVertexNum()];
         marked=new boolean[graph.getVertexNum()];
         for (int start=0;start<graph.getVertexNum();start++){
@@ -40,7 +38,7 @@ public class ConnectedComponent {
         }
     }
 
-    private void dfs(Graph graph,int start){
+    private void dfs(Digraph graph, int start){
         marked[start]=true;
         //被深度优先搜索到的节点都和start连通
         // 在同一个连通分量中

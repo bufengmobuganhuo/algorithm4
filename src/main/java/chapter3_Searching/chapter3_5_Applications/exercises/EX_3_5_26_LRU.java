@@ -10,171 +10,121 @@ import java.util.HashMap;
  * @author zhangyu
  * 2020/4/17 14:32
  * 练习3.5.26：“最近最少使用”缓存
- *  1.使用map存储缓存键以及缓存在链表中的“位置”（这个位置并不太准确），双向链表存储缓存的键值对
- *  2.插入缓存时，插入到双向链表的表头，并将缓存键保存到map
- *  3.访问时，将双向链表中命中的缓存节点移动到表头，这样经常被访问的节点会向链表表头方向移动
- *  4.最不常访问的节点就是双向链表的尾节点
+ * 1.使用链表+HashMap实现
  */
-public class EX_3_5_26_LRU<Key extends Comparable<Key>,Value> {
+public class EX_3_5_26_LRU<Key extends Comparable<Key>, Value> {
     public static void main(String[] args) {
-        EX_3_5_26_LRU<Integer,Integer> ex_3_5_26_lru=new EX_3_5_26_LRU<>();
-        ex_3_5_26_lru.insert(1,1);
-        ex_3_5_26_lru.insert(2,2);
-        ex_3_5_26_lru.insert(3,3);
-        ex_3_5_26_lru.insert(4,4);
-        ex_3_5_26_lru.insert(2,1);
-        System.out.println(ex_3_5_26_lru.visit(2));
-        System.out.println(ex_3_5_26_lru.visit(3));
-        System.out.println(ex_3_5_26_lru.visit(4));
-        System.out.println(ex_3_5_26_lru.visit(2));
-        System.out.println(ex_3_5_26_lru.visit(2));
-        ex_3_5_26_lru.delete();
-    }
-    private DeLinkedListNode head;
-    private DeLinkedListNode end;
-    private HashMap<Key,Integer> map;
-    private int size;
-
-    public EX_3_5_26_LRU() {
-        map=new HashMap<>();
+        EX_3_5_26_LRU<Integer, Integer> ex_3_5_26_lru = new EX_3_5_26_LRU<>(3);
+        ex_3_5_26_lru.put(1, 1);
+        ex_3_5_26_lru.put(2, 2);
+        ex_3_5_26_lru.put(3, 3);
+        ex_3_5_26_lru.put(4, 4);
+        ex_3_5_26_lru.put(2, 1);
+        System.out.println(ex_3_5_26_lru.get(2));
+        System.out.println(ex_3_5_26_lru.get(3));
+        System.out.println(ex_3_5_26_lru.get(4));
+        System.out.println(ex_3_5_26_lru.get(2));
+        System.out.println(ex_3_5_26_lru.get(2));
+        ex_3_5_26_lru.remove(4);
     }
 
-    /**
-     * @param key 访问节点
-     * @return
-     */
-    public Value visit(Key key){
-        //如果被访问节点已经存在，并且不是链表的头结点，
-        //就需要先删除被访问节点，然后重新放入
-        if (map.containsKey(key)&& head.key.compareTo(key)!=0){
-            Value value= remove(key,map.get(key));
-            put(key,value);
-            map.put(key,size);
-            return value;
-            //如果包含被访问节点,并且是头结点，则直接返回
-        }else if(map.containsKey(key)){
-            return head.value;
+    private final int MAX_SIZE;
+    private Entry<Key, Value> first;
+    private Entry<Key, Value> tail;
+    private HashMap<Key, Entry<Key, Value>> cache;
+
+    public EX_3_5_26_LRU(int MAX_SIZE) {
+        this.MAX_SIZE = MAX_SIZE;
+        cache = new HashMap<>();
+    }
+
+    public void put(Key key, Value val) {
+        Entry<Key, Value> entry = cache.get(key);
+        if (entry == null) {
+            if (cache.size() > MAX_SIZE) {
+                cache.remove(tail.key);
+                removeLast();
+            }
+            entry = new Entry<>();
+            entry.key = key;
         }
-        return null;
+        entry.val = val;
+        moveToFirst(entry);
+        cache.put(key, entry);
     }
 
-    /**
-     * @param key 插入缓存
-     * @param value
-     */
-    public void insert(Key key,Value value){
-        //如果已经包含该键，则将该键移动到链表头
-        if (map.containsKey(key)){
-            remove(key,map.get(key));
-            put(key,value);
-            map.put(key,size);
-        }else{
-            put(key,value);
-            map.put(key,size);
-        }
-    }
-
-    /**
-     * 删除最不被经常访问的节点
-     */
-    public void delete(){
-        if (end==null){
-            return;
-        }
-        //在访问过程中，被访问节点都被放到了表头
-        //故最不常被访问的节点就是表尾节点
-        map.remove(end.key);
-        removeAtEnd();
-    }
-
-    private void put(Key key,Value value){
-        if(head ==null){
-            head =new DeLinkedListNode(key,value);
-            end = head;
-            size++;
-            return;
-        }
-        DeLinkedListNode newNode=new DeLinkedListNode(key,value);
-        head.last=newNode;
-        newNode.next= head;
-        head =newNode;
-        size++;
-    }
-
-    private Value remove(Key key, int index){
-        if (isEmpty()){
+    public Value get(Key key) {
+        Entry<Key, Value> entry = cache.get(key);
+        if (entry == null) {
             return null;
         }
-        int mid= size/2;
-        DeLinkedListNode cur=null;
-        if (index<mid){
-            cur= end;
-            //先找到这个键
-            while (key.compareTo(cur.key)!=0){
-                cur=cur.last;
+        moveToFirst(entry);
+        return entry.val;
+    }
+
+    public void remove(Key key) {
+        Entry<Key, Value> entry = cache.get(key);
+        if (entry == null) {
+            return;
+        }
+        if (entry.next != null) {
+            entry.next.pre = entry.pre;
+        }
+        if (entry.pre != null) {
+            entry.pre.next = entry.next;
+        }
+        // 调整首尾指针的位置
+        if (entry == first) {
+            first = entry.next;
+        }
+        if (entry == tail) {
+            tail = entry.pre;
+        }
+        cache.remove(key);
+    }
+
+    private void removeLast() {
+        if (tail != null) {
+            tail = tail.pre;
+            // 如果删除后链表为空，则需要更新first的指向
+            if (tail == null) {
+                first = null;
+            } else {
+                tail.next = null;
             }
-        }else{
-            cur= head;
-            while (key.compareTo(cur.key)!=0){
-                cur=cur.next;
-            }
         }
-        Value value=cur.value;
-        if (cur.next==null){
-            removeAtHead();
-        }else if(cur.last==null){
-            removeAtEnd();
-        }else{
-            size--;
-            cur.last.next=cur.next;
-            cur.next.last=cur.last;
-        }
-        return value;
     }
 
-    private void removeAtHead(){
-        if (isEmpty()){
+    private void moveToFirst(Entry<Key, Value> entry) {
+        if (entry == first) {
             return;
         }
-        if (size==0){
-            head=null;
-            end=null;
-            size--;
+        // 先删除
+        if (entry.pre != null) {
+            entry.pre.next = entry.next;
+        }
+        if (entry.next != null) {
+            entry.next.pre = entry.pre;
+        }
+        // 如果是最后一个节点，则需要调整tail指针
+        if (entry == tail) {
+            tail = tail.pre;
+        }
+        // 如果在原有位置删除后链表为空，则直接赋值
+        if (tail == null || first == null) {
+            first = tail = entry;
             return;
         }
-        size--;
-        head=head.next;
-        head.last=null;
+        entry.next = first;
+        first.pre = entry;
+        first = entry;
+        entry.pre = null;
     }
 
-    private void removeAtEnd(){
-        if (isEmpty()){
-            return;
-        }
-        if (size==1){
-            head=null;
-            end=null;
-            size--;
-            return;
-        }
-        size--;
-        end=end.last;
-        end.next=null;
-    }
-
-    public boolean isEmpty(){
-        return head ==null;
-    }
-
-    class DeLinkedListNode{
+    class Entry<Key, Value> {
+        Entry<Key, Value> pre;
+        Entry<Key, Value> next;
         Key key;
-        Value value;
-        DeLinkedListNode last;
-        DeLinkedListNode next;
-
-        public DeLinkedListNode(Key key,Value value) {
-            this.key = key;
-            this.value= value;
-        }
+        Value val;
     }
 }

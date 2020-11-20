@@ -11,7 +11,7 @@ import java.util.Stack;
  */
 public class KosarajuSCC {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyDG";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyDG";
         In in=new In(path);
         Digraph digraph=new Digraph(in);
         KosarajuSCC kosarajuSCC=new KosarajuSCC(digraph);

@@ -1,8 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
-import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
 import edu.princeton.cs.algs4.In;
-import javafx.util.Pair;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -16,10 +14,10 @@ public class DeBreadthFirstPaths {
     public static void main(String[] args) {
         DeBreadthFirstPaths bfs=new DeBreadthFirstPaths();
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         System.out.println(bfs.pathLength(graph,0,7));
     }
-    public int pathLength(Graph graph, int start, int end) {
+    public int pathLength(Digraph graph, int start, int end) {
         // 起点对应的queue
         Queue<Integer> queueStart = new LinkedList<>();
         boolean[] markedStart = new boolean[graph.getVertexNum()];
@@ -51,7 +49,7 @@ public class DeBreadthFirstPaths {
         return -1;
     }
 
-    private int visit(Graph graph, Queue<Integer> queue, boolean[] marked, int[] distTo, boolean[] markedOther, int[] distToOther) {
+    private int visit(Digraph graph, Queue<Integer> queue, boolean[] marked, int[] distTo, boolean[] markedOther, int[] distToOther) {
         int vertex = queue.poll();
 
         // 二者相遇

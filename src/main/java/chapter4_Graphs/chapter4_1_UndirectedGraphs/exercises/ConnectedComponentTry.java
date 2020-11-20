@@ -1,7 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.ConnectedComponent;
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 /**
@@ -12,7 +11,7 @@ import edu.princeton.cs.algs4.In;
 public class ConnectedComponentTry {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         ConnectedComponentTry connectedComponent=new ConnectedComponentTry(graph);
         System.out.print(connectedComponent.count);
     }
@@ -20,7 +19,7 @@ public class ConnectedComponentTry {
     private int[] id;
     private int count;
 
-    public ConnectedComponentTry(Graph graph) {
+    public ConnectedComponentTry(Digraph graph) {
         marked = new boolean[graph.getVertexNum()];
         id = new int[graph.getVertexNum()];
         for (int i = 0; i < graph.getVertexNum(); i++) {
@@ -32,7 +31,7 @@ public class ConnectedComponentTry {
         }
     }
 
-    private void dfs(Graph graph, int start) {
+    private void dfs(Digraph graph, int start) {
         marked[start] = true;
         id[start] = count;
         for (int vertex : graph.adj(start)) {

@@ -10,14 +10,14 @@ import edu.princeton.cs.algs4.In;
 public class Cycle {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         Cycle cycle=new Cycle(graph);
         System.out.print(cycle.hasCycle);
     }
     private boolean[] marked;
     private boolean hasCycle;
 
-    public Cycle(Graph graph) {
+    public Cycle(Digraph graph) {
         marked=new boolean[graph.getVertexNum()];
         for (int start=0;start<graph.getVertexNum();start++){
             if (!marked[start]){
@@ -26,7 +26,7 @@ public class Cycle {
         }
     }
 
-    private void dfs(Graph graph,int start,int lastLevelVertex){
+    private void dfs(Digraph graph, int start, int lastLevelVertex){
         marked[start]=true;
         for (int vertex:graph.adj(start)){
             if (!marked[vertex]){

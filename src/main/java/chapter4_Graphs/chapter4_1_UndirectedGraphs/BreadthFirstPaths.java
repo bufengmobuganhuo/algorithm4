@@ -2,7 +2,6 @@ package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
 import edu.princeton.cs.algs4.In;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -15,7 +14,7 @@ import java.util.Stack;
 public class BreadthFirstPaths {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         BreadthFirstPaths breadthFirstPaths=new BreadthFirstPaths(graph,0);
         Stack<Integer> paths= (Stack<Integer>) breadthFirstPaths.pathTo(7);
         while (!paths.isEmpty()){
@@ -26,14 +25,14 @@ public class BreadthFirstPaths {
     private int[] edgeTo;
     private final int start;
 
-    public BreadthFirstPaths(Graph graph,int start) {
+    public BreadthFirstPaths(Digraph graph, int start) {
         this.start = start;
         marked=new boolean[graph.getVertexNum()];
         edgeTo=new int[graph.getVertexNum()];
         bfs(graph,start);
     }
 
-    private void bfs(Graph graph,int start){
+    private void bfs(Digraph graph, int start){
         Queue<Integer> queue=new LinkedList<>();
         marked[start]=true;
         queue.add(start);

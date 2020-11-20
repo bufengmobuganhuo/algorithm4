@@ -1,9 +1,7 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.PatriciaSET;
 
-import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Stack;
 public class DepthFirstPaths {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         DepthFirstPaths depthFirstPaths=new DepthFirstPaths(graph,0);
         Stack<Integer> paths= (Stack<Integer>) depthFirstPaths.pathTo(5);
         while (!paths.isEmpty()){
@@ -28,14 +26,14 @@ public class DepthFirstPaths {
      */
     private final int start;
 
-    public DepthFirstPaths(Graph graph,int start) {
+    public DepthFirstPaths(Digraph graph, int start) {
         marked=new boolean[graph.getVertexNum()];
         edgeTo=new int[graph.getVertexNum()];
         this.start = start;
         dfs(graph,start);
     }
 
-    public void dfs(Graph graph,int start){
+    public void dfs(Digraph graph, int start){
         //将顶点标记
         marked[start]=true;
         for (int vertex:graph.adj(start)){

@@ -19,7 +19,7 @@ public class SymbolGraph {
      * 索引 -> 顶点名
      */
     private String[] vertexIndexToName;
-    private Graph graph;
+    private Digraph graph;
 
     public SymbolGraph(String filePath,String splitStr) {
         vertexNameToIndex=new HashMap<>();
@@ -40,7 +40,7 @@ public class SymbolGraph {
         }
 
         //构建图
-        graph=new Graph(vertexIndexToName.length);
+        graph=new Digraph(vertexIndexToName.length);
         in=new In(filePath);
         while (in.hasNextLine()){
             String[] vertexes=in.readLine().split(splitStr);
@@ -75,7 +75,7 @@ public class SymbolGraph {
         return vertexIndexToName[index];
     }
 
-    public Graph getGraph(){
+    public Digraph getGraph(){
         return graph;
     }
 }

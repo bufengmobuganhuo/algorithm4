@@ -30,7 +30,6 @@ public class EX_4_1_35 {
     public EX_4_1_35(Graph graph) {
         low = new int[graph.V()];
         dfn = new int[graph.V()];
-        Arrays.fill(low,-1);
         Arrays.fill(dfn,-1);
 
         for (int v = 0; v < graph.V(); v++){

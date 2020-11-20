@@ -1,7 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.BreadthFirstPaths;
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 import java.util.LinkedList;
@@ -16,7 +15,7 @@ import java.util.Stack;
 public class BreadthFirstPathsTry {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         BreadthFirstPathsTry breadthFirstPaths=new BreadthFirstPathsTry(graph,0);
         Stack<Integer> paths= (Stack<Integer>) breadthFirstPaths.pathTo(5);
         while (!paths.isEmpty()){
@@ -29,7 +28,7 @@ public class BreadthFirstPathsTry {
     private int start;
     private int distTo[];
 
-    public BreadthFirstPathsTry(Graph graph, int start) {
+    public BreadthFirstPathsTry(Digraph graph, int start) {
         this.start = start;
         edgeTo = new int[graph.getVertexNum()];
         marked=new boolean[graph.getVertexNum()];
@@ -37,7 +36,7 @@ public class BreadthFirstPathsTry {
         bfs(graph,start);
     }
 
-    private void bfs(Graph graph,int start){
+    private void bfs(Digraph graph, int start){
         Queue<Integer> queue=new LinkedList<>();
         marked[start]=true;
         distTo[start]=0;

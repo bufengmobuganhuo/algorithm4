@@ -1,6 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 import java.util.Arrays;
@@ -15,13 +15,13 @@ import java.util.Queue;
 public class EX_4_1_31 {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         EX_4_1_31 ex_4_1_31=new EX_4_1_31(graph);
         System.out.println(ex_4_1_31.count());
     }
-    private final Graph graph;
+    private final Digraph graph;
 
-    public EX_4_1_31(Graph graph) {
+    public EX_4_1_31(Digraph graph) {
         this.graph = graph;
     }
 

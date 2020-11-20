@@ -11,7 +11,7 @@ public class DepthFirstSearch {
     //搜索过程中的顶点访问次数
     private int count;
 
-    public DepthFirstSearch(Graph graph,int start) {
+    public DepthFirstSearch(Digraph graph, int start) {
         //从start开始深度优先搜索
         dfs(graph,start);
     }
@@ -20,7 +20,7 @@ public class DepthFirstSearch {
      * @param graph 深度优先搜索
      * @param start 起点
      */
-    private void dfs(Graph graph, int start){
+    private void dfs(Digraph graph, int start){
         marked[start]=true;
         count++;
         for (int vertex:graph.adj(start)){

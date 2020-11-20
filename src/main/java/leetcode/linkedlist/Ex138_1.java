@@ -14,7 +14,6 @@ public class Ex138_1 {
      */
     private Map<Node, Node> visited = new HashMap<>();
 
-
     public Node copyRandomList(Node head) {
         if (head == null) {
             return null;

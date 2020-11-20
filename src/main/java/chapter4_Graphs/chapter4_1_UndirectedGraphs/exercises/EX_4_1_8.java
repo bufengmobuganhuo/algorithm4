@@ -1,6 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 /**
@@ -11,7 +11,7 @@ import edu.princeton.cs.algs4.In;
 public class EX_4_1_8{
     public static void main(String[] args) {
         String path="F:\\Algorithm4\\src\\main\\resources\\tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         EX_4_1_8 ex_4_1_8=new EX_4_1_8(graph,0);
         System.out.println(ex_4_1_8.marked(4));
         System.out.println(ex_4_1_8.count());
@@ -28,7 +28,7 @@ public class EX_4_1_8{
 
     private final int start;
 
-    public EX_4_1_8(Graph graph,int start) {
+    public EX_4_1_8(Digraph graph, int start) {
         this.start=start;
         treeSize=new int[graph.getVertexNum()];
         connectedComponentId=new int[graph.getVertexNum()];

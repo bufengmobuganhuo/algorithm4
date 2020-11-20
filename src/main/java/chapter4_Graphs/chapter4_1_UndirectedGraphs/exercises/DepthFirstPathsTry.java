@@ -1,7 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.DepthFirstPaths;
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 import java.util.Stack;
@@ -14,7 +13,7 @@ import java.util.Stack;
 public class DepthFirstPathsTry {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         DepthFirstPathsTry depthFirstPaths=new DepthFirstPathsTry(graph,0);
         Stack<Integer> paths= (Stack<Integer>) depthFirstPaths.pathTo(5);
         while (!paths.isEmpty()){
@@ -25,14 +24,14 @@ public class DepthFirstPathsTry {
     private int[] edgeTo;
     private int start;
 
-    public DepthFirstPathsTry(Graph graph, int start) {
+    public DepthFirstPathsTry(Digraph graph, int start) {
         this.start = start;
         marked=new boolean[graph.getVertexNum()];
         edgeTo=new int[graph.getVertexNum()];
         dfs(graph,start);
     }
 
-    private void dfs(Graph graph,int start){
+    private void dfs(Digraph graph, int start){
         marked[start]=true;
         for (Integer vertex:graph.adj(start)){
             if (!marked[vertex]){

@@ -1,6 +1,6 @@
 package chapter4_Graphs.chapter4_1_UndirectedGraphs.exercises;
 
-import chapter4_Graphs.chapter4_1_UndirectedGraphs.Graph;
+import chapter4_Graphs.chapter4_1_UndirectedGraphs.Digraph;
 import edu.princeton.cs.algs4.In;
 
 import java.util.Arrays;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class Ex4_1_35_1 {
     public static void main(String[] args) {
         String path="/Volumes/F/Algorithm4/src/main/resources/tinyG.txt";
-        Graph graph=new Graph(new In(path));
+        Digraph graph=new Digraph(new In(path));
         Ex4_1_35_1 ex_4_1_35=new Ex4_1_35_1(graph);
 
     }
@@ -24,7 +24,7 @@ public class Ex4_1_35_1 {
     private int id;
     private int bridgeNum;
 
-    public Ex4_1_35_1(Graph graph) {
+    public Ex4_1_35_1(Digraph graph) {
         dfn=new int[graph.getVertexNum()];
         lower=new int[graph.getVertexNum()];
         Arrays.fill(dfn,-1);
@@ -36,7 +36,7 @@ public class Ex4_1_35_1 {
         }
     }
 
-    private void dfs(Graph graph,int father,int child){
+    private void dfs(Digraph graph, int father, int child){
         dfn[child]=id++;
         lower[child]=dfn[child];
         for (int grandson : graph.adj(child)) {

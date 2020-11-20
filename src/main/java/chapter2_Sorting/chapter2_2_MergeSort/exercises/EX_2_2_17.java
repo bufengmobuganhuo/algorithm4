@@ -86,10 +86,10 @@ public class EX_2_2_17<T extends Comparable> {
         // 将有序子链表与剩余链表相连
         // 已知lo -> mid有序，mid.next -> hi有序
         // 那么有序链表的最后一个元素，只可能是mid或hi
-        if (mid.next == null) {
-            mid.next = last;
-        } else {
+        if (mid.value.compareTo(hi.value)<0){
             hi.next = last;
+        }else {
+            mid.next = last;
         }
         return head;
     }

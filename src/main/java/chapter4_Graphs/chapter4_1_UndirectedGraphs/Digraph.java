@@ -2,7 +2,6 @@ package chapter4_Graphs.chapter4_1_UndirectedGraphs;
 
 import edu.princeton.cs.algs4.In;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -10,7 +9,7 @@ import java.util.LinkedList;
  * 2020/4/20 20:07
  * TODO
  */
-public class Graph{
+public class Digraph {
     //顶点数
     private final int vertexNum;
     //边数
@@ -20,7 +19,7 @@ public class Graph{
     //每个顶点的度数
     private int[] degree;
 
-    public Graph(int vertexNum) {
+    public Digraph(int vertexNum) {
         this.vertexNum = vertexNum;
         adj=new LinkedList[vertexNum];
         degree=new int[vertexNum];
@@ -29,13 +28,13 @@ public class Graph{
         }
     }
 
-    public Graph(Graph graph){
+    public Digraph(Digraph graph){
         this.vertexNum=graph.getVertexNum();
         adj=new LinkedList[vertexNum];
         adj=graph.adj;
     }
 
-    public Graph(In in){
+    public Digraph(In in){
         this(in.readInt());
         int edgeNum=in.readInt();
         for (int i=0;i<edgeNum;i++){
