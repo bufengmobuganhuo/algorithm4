@@ -16,7 +16,7 @@ import java.util.Queue;
  */
 public class KruskalMST {
     public static void main(String[] args) {
-        String path="F:\\Algorithm4\\src\\main\\resources\\tinyEWG.txt";
+        String path="/Volumes/F/Algorithm4/src/main/resources/tinyEWG.txt";
         In in=new In(path);
         EdgeWeightedGraph weightedGraph=new EdgeWeightedGraph(in);
 
