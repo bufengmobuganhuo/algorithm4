@@ -11,7 +11,7 @@ import java.util.Queue;
  * 2020/6/2 11:15
  * 单词查找树
  */
-public class TrieST<Value> implements StTemplate<Value>{
+public class TrieST<Value> implements StTemplate<Value> {
     public static void main(String[] args) {
         Map<String, Integer> map = new HashMap<>(4);
         map.put("she", 0);
@@ -174,6 +174,11 @@ public class TrieST<Value> implements StTemplate<Value>{
     @Override
     public void put(String key, Value value) {
         root = put(root, key, value, 0);
+    }
+
+    @Override
+    public boolean containsKey(String key) {
+        return get(key) != null;
     }
 
     private Node put(Node node, String key, Value value, int index) {
