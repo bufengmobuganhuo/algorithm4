@@ -14,15 +14,15 @@ public class TopologicalEdgeWeightedDigraph {
     private boolean[] marked;
 
     public TopologicalEdgeWeightedDigraph(EdgeWeightDigraph weightDigraph) {
-        CycleEdgeWeightDigraph cycleEdgeWeightDigraph=new CycleEdgeWeightDigraph(weightDigraph);
-        if (cycleEdgeWeightDigraph.hasCycle()){
+        CycleEdgeWeightDigraph cycleEdgeWeightDigraph = new CycleEdgeWeightDigraph(weightDigraph);
+        if (cycleEdgeWeightDigraph.hasCycle()) {
             return;
         }
         EdgeWeightedDigraphOrder edgeWeightedDigraphOrder = new EdgeWeightedDigraphOrder(weightDigraph);
-        reversePostStack=edgeWeightedDigraphOrder.getReversePostOrder();
+        reversePostStack = edgeWeightedDigraphOrder.getReversePostOrder();
     }
 
-    public Stack<Integer> order(){
+    public Stack<Integer> order() {
         return reversePostStack;
     }
 }
