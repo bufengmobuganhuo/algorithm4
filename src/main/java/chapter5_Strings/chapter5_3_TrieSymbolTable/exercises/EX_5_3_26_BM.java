@@ -6,7 +6,8 @@ import java.util.Map;
 /**
  * @author yuzhang
  * @date 2020/6/15 9:31 下午
- * TODO
+ * 如果字符串s中的字符循环移动任意位置之后能够得到另一字符串t，那么s就被称为t的回环变位。
+ * 例如，ACTGACG 就是 TGACGAC 的一个回环变位，反之亦然
  */
 public class EX_5_3_26_BM {
     public static void main(String[] args) {

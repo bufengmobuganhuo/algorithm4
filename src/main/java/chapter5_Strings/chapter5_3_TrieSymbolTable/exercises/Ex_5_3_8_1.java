@@ -1,47 +1,40 @@
-package chapter5_Strings.chapter5_3_TrieSymbolTable;
+package chapter5_Strings.chapter5_3_TrieSymbolTable.exercises;
 
 /**
  * @author yuzhang
- * @date 2020/11/27 上午9:05
+ * @date 2020/11/30 上午8:42
  * TODO
  */
-public class KMP2 {
-    public static void main(String[] args) {
-        String target = "ababababca";
-        String pattern = "abababca";
-        KMP2 kmp = new KMP2(pattern);
-        System.out.println(kmp.search(target));
-    }
-
+public class Ex_5_3_8_1 {
     private final String pattern;
     private int[] next;
 
-    public KMP2(String pattern) {
+    public Ex_5_3_8_1(String pattern) {
         this.pattern = pattern;
-        generateNext();
+        next = new int[pattern.length()];
     }
 
-    public String search(String txt) {
-        int i = 0, j = -1;
+    public int count(String txt) {
+        int count = 0, i = 0, j = 0;
         while (i < txt.length() && j < pattern.length()) {
             if (j == -1 || txt.charAt(i) == pattern.charAt(j)) {
                 i++;
                 j++;
+                if (j == pattern.length()) {
+                    count++;
+                    j = next[j];
+                }
             } else {
                 j = next[j];
             }
         }
-        if (j == pattern.length()) {
-            return txt.substring(i - j, i - j + pattern.length());
-        }
-        return null;
+        return count;
     }
 
     private void generateNext() {
-        next = new int[pattern.length()];
         next[0] = -1;
         int i = 0, j = -1;
-        while (i < pattern.length() - 1) {
+        while (i < next.length) {
             if (j == -1 || pattern.charAt(i) == pattern.charAt(j)) {
                 i++;
                 j++;

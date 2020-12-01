@@ -21,54 +21,55 @@ public class Ex76 {
      * 1. 使用一个变量：realLen，表示滑动窗口中出现target中字符的总次数
      * 2. 由此可知，当realLen=target.length时，滑动窗口满足条件
      * 3. realLen在滑动窗口中的字符满足target时不再增加
-     *     1⃣️ 在右指针向右移动以扩大滑动窗口时，只有当winFreq[source.charAt(right)]<targetFreq[source.charAt(right)]时，
-     *          realLen++;
-     *     2⃣️ 在左指针向右移动以缩小滑动窗口时，只有当winFreq[source.charAt(right)]==targetFreq[source.charAt(right)]时，
-     *          realLen--
+     * 1⃣️ 在右指针向右移动以扩大滑动窗口时，只有当winFreq[source.charAt(right)]<targetFreq[source.charAt(right)]时，
+     * realLen++;
+     * 2⃣️ 在左指针向右移动以缩小滑动窗口时，只有当winFreq[source.charAt(right)]==targetFreq[source.charAt(right)]时，
+     * realLen--
+     *
      * @param source
      * @param target
      * @return
      */
-    public String minWindow2(String source, String target){
-        int[] winFreq=new int[128];
-        int[] targetFreq=new int[128];
-        char[] sourceChrArr=source.toCharArray();
+    public String minWindow2(String source, String target) {
+        int[] winFreq = new int[128];
+        int[] targetFreq = new int[128];
+        char[] sourceChrArr = source.toCharArray();
         // 统计目标字符串中字符的出现频率
         for (int i = 0; i < target.length(); i++) {
             targetFreq[target.charAt(i)]++;
         }
-        int sourceLen=source.length();
-        int targetLen=target.length();
-        int ansLeftPtr=0,ansLen=Integer.MAX_VALUE;
+        int sourceLen = source.length();
+        int targetLen = target.length();
+        int ansLeftPtr = 0, ansLen = Integer.MAX_VALUE;
         // 滑动窗口是一个[left,right)的区间
-        int leftPtr=0,rightPtr=0;
-        int realLen=0;
-        while (rightPtr<sourceLen){
+        int leftPtr = 0, rightPtr = 0;
+        int realLen = 0;
+        while (rightPtr < sourceLen) {
             // 如果当前右指针指向的字符不在target中，则直接扩大窗口
-            if (targetFreq[sourceChrArr[rightPtr]]==0){
+            if (targetFreq[sourceChrArr[rightPtr]] == 0) {
                 rightPtr++;
                 continue;
             }
-            // 只有在winFreq[source.charAt(right)]<targetFreq[source.charAt(right)]时，更新realLen
-            if (winFreq[sourceChrArr[rightPtr]]<targetFreq[sourceChrArr[rightPtr]]){
+            // 只有在winFreq[source.charAt(right)] < targetFreq[source.charAt(right)]时，更新realLen
+            if (winFreq[sourceChrArr[rightPtr]] < targetFreq[sourceChrArr[rightPtr]]) {
                 realLen++;
             }
             // 向右扩大窗口,增加滑动窗口中字符的出现频率
             winFreq[sourceChrArr[rightPtr]]++;
             rightPtr++;
             // 当realLen=target.len时，则说明找到了满足条件的窗口,开始从左边开始缩小滑动窗口
-            while (realLen==targetLen){
+            while (realLen == targetLen) {
                 // 能进入循环， 则说明滑动窗口满足条件，则更新最小值
-                if (rightPtr-leftPtr<ansLen){
-                    ansLen=rightPtr-leftPtr;
-                    ansLeftPtr=leftPtr;
+                if (rightPtr - leftPtr < ansLen) {
+                    ansLen = rightPtr - leftPtr;
+                    ansLeftPtr = leftPtr;
                 }
-                // 如果左指针当前指向的字符不再targt中，则直接缩小窗口
-                if (targetFreq[sourceChrArr[leftPtr]]==0){
+                // 如果左指针当前指向的字符不再target中，则直接缩小窗口
+                if (targetFreq[sourceChrArr[leftPtr]] == 0) {
                     leftPtr++;
                     continue;
                 }
-                if (winFreq[sourceChrArr[leftPtr]]==targetFreq[sourceChrArr[leftPtr]]){
+                if (winFreq[sourceChrArr[leftPtr]] == targetFreq[sourceChrArr[leftPtr]]) {
                     realLen--;
                 }
                 winFreq[sourceChrArr[leftPtr]]--;
@@ -76,10 +77,10 @@ public class Ex76 {
             }
         }
         // 如果ansLen没更新过，说明没有满足条件的
-        if (ansLen==Integer.MAX_VALUE){
+        if (ansLen == Integer.MAX_VALUE) {
             return "";
         }
-        return source.substring(ansLeftPtr,ansLeftPtr+ansLen);
+        return source.substring(ansLeftPtr, ansLeftPtr + ansLen);
     }
 
     public String minWindow(String s, String t) {
@@ -106,7 +107,7 @@ public class Ex76 {
                     ansLeftPtr = leftPtr;
                     ansRightPtr = leftPtr + minLen;
                 }
-
+                // 缩小窗口的同时，也需要更新字符值
                 if (tChrMapCnt.containsKey(s.charAt(leftPtr))) {
                     ansChrMapCnt.put(s.charAt(leftPtr),
                             ansChrMapCnt.getOrDefault(s.charAt(leftPtr), 0) - 1);

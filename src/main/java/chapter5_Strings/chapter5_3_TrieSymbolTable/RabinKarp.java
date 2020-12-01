@@ -17,7 +17,7 @@ public class RabinKarp {
     // 要查找的字符串
     private String pattern;
     // 要查找字符串的长度
-    private int M;
+    private int patLen;
     // 要查找字符串的哈希值
     private long patHash;
     // 进制
@@ -31,10 +31,10 @@ public class RabinKarp {
         this.pattern = pattern;
         this.Q = longRandomPrime();
         this.R = 256;
-        this.M = pattern.length();
-        this.patHash = hash(pattern, M);
+        this.patLen = pattern.length();
+        this.patHash = hash(pattern, patLen);
         this.RM = 1;
-        for (int i = 0; i < M-1; i++) {
+        for (int i = 0; i < patLen -1; i++) {
             RM = (RM * R) % Q;
         }
     }
@@ -47,17 +47,17 @@ public class RabinKarp {
      */
     public int search(String txt) {
         // txt[0...M-1]的哈希值
-        long txtHash = hash(txt, M);
+        long txtHash = hash(txt, patLen);
         if (txtHash == patHash && isEqual(txt, 0)) {
             return 0;
         }
-        for (int i = M; i < txt.length(); i++) {
+        for (int i = patLen; i < txt.length(); i++) {
             // 计算txt[i...i+M-1]的哈希值
             // 减去第一个数字的值
-            txtHash = (txtHash + Q - RM * txt.charAt(i - M) % Q) % Q;
+            txtHash = (txtHash + Q - RM * txt.charAt(i - patLen) % Q) % Q;
             txtHash = (txtHash * R + txt.charAt(i)) % Q;
 
-            int offset = i - M + 1;
+            int offset = i - patLen + 1;
             if (txtHash == patHash && isEqual(txt, offset)) {
                 return offset;
             }
@@ -73,7 +73,7 @@ public class RabinKarp {
      * @return
      */
     private boolean isEqual(String txt, int i) {
-        for (int j = 0; j < M; j++) {
+        for (int j = 0; j < patLen; j++) {
             if (txt.charAt(j + i) != pattern.charAt(j)) {
                 return false;
             }
