@@ -7,36 +7,47 @@ import java.util.Map;
 
 /**
  * @author yuzhang
- * @date 2020/10/21 9:38 上午
+ * @date 2020/12/21 上午10:07
  * TODO
  */
-public class Ex652_1 {
+public class Ex652_2 {
+    public static void main(String[] args) {
+        Ex652_2 ex652_2 = new Ex652_2();
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.right.left = new TreeNode(2);
+        root.right.right = new TreeNode(4);
+        root.right.left.left = new TreeNode(4);
+        ex652_2.findDuplicateSubtrees(root);
+    }
+
+    private Map<Integer, Integer> countMap;
+    private Map<String, Integer> idMap;
+    private List<TreeNode> res;
     private int id;
-    Map<String, Integer> idMap;
-    Map<Integer, Integer> countMap;
-    List<TreeNode> ans;
 
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
-        id = 0;
         idMap = new HashMap<>();
         countMap = new HashMap<>();
-        ans = new ArrayList<>();
+        res = new ArrayList<>();
         lookup(root);
-        return ans;
+        return res;
     }
 
     private int lookup(TreeNode node) {
         if (node == null) {
             return -1;
         }
-        String serial = node.val + "," + lookup(node.left) + "," + lookup(node.right);
-        int uid = idMap.computeIfAbsent(serial, x -> id++);
+        String serialId = node.val + "," + lookup(node.left) + "," + lookup(node.right);
+        int uid = idMap.computeIfAbsent(serialId, x -> id++);
         countMap.put(uid, countMap.getOrDefault(uid, 0) + 1);
         if (countMap.get(uid) == 2) {
-            ans.add(node);
+            res.add(node);
         }
         return uid;
     }
