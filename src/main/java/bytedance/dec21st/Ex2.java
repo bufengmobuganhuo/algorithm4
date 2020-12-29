@@ -1,4 +1,4 @@
-package bytedance.Dec21st;
+package bytedance.dec21st;
 
 /**
  * @author yuzhang
