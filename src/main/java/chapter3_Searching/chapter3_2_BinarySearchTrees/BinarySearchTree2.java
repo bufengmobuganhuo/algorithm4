@@ -92,7 +92,7 @@ public class BinarySearchTree2<Key extends Comparable<Key>, Value> implements Bi
     @Override
     public void put(Key key, Value value) {
         // root = putRecursive(root, key, value);
-        putIterable(key,value);
+        putIterable(key, value);
     }
 
     private TreeNode<Key, Value> putRecursive(TreeNode<Key, Value> root, Key key, Value value) {
@@ -433,7 +433,7 @@ public class BinarySearchTree2<Key extends Comparable<Key>, Value> implements Bi
     @Override
     public Iterable<Key> keys(Key lo, Key hi) {
         Queue<Key> keys = new LinkedList<>();
-        keysRecursive(keys,lo,hi,root);
+        keysRecursive(keys, lo, hi, root);
         return keys;
     }
 

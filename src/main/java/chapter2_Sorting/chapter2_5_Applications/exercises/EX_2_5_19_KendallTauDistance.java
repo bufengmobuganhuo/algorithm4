@@ -22,13 +22,13 @@ public class EX_2_5_19_KendallTauDistance {
         }
         int[] aniv = new int[a.length];
         for (int i = 0; i < a.length; i++) {
-            //aniv保存了a中的元素a[i]在a中的索引i，逆数组
+            // aniv保存了a中的元素a[i]在a中的索引i，逆数组
             aniv[a[i]] = i;
         }
         //以a[]为标准的话，bnew保存了b中的b[i]在b中的索引
         int[] bnew = new int[a.length];
         for (int i = 0; i < a.length; i++) {
-            /**
+            /*
              * 对于一个元素b[i]以及与他相等的元素a[j],
              * 在aniv中，“以a[]为标准”的话，他本应该的索引应该是j=aniv[a[j]]，但却变成了aniv[b[i]]
              * 从而达到了“以a[]为标准”的目的
