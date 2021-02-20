@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.backtracking;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,11 +7,10 @@ import java.util.Map;
 /**
  * @author yuzhang
  * @date 2020/9/11 10:58 上午
- * TODO 未完成
  */
 public class Ex698 {
     public static void main(String[] args) {
-        int[] nums = {4,3,2,3,5,2,1};
+        int[] nums = {4, 3, 2, 3, 5, 2, 1};
         Ex698 ex698 = new Ex698();
         System.out.println(ex698.canPartitionKSubsets1(nums, 4));
     }
@@ -19,6 +18,7 @@ public class Ex698 {
 
     /**
      * 解法一：使用回溯算法
+     *
      * @param nums
      * @param k
      * @return
@@ -42,11 +42,10 @@ public class Ex698 {
             rightPtr--;
             k--;
         }
-        return backtracking(new int[k],nums,rightPtr,target);
+        return backtracking(new int[k], nums, rightPtr, target);
     }
 
     /**
-     *
      * @param groups：k个子集
      * @param nums
      * @param rightPtr
@@ -65,6 +64,9 @@ public class Ex698 {
                     return true;
                 }
                 groups[i] -= value;
+            }
+            if (groups[i] == 0) {
+                break;
             }
         }
         return false;

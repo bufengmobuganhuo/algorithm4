@@ -10,27 +10,28 @@ import java.util.Map;
  */
 public class Ex105 {
     private int preIdx;
-    private Map<Integer,Integer> map;
+    private Map<Integer, Integer> map;
+
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        preIdx=0;
+        preIdx = 0;
         // 中序遍历中: 元素 -> 索引
-        map=new HashMap<>(inorder.length);
+        map = new HashMap<>(inorder.length);
         for (int i = 0; i < inorder.length; i++) {
-            map.put(inorder[i],i);
+            map.put(inorder[i], i);
         }
-        return buildTree(preorder,0,preorder.length-1);
+        return buildTree(preorder, 0, preorder.length - 1);
     }
 
-    private TreeNode buildTree(int[] preorder,int start,int end){
-        if (start>end){
+    private TreeNode buildTree(int[] preorder, int start, int end) {
+        if (start > end) {
             return null;
         }
         // 前序遍历中：[根结点，左子树，右子树]
-        TreeNode root=new TreeNode(preorder[preIdx]);
-        int rootIdx=map.get(root.val);
+        TreeNode root = new TreeNode(preorder[preIdx]);
+        int rootIdx = map.get(root.val);
         preIdx++;
-        root.left=buildTree(preorder,start,rootIdx-1);
-        root.right=buildTree(preorder,rootIdx+1,end);
+        root.left = buildTree(preorder, start, rootIdx - 1);
+        root.right = buildTree(preorder, rootIdx + 1, end);
         return root;
     }
 

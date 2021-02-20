@@ -9,7 +9,7 @@ import org.omg.CORBA.INTERNAL;
  */
 public class EX_1_4_19_2 {
     public static void main(String[] args) {
-        int[][] matrix={
+        int[][] matrix = {
                 {5, 12, 30, 42, 62, 95},
                 {52, 68, 82, 66, 98, 4},
                 {54, 16, 18, 36, 73, 7},
@@ -19,10 +19,11 @@ public class EX_1_4_19_2 {
         };
         System.out.println(solution(matrix));
     }
+
     private static int solution(int[][] matrix) {
         int rowNum = matrix.length;
         int colNum = matrix[0].length;
-        return solution(matrix,0,0,rowNum-1,colNum-1);
+        return solution(matrix, 0, 0, rowNum - 1, colNum - 1);
     }
 
     private static int solution(int[][] matrix, int startRow, int startCol, int endRow, int endCol) {
@@ -33,24 +34,24 @@ public class EX_1_4_19_2 {
         int minCol = minInQuadrant[1];
         int minItem = matrix[minRow][minCol];
         int up = minRow > 0 ? matrix[minRow - 1][minCol] : Integer.MAX_VALUE;
-        int down = minRow < matrix.length-1 ? matrix[minRow + 1][minCol] : Integer.MAX_VALUE;
+        int down = minRow < matrix.length - 1 ? matrix[minRow + 1][minCol] : Integer.MAX_VALUE;
         int left = minCol > 0 ? matrix[minRow][minCol - 1] : Integer.MAX_VALUE;
-        int right = minCol < matrix[0].length-1 ? matrix[minRow][minCol + 1] : Integer.MAX_VALUE;
-        if (up<minItem){
-            return minCol<midCol?solution(matrix,startRow,startCol,midRow-1,minCol-1)
-                    :solution(matrix,startRow,midCol+1,midRow-1,endCol);
+        int right = minCol < matrix[0].length - 1 ? matrix[minRow][minCol + 1] : Integer.MAX_VALUE;
+        if (up < minItem) {
+            return minCol < midCol ? solution(matrix, startRow, startCol, midRow - 1, minCol - 1)
+                    : solution(matrix, startRow, midCol + 1, midRow - 1, endCol);
         }
-        if (down<minItem){
-            return minCol<midCol?solution(matrix,midRow+1,startCol,endRow,minCol-1)
-                    :solution(matrix,midRow+1,midCol+1,endRow,endCol);
+        if (down < minItem) {
+            return minCol < midCol ? solution(matrix, midRow + 1, startCol, endRow, minCol - 1)
+                    : solution(matrix, midRow + 1, midCol + 1, endRow, endCol);
         }
-        if (left<minItem){
-            return minRow<midRow?solution(matrix,startRow,startCol,midRow-1,midCol-1)
-                    :solution(matrix,midRow+1,startCol,endRow,midCol-1);
+        if (left < minItem) {
+            return minRow < midRow ? solution(matrix, startRow, startCol, midRow - 1, midCol - 1)
+                    : solution(matrix, midRow + 1, startCol, endRow, midCol - 1);
         }
-        if (right<minItem){
-            return minRow<midRow?solution(matrix,startRow,midCol+1,midRow-1,endCol)
-                    :solution(matrix,midRow+1,midCol+1,endRow,endCol);
+        if (right < minItem) {
+            return minRow < midRow ? solution(matrix, startRow, midCol + 1, midRow - 1, endCol)
+                    : solution(matrix, midRow + 1, midCol + 1, endRow, endCol);
         }
         return minItem;
     }

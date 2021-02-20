@@ -140,6 +140,10 @@ class LinkedListNode<T extends Comparable<T>>{
     T key;
     LinkedListNode next;
 
+    public LinkedListNode(T key) {
+        this.key = key;
+    }
+
     public LinkedListNode(T key, LinkedListNode next) {
         this.key = key;
         this.next = next;
