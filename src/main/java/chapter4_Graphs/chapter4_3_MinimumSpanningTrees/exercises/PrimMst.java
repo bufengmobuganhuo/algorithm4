@@ -20,43 +20,43 @@ public class PrimMst {
     private double weight;
 
     public PrimMst(EdgeWeightedGraph weightedGraph) {
-        marked=new boolean[weightedGraph.getVertexNum()];
-        indexMinPQ=new IndexMinPQ<>(weightedGraph.getVertexNum());
-        distTo=new double[weightedGraph.getVertexNum()];
-        edgeTo=new Edge[weightedGraph.getVertexNum()];
-        Arrays.fill(distTo,Double.MAX_VALUE);
-        indexMinPQ.insert(0,0.0);
-        distTo[0]=0.0;
-        while (!indexMinPQ.isEmpty()){
-            visit(weightedGraph,indexMinPQ.delMin());
+        marked = new boolean[weightedGraph.getVertexNum()];
+        indexMinPQ = new IndexMinPQ<>(weightedGraph.getVertexNum());
+        distTo = new double[weightedGraph.getVertexNum()];
+        edgeTo = new Edge[weightedGraph.getVertexNum()];
+        Arrays.fill(distTo, Double.MAX_VALUE);
+        indexMinPQ.insert(0, 0.0);
+        distTo[0] = 0.0;
+        while (!indexMinPQ.isEmpty()) {
+            visit(weightedGraph, indexMinPQ.delMin());
         }
     }
 
-    private void visit(EdgeWeightedGraph weightedGraph,int vertex){
-        marked[vertex]=true;
-        for (Edge adjEdge:weightedGraph.adj(vertex)){
-            int otherVertex=adjEdge.other(vertex);
-            if (marked[otherVertex]){
+    private void visit(EdgeWeightedGraph weightedGraph, int vertex) {
+        marked[vertex] = true;
+        for (Edge adjEdge : weightedGraph.adj(vertex)) {
+            int otherVertex = adjEdge.other(vertex);
+            if (marked[otherVertex]) {
                 continue;
             }
-            if (adjEdge.getWeight()<edgeTo[otherVertex].getWeight()){
-                weight-=distTo[otherVertex]==Double.MAX_VALUE?0:distTo[otherVertex];
-                edgeTo[otherVertex]=adjEdge;
-                distTo[otherVertex]=adjEdge.getWeight();
-                weight+=distTo[otherVertex];
-                if (indexMinPQ.contains(otherVertex)){
-                    indexMinPQ.decreaseKey(otherVertex,adjEdge.getWeight());
-                }else{
-                    indexMinPQ.insert(otherVertex,adjEdge.getWeight());
+            if (adjEdge.getWeight() < edgeTo[otherVertex].getWeight()) {
+                weight -= distTo[otherVertex] == Double.MAX_VALUE ? 0 : distTo[otherVertex];
+                edgeTo[otherVertex] = adjEdge;
+                distTo[otherVertex] = adjEdge.getWeight();
+                weight += distTo[otherVertex];
+                if (indexMinPQ.contains(otherVertex)) {
+                    indexMinPQ.decreaseKey(otherVertex, adjEdge.getWeight());
+                } else {
+                    indexMinPQ.insert(otherVertex, adjEdge.getWeight());
                 }
             }
         }
     }
 
-    public Iterable<Edge> edges(){
-        LinkedList<Edge> edges=new LinkedList<>();
+    public Iterable<Edge> edges() {
+        LinkedList<Edge> edges = new LinkedList<>();
         for (int i = 1; i < edgeTo.length; i++) {
-                edges.offer(edgeTo[i]);
+            edges.offer(edgeTo[i]);
         }
         return edges;
     }

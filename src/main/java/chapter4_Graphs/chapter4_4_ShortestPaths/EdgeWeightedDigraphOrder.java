@@ -20,19 +20,19 @@ public class EdgeWeightedDigraphOrder {
         preOrder = new LinkedList<>();
         postOrder = new LinkedList<>();
         reversePostOrder = new Stack<>();
-        for (int i=0;i<weightDigraph.getVertexNum();i++){
-            if (!marked[i]){
+        for (int i = 0; i < weightDigraph.getVertexNum(); i++) {
+            if (!marked[i]) {
                 dfs(weightDigraph, i);
             }
         }
     }
 
-    private void dfs(EdgeWeightDigraph weightDigraph, int startVertex){
+    private void dfs(EdgeWeightDigraph weightDigraph, int startVertex) {
         preOrder.offer(startVertex);
-        marked[startVertex]=true;
-        for (DirectedEdge adjEdge: weightDigraph.adj(startVertex)){
-            int end=adjEdge.getEnd();
-            if (!marked[end]){
+        marked[startVertex] = true;
+        for (DirectedEdge adjEdge : weightDigraph.adj(startVertex)) {
+            int end = adjEdge.getEnd();
+            if (!marked[end]) {
                 dfs(weightDigraph, end);
             }
         }
@@ -40,15 +40,15 @@ public class EdgeWeightedDigraphOrder {
         reversePostOrder.push(startVertex);
     }
 
-    public Queue<Integer> getPreOrder(){
+    public Queue<Integer> getPreOrder() {
         return preOrder;
     }
 
-    public Queue<Integer> getPostOrder(){
+    public Queue<Integer> getPostOrder() {
         return postOrder;
     }
 
-    public Stack<Integer> getReversePostOrder(){
+    public Stack<Integer> getReversePostOrder() {
         return reversePostOrder;
     }
 }

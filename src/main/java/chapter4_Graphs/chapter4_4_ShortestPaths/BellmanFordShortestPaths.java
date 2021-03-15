@@ -7,6 +7,7 @@ import edu.princeton.cs.algs4.In;
 import jdk.internal.org.objectweb.asm.tree.MultiANewArrayInsnNode;
 
 import java.lang.annotation.Target;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -58,9 +59,7 @@ public class BellmanFordShortestPaths {
         queue = new LinkedList<>();
         onQue = new boolean[weightDigraph.getVertexNum()];
         distTo = new double[weightDigraph.getVertexNum()];
-        for (int i = 0; i < distTo.length; i++) {
-            distTo[i] = Double.POSITIVE_INFINITY;
-        }
+        Arrays.fill(distTo, Double.POSITIVE_INFINITY);
         edgeTo = new DirectedEdge[weightDigraph.getVertexNum()];
         //从起点开始放松
         queue.offer(start);

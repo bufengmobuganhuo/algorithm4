@@ -27,11 +27,11 @@ public class Ex794 {
             return false;
         }
         // 如果是x获胜，则xcount-1=ocount
-        if (win(board,'X')&&xCount-1!=oCount){
+        if (win(board, 'X') && xCount - 1 != oCount) {
             return false;
         }
         // 如果是o获胜，则xcount=ocount
-        if (win(board,'O')&&xCount!=oCount){
+        if (win(board, 'O') && xCount != oCount) {
             return false;
         }
         return true;

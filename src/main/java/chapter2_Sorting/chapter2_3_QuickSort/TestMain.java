@@ -10,7 +10,7 @@ import utils.ArrayUtil;
 public class TestMain {
     public static void main(String[] args) {
         //Comparable[] arr= ArrayUtil.createInt(15,20);
-        Comparable[] arr={3, 0, 2, 1, 5, 4, 6, 7,};
+        Comparable[] arr={7897987,999,986768,3451};
         QuickSort quickSort=new QuickSort();
         quickSort.show("排序前:",arr);
         quickSort.sort(arr);

@@ -21,7 +21,7 @@ public class Ex947_1 {
         for (int[] stone : stones) {
             unique.add(unionFind.find(stone[0]));
         }
-        return stones.length-unique.size();
+        return stones.length - unique.size();
     }
 
     static class UnionFind {

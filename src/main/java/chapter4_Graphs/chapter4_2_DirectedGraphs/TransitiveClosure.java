@@ -7,7 +7,7 @@ package chapter4_Graphs.chapter4_2_DirectedGraphs;
  */
 public class TransitiveClosure {
     //directedDFS[i]: 顶点i对应的与其他vertexNum个顶点的可达性关系
-   private DirectedDFS[] directedDFS;
+    private DirectedDFS[] directedDFS;
 
     public TransitiveClosure(Digraph digraph) {
         directedDFS=new DirectedDFS[digraph.getVertexNum()];
