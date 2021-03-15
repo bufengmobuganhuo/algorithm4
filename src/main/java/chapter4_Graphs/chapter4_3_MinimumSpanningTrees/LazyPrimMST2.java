@@ -25,6 +25,7 @@ public class LazyPrimMST2 {
         }
         System.out.println(lazyPrimMST.weight);
     }
+
     private PriorityQueue<Edge> priorityQueue;
     private boolean[] marked;
     private double weight;
@@ -63,7 +64,7 @@ public class LazyPrimMST2 {
         }
     }
 
-    public Iterable<Edge> edges(){
+    public Iterable<Edge> edges() {
         return mst;
     }
 }

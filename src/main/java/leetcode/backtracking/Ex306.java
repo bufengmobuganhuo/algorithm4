@@ -26,7 +26,11 @@ public class Ex306 {
         return isAdditiveNumber;
     }
 
+    // 可以获取到具体的分配情况
     private void backtracking(String num, int start, List<BigDecimal> track) {
+        if (isAdditiveNumber){
+            return;
+        }
         // 只有实际选过的才算，否则直接输入"0"也可以通过
         if (start == num.length() && track.size() > 2) {
             isAdditiveNumber = true;

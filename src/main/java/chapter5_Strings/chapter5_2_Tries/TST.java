@@ -47,7 +47,6 @@ public class TST<Value> implements StTemplate<Value> {
 
     @Override
     public void delete(String key) {
-
     }
 
     @Override

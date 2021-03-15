@@ -2,6 +2,9 @@ package chapter2_Sorting.chapter2_1_ElementarySorts;
 
 import chapter2_Sorting.SortTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author yuzhang
  * @date 2020/10/30 10:23 上午
@@ -9,6 +12,7 @@ import chapter2_Sorting.SortTemplate;
  */
 public class BubbleSort implements SortTemplate {
     public static void main(String[] args) {
+        Map<Integer,Integer> map = new HashMap<>(3);
 
     }
 

@@ -1,4 +1,4 @@
-package leetcode.dp.pkg;
+package chapter8_dp.pkg;
 
 /**
  * @author yuzhang

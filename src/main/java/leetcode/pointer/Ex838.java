@@ -1,11 +1,11 @@
-package leetcode.dp;
+package leetcode.pointer;
 
 import java.util.Arrays;
 
 /**
  * @author yuzhang
  * @date 2020/9/23 9:58 上午
- * 1. 将使用"R"或"L"分段，一个区间内的骨牌状态不受区间外"R"或"L"的影响
+ * 1. 将"R"或"L"分段，一个区间内的骨牌状态不受区间外"R"或"L"的影响
  * 2. 对于一个区间内的骨牌，有如下四种情况：
  * 1⃣️ A(A或B重复)B：若A=B，则该区间内的字符串变为："AAAAAA"
  * 2⃣️ "R....L"：会变为RRRLLL或RR.LL，这取决于R，L之间"."的奇偶性，如果奇数，则为RR.LL；如果是偶数，则为RRRLLL
@@ -16,6 +16,7 @@ public class Ex838 {
         Ex838 ex838 = new Ex838();
         System.out.println(ex838.pushDominoes(".L.R...LR..L.."));
     }
+
     public String pushDominoes(String dominoes) {
         if (dominoes == null || dominoes.length() == 0) {
             return dominoes;
@@ -50,7 +51,14 @@ public class Ex838 {
                 // R...L形式
             } else if (leftSys > rightSys) {
                 for (int k = leftPtr + 1; k < rightPtr; k++) {
-                    ans[k] = k - leftPtr == rightPtr - k ? '.' : (k - leftPtr > rightPtr - k) ? 'L' : 'R';
+                    if (k - leftPtr == rightPtr - k) {
+                        ans[k] = '.';
+                        // k位置距离右边近，则右边对他有影响，会倒向左边
+                    } else if (k - leftPtr > rightPtr - k) {
+                        ans[k] = 'L';
+                    } else {
+                        ans[k] = 'R';
+                    }
                 }
             }
         }

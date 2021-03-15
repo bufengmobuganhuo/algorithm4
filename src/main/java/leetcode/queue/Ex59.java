@@ -1,5 +1,6 @@
 package leetcode.queue;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -17,6 +18,11 @@ import java.util.LinkedList;
  * 2⃣️ 如果队首元素同时也是上一个滑动窗口的第一个元素（因为滑动窗口向后移动，第一个元素不在下一个滑动窗口中），则出队
  */
 public class Ex59 {
+    public static void main(String[] args) {
+        int[] nums = {1,3,-1,-3,5,3,6,7};
+        Ex59 ex59 = new Ex59();
+        System.out.println(Arrays.toString(ex59.maxSlidingWindow(nums, 3)));
+    }
     public int[] maxSlidingWindow(int[] nums, int k) {
         if (nums.length == 0 || k == 0) {
             return new int[0];

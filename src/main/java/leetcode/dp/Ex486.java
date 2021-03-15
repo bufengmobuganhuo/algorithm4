@@ -14,6 +14,7 @@ public class Ex486 {
 
     /**
      * 存储空间优化
+     *
      * @param nums
      * @return
      */
@@ -25,7 +26,7 @@ public class Ex486 {
         System.arraycopy(nums, 0, dp, 0, nums.length);
         for (int i = nums.length - 2; i >= 0; i--) {
             for (int j = i + 1; j < nums.length; j++) {
-                dp[j] = Math.max(nums[i]-dp[j],nums[j]-dp[j-1]);
+                dp[j] = Math.max(nums[i] - dp[j], nums[j] - dp[j - 1]);
             }
         }
         return dp[nums.length - 1] >= 0;

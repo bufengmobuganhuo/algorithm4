@@ -75,7 +75,7 @@ public class TrieST<Value> implements StTemplate<Value> {
             return node;
         }
         for (char chr = 0; chr < R; chr++) {
-            //如果node（被删除键的尾节点）有非空连接，则在node.val=null后直接返回
+            // 如果node（被删除键的尾节点）有非空连接，则在node.val=null后直接返回
             if (node.next[chr] != null) {
                 return node;
             }

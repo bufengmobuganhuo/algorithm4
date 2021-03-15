@@ -12,17 +12,18 @@ import java.util.*;
 public class Ex638 {
     public static void main(String[] args) {
         // [2,5], [[3,0,5],[1,2,10]], [3,2]
-        List<Integer> price = Arrays.asList(2,5);
+        List<Integer> price = Arrays.asList(2, 5);
         List<List<Integer>> special = new ArrayList<>();
-        special.add(Arrays.asList(3,0,5));
-        special.add(Arrays.asList(1,2,10));
-        List<Integer> needs = Arrays.asList(3,2);
+        special.add(Arrays.asList(3, 0, 5));
+        special.add(Arrays.asList(1, 2, 10));
+        List<Integer> needs = Arrays.asList(3, 2);
         Ex638 ex638 = new Ex638();
-        System.out.println(ex638.shoppingOffers2(price,special,needs));
+        System.out.println(ex638.shoppingOffers2(price, special, needs));
     }
 
     /**
      * 解法二：记忆化搜索，当needs相同时，花费是相同的
+     *
      * @param price
      * @param special
      * @param needs
@@ -32,31 +33,32 @@ public class Ex638 {
         return shopping2(price, special, needs, new HashMap<>());
     }
 
-    private int shopping2(List<Integer> price, List<List<Integer>> special, List<Integer> needs, Map<List<Integer>,Integer> map) {
-        if (map.containsKey(needs)){
-            map.get(needs);
+    private int shopping2(List<Integer> price, List<List<Integer>> special, List<Integer> needs, Map<List<Integer>, Integer> map) {
+        if (map.containsKey(needs)) {
+            return map.get(needs);
         }
-        int res = dot(price,needs);
+        int res = dot(price, needs);
         int i = 0;
         for (List<Integer> pkg : special) {
             List<Integer> clone = new ArrayList<>(needs);
             for (i = 0; i < needs.size(); i++) {
-                int diff = clone.get(i)-pkg.get(i);
-                if (diff<0){
+                int diff = clone.get(i) - pkg.get(i);
+                if (diff < 0) {
                     break;
                 }
-                clone.set(i,diff);
+                clone.set(i, diff);
             }
-            if (i==needs.size()){
-                res = Math.min(res,pkg.get(i)+shopping2(price,special,clone,map));
-                map.put(needs,pkg.get(i));
+            if (i == needs.size()) {
+                res = Math.min(res, pkg.get(i) + shopping2(price, special, clone, map));
             }
         }
+        map.put(needs, res);
         return res;
     }
 
     /**
      * 解法一：使用递归
+     *
      * @param price
      * @param special
      * @param needs

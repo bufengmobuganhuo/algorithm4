@@ -1,4 +1,4 @@
-package leetcode.dp.pkg;
+package chapter8_dp.pkg;
 
 /**
  * @author yuzhang
@@ -19,6 +19,7 @@ public class Question6 {
         };
         System.out.println(solution(weights,values,4));
     }
+
     /**
      * @param weights weights[i][j]，第i组内的第j个物品的消耗
      * @param values
