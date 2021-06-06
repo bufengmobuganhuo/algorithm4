@@ -1,0 +1,2 @@
+1. https://leetcode-cn.com/contest/weekly-contest-244/problems/determine-whether-matrix-can-be-obtained-by-rotation/
+2. https://leetcode-cn.com/problems/reduction-operations-to-make-the-array-elements-equal/
