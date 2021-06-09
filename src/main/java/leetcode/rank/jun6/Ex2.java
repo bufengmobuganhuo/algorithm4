@@ -32,7 +32,6 @@ public class Ex2 {
             if (map.containsKey(i)){
                 pre += map.get(i);
                 count += pre;
-
             }
         }
         return count;
