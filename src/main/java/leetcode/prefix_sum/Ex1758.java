@@ -1,4 +1,4 @@
-package leetcode.string;
+package leetcode.prefix_sum;
 
 /**
  * @author yuzhang

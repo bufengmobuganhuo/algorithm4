@@ -1,4 +1,4 @@
-package leetcode.rank.jun6;
+package leetcode.array;
 
 import java.util.HashMap;
 
@@ -7,11 +7,11 @@ import java.util.HashMap;
  * @date 2021/6/6 上午11:18
  * TODO
  */
-public class Ex2 {
+public class Ex1887 {
     public static void main(String[] args) {
         int[] nums = {5,1,3};
-        Ex2 ex2 = new Ex2();
-        System.out.println(ex2.reductionOperations(nums));
+        Ex1887 ex1887 = new Ex1887();
+        System.out.println(ex1887.reductionOperations(nums));
     }
     /**
      * 1. 最终从数组中的最大值变成了数组中的最小值

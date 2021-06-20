@@ -1,6 +1,4 @@
-package leetcode.rank.may30;
-
-import org.omg.CORBA.INTERNAL;
+package leetcode.heap;
 
 import java.util.*;
 
@@ -9,12 +7,12 @@ import java.util.*;
  * @date 2021/5/30 上午10:50
  * TODO
  */
-public class Ex3 {
+public class Ex1882 {
     public static void main(String[] args) {
         int[] servers = {10, 63, 95, 16, 85, 57, 83, 95, 6, 29, 71};
         int[] tasks = {70, 31, 83, 15, 32, 67, 98, 65, 56, 48, 38, 90, 5};
-        Ex3 ex3 = new Ex3();
-        System.out.println(Arrays.toString(ex3.assignTasks(servers, tasks)));
+        Ex1882 ex1882 = new Ex1882();
+        System.out.println(Arrays.toString(ex1882.assignTasks(servers, tasks)));
     }
 
     public int[] assignTasks(int[] servers, int[] tasks) {
