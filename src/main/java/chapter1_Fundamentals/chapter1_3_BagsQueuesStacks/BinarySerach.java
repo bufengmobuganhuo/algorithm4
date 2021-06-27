@@ -1,7 +1,5 @@
 package chapter1_Fundamentals.chapter1_3_BagsQueuesStacks;
 
-import java.lang.reflect.UndeclaredThrowableException;
-
 /**
  * 二分查找
  */
@@ -21,5 +19,40 @@ public class BinarySerach {
             }
         }
         return -1;
+    }
+
+    // <=target的最大值
+    public static int floor(int target, int[] arr) {
+        int len = arr.length, leftPtr = -1, rightPtr = len - 1;
+        while (leftPtr < rightPtr) {
+            int mid = leftPtr + (rightPtr - leftPtr + 1) / 2;
+            if (target <= arr[mid]) {
+                rightPtr = mid - 1;
+            } else {
+                leftPtr = mid;
+            }
+        }
+        // =target
+        if (leftPtr + 1 < len && arr[leftPtr + 1] == target) {
+            return leftPtr + 1;
+        }
+        // 找到<target
+        return leftPtr;
+    }
+
+    public static int ceil(int target, int[] arr) {
+        int len = arr.length, leftPtr = 0, rightPtr = len;
+        while (leftPtr < rightPtr) {
+            int mid = leftPtr + (rightPtr - leftPtr) / 2;
+            if (target >= arr[mid]) {
+                leftPtr = mid + 1;
+            } else {
+                rightPtr = mid;
+            }
+        }
+        if (rightPtr - 1 >= 0 && arr[rightPtr - 1] == target){
+            return rightPtr - 1;
+        }
+        return rightPtr;
     }
 }
