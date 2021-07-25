@@ -1,4 +1,4 @@
-package leetcode.recursive;
+package leetcode.math;
 
 /**
  * @author yuzhang
