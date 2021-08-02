@@ -1,7 +1,9 @@
 package leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yuzhang
@@ -9,8 +11,56 @@ import java.util.List;
  * TODO
  */
 public class Ex863 {
+
+    private Map<Integer, TreeNode> parents = new HashMap<>();
+
+    private List<Integer> ans = new ArrayList<>();
+
+    /**
+     * 1. 如果这个二叉树变成了一张单向图，就可以从target开始DFS，遇到深度为K的就是要找的节点
+     * 2. 可以构造一个Map，存储一个节点的父节点，这样在进行上述的DFS的时候，也从父节点找一下，就找到了所有的
+     */
+    public List<Integer> distanceK2(TreeNode root, TreeNode target, int K) {
+        // 找到父节点
+        findParents(root);
+        dfs(target, null, 0, K);
+        return ans;
+    }
+
+    private void findParents(TreeNode node) {
+        if (node.left != null) {
+            parents.put(node.left.val, node);
+            findParents(node.left);
+        }
+        if (node.right != null) {
+            parents.put(node.right.val, node);
+            findParents(node.right);
+        }
+    }
+
+    private void dfs(TreeNode node, TreeNode startNode, int depth, int K) {
+        if (node == null) {
+            return;
+        }
+        // DFS找到了深度相同的
+        if (depth == K){
+            ans.add(node.val);
+            return;
+        }
+        // 往左右子节点找
+        if (node.left != startNode){
+            dfs(node.left, node, depth + 1, K);
+        }
+        if (node.right != startNode){
+            dfs(node.right, node, depth + 1, K);
+        }
+        // 往父亲节点上找
+        if (parents.get(node.val) != startNode){
+            dfs(parents.get(node.val), node, depth + 1, K);
+        }
+    }
+
     private int K;
-    private List<Integer> ans;
 
     /**
      * 对于dfs(node)，有如下几种情况：
@@ -21,7 +71,6 @@ public class Ex863 {
      */
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         this.K = K;
-        ans = new ArrayList<>();
         dfs(root,target);
         return ans;
     }
@@ -39,7 +88,7 @@ public class Ex863 {
             int right = dfs(node.right,target);
             // 情况二，target在node的左子树中
             if (left!=-1){
-                if (left==K){
+                if (left == K) {
                     ans.add(node.val);
                 }
                 subtree_add(node.right,left+1);

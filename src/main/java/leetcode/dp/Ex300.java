@@ -1,5 +1,8 @@
 package leetcode.dp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author yu zhang
  */
@@ -70,4 +73,39 @@ public class Ex300 {
         }
         return maxLen;
     }
+
+    /**
+     * 也是使用上述算法，只是用List来实现，但是速度较慢
+     */
+    public int lengthOfLIS3(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        List<Integer> dp = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int idx = floor(dp, nums[i]);
+            // 说明dp中没有比nums[i]大的，直接插入
+            if (dp.size() == 0 || idx + 1 == dp.size()) {
+                dp.add(nums[i]);
+                // 找到了，则替换
+            } else {
+                dp.set(idx + 1, nums[i]);
+            }
+        }
+        return dp.size();
+    }
+
+    private int floor(List<Integer> dp, int target) {
+        int leftPtr = -1, rightPtr = dp.size() - 1;
+        while (leftPtr < rightPtr) {
+            int mid = leftPtr + (rightPtr - leftPtr + 1) / 2;
+            if (dp.get(mid) >= target) {
+                rightPtr = mid - 1;
+            } else {
+                leftPtr = mid;
+            }
+        }
+        return leftPtr;
+    }
+
 }

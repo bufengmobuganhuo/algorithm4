@@ -24,7 +24,8 @@ public class Ex838 {
         int len = dominoes.length();
         // 记录分段位置字符在字符串中的索引
         int[] symbolIdx = new int[len + 2];
-        // 记录分段位置的字符
+        // 记录分段位置的字符，
+        // 假设symbolIdx[i]=left, symbolIdx[i+1]=right, symbol[i]=R, symbol[i+1]=L,表示dominoes[left...right]=R...L
         char[] symbol = new char[len + 2];
         int index = 1;
         // 哨兵
@@ -39,16 +40,16 @@ public class Ex838 {
         }
         // 哨兵
         symbolIdx[index] = len;
-        symbol[index++] = 'R';
+        symbol[index] = 'R';
         char[] ans = dominoes.toCharArray();
-        for (int i = 0; i < index - 1; i++) {
+        for (int i = 0; i < index; i++) {
             int leftPtr = symbolIdx[i], rightPtr = symbolIdx[i + 1];
             char leftSys = symbol[i], rightSys = symbol[i + 1];
             if (leftSys == rightSys) {
                 for (int j = leftPtr + 1; j < rightPtr; j++) {
                     ans[j] = leftSys;
                 }
-                // R...L形式
+                // R...L形式， L...R形式不影响
             } else if (leftSys > rightSys) {
                 for (int k = leftPtr + 1; k < rightPtr; k++) {
                     if (k - leftPtr == rightPtr - k) {

@@ -2,7 +2,6 @@ package leetcode.string;
 
 import java.math.BigInteger;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -13,11 +12,14 @@ import java.util.Random;
 public class Ex1044 {
     public static void main(String[] args) {
         Ex1044 ex1044 = new Ex1044();
-        String txt = "banana";
-        System.out.println(ex1044.longestDupSubstring(txt));
+        String txt =
+            "okmzpmxzwjbfssktjtebhhxfphcxefhonkncnrumgduoaeltjvwqwydpdsrbxsgmcdxrthilniqxkqzuuqzqhlccmqcmccfqddncchadnthtxjruvwsmazlzhijygmtabbzelslebyrfpyyvcwnaiqkkzlyillxmkfggyfwgzhhvyzfvnltjfxskdarvugagmnrzomkhldgqtqnghsddgrjmuhpgkfcjkkkaywkzsikptkrvbnvuyamegwempuwfpaypmuhhpuqrufsgpiojhblbihbrpwxdxzolgqmzoyeblpvvrnbnsdnonhpmbrqissifpdavvscezqzclvukfgmrmbmmwvzfpxcgecyxneipexrzqgfwzdqeeqrugeiupukpveufmnceetilfsqjprcygitjefwgcvqlsxrasvxkifeasofcdvhvrpmxvjevupqtgqfgkqjmhtkyfsjkrdczmnettzdxcqexenpxbsharuapjmdvmfygeytyqfcqigrovhzbxqxidjzxfbrlpjxibtbndgubwgihdzwoywqxegvxvdgaoarlauurxpwmxqjkidwmfuuhcqtljsvruinflvkyiiuwiiveplnxlviszwkjrvyxijqrulchzkerbdyrdhecyhscuojbecgokythwwdulgnfwvdptzdvgamoublzxdxsogqpunbtoixfnkgbdrgknvcydmphuaxqpsofmylyijpzhbqsxryqusjnqfikvoikwthrmdwrwqzrdmlugfglmlngjhpspvnfddqsvrajvielokmzpmxzwjbfssktjtebhhxfphcxefhonkncnrumgduoaeltjvwqwydpdsrbxsgmcdxrthilniqxkqzuuqzqhlccmqcmccfqddncchadnthtxjruvwsmazlzhijygmtabbzelslebyrfpyyvcwnaiqkkzlyillxmkfggyfwgzhhvyzfvnltjfxskdarvugagmnrzomkhldgqtqnghsddgrjmuhpgkfcjkkkaywkzsikptkrvbnvuyamegwempuwfpaypmuhhpuqrufsgpiojhblbihbrpwxdxzolgqmzoyeblpvvrnbnsdnonhpmbrqissifpdavvscezqzclvukfgmrmbmmwvzfpxcgecyxneipexrzqgfwzdqeeqrugeiupukpveufmnceetilfsqjprcygitjefwgcvqlsxrasvxkifeasofcdvhvrpmxvjevupqtgqfgkqjmhtkyfsjkrdczmnettzdxcqexenpxbsharuapjmdvmfygeytyqfcqigrovhzbxqxidjzxfbrlpjxibtbndgubwgihdzwoywqxegvxvdgaoarlauurxpwmxqjkidwmfuuhcqtljsvruinflvkyiiuwiiveplnxlviszwkjrvyxijqrulchzkerbdyrdhecyhscuojbecgokythwwdulgnfwvdptzdvgamoublzxdxsogqpunbtoixfnkgbdrgknvcydmphuaxqpsofmylyijpzhbqsxryqusjnqfikvoikwthrmdwrwqzrdmlugfglmlngjhpspvnfddqsvrajviel";
+        System.out.println(ex1044.longestDupSubstring1(txt));
     }
+
     private long Q = longRandomPrim();
     private int R = 256;
+
     /**
      * 1. 对于一个字符串，如果存在长度为len的重复子字符串，则一定存在长度为len1<len的子字符串；
      * 反之同理，如果不存在len1<len的子字符串，则一定不存在长度为len的子字符串
@@ -49,7 +51,7 @@ public class Ex1044 {
         }
         // 再找一次，防止因为不符合条件而跳出循环的情况
         int start = rabinKarpSearch(S, left - 1);
-        return start == -1 ? "" : S.substring(start, start + left-1);
+        return start == -1 ? "" : S.substring(start, start + left - 1);
     }
 
     private int rabinKarpSearch(String txt, int M) {
@@ -59,19 +61,32 @@ public class Ex1044 {
         }
         long txtHash = hash(txt, M);
         // 已经出现的哈希值
-        HashMap<Long,String> map = new HashMap<>();
-        for (int i = M; i < txt.length(); i++) {
-            txtHash = (txtHash + Q - RM * txt.charAt(i - M) % Q) % Q;
-            txtHash = (txtHash * R + txt.charAt(i)) % Q;
-            int offset = i - M + 1;
-            String item = txt.substring(offset,offset+M);
+        HashMap<Long, Integer> map = new HashMap<>();
+        map.put(txtHash, 0);
+        for (int i = 0; i < txt.length() - M; i++) {
+            // pattern从[i+1....i+M]
+            txtHash = (txtHash + Q - RM * txt.charAt(i) % Q) % Q;
+            txtHash = (txtHash * R + txt.charAt(i + M)) % Q;
             // 如果该值已经出现过，则说明重复，实际上还应该判断连个字符串是否真的一致
-            if (map.getOrDefault(txtHash,"").equals(item)) {
-                return offset;
+            if (isEqual(txt, map.getOrDefault(txtHash, -1), i + 1, M)) {
+                // 返回的是"pattern"的起始位置
+                return i + 1;
             }
-            map.put(txtHash,item);
+            map.put(txtHash, i + 1);
         }
         return -1;
+    }
+
+    private boolean isEqual(String str, int i, int j, int M) {
+        if (i == -1) {
+            return false;
+        }
+        for (int k = 0; k < M; k++) {
+            if (str.charAt(k + i) != str.charAt(j + k)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private long hash(String txt, int M) {

@@ -51,13 +51,13 @@ public class RabinKarp {
         if (txtHash == patHash && isEqual(txt, 0)) {
             return 0;
         }
-        for (int i = patLen; i < txt.length(); i++) {
-            // 计算txt[i...i+M-1]的哈希值
+        for (int i = 0; i < txt.length() - patLen; i++) {
+            // 计算txt[i+1...i+M]的哈希值(上一个是txt[i...i+M-1])
             // 减去第一个数字的值
-            txtHash = (txtHash + Q - RM * txt.charAt(i - patLen) % Q) % Q;
-            txtHash = (txtHash * R + txt.charAt(i)) % Q;
+            txtHash = (txtHash + Q - RM * txt.charAt(i) % Q) % Q;
+            txtHash = (txtHash * R + txt.charAt(i + patLen)) % Q;
 
-            int offset = i - patLen + 1;
+            int offset = i + 1;
             if (txtHash == patHash && isEqual(txt, offset)) {
                 return offset;
             }
