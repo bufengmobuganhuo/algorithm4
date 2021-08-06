@@ -1,7 +1,5 @@
-package leetcode.stack.monotonic;
+package leetcode.pointer;
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Stack;
 
 /**

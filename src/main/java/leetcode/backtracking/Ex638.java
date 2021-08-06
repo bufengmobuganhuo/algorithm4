@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.backtracking;
 
 import huawei.Ex8;
 
@@ -19,6 +19,47 @@ public class Ex638 {
         List<Integer> needs = Arrays.asList(3, 2);
         Ex638 ex638 = new Ex638();
         System.out.println(ex638.shoppingOffers2(price, special, needs));
+    }
+    private int res;
+
+    public int shoppingOffers3(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
+        res = Integer.MAX_VALUE;
+        shopping(price, special, needs, 0, 0);
+        return res;
+    }
+
+    /**
+     * 更快解法：过滤掉不能用的礼包
+     */
+    private void shopping(List<Integer> price, List<List<Integer>> special, List<Integer> needs, int cost, int idx) {
+        if (res <= cost) {
+            return;
+        }
+        if (idx == special.size()) {
+            cost += dot(price, needs);
+            res = Math.min(res, cost);
+            return;
+        }
+        List<Integer> pkg = special.get(idx);
+        // 如果当前这个背包还可以用，则用他，这里比官方解法快的原因是，官方解法一定会从头开始找背包，而这里过滤掉了不能使用的
+        if (canBuy(pkg, needs)) {
+            List<Integer> leftNeeds = new ArrayList<>();
+            for (int i = 0; i < needs.size(); i++) {
+                leftNeeds.add(needs.get(i) - pkg.get(i));
+            }
+            shopping(price, special, leftNeeds, cost + pkg.get(needs.size()), idx);
+        }
+        // 再往下找package
+        shopping(price, special, needs, cost, idx + 1);
+    }
+
+    private boolean canBuy(List<Integer> pkg, List<Integer> needs) {
+        for (int i = 0; i < needs.size(); i++) {
+            if (pkg.get(i) > needs.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
