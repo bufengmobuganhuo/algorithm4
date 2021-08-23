@@ -7,7 +7,6 @@ import java.util.Arrays;
  */
 public class Ex516 {
 
-
     public int longestPalindromeSubseq2(String s) {
         int len = s.length();
         int[][] dp = new int[2][len];

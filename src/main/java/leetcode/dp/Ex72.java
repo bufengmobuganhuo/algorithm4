@@ -23,12 +23,12 @@ public class Ex72 {
      */
     public int minDistance(String word1, String word2) {
         int len1 = word1.length(), len2 = word2.length();
-        int[][] dp = new int[len1 + 1][len2 + 2];
-        // 第一行
+        int[][] dp = new int[len1 + 1][len2 + 1];
+        // 第一行，word1是空字符，一直向word1插入
         for (int i = 0; i < len2 + 1; i++) {
             dp[0][i] = i;
         }
-        // 第一列
+        // 第一列，word2是空字符，一直删除word1
         for (int i = 0; i < len1 + 1; i++) {
             dp[i][0] = i;
         }
