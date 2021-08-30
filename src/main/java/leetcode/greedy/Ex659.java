@@ -17,6 +17,7 @@ public class Ex659 {
     }
 
     /**
+     * 时间复杂度: O(n), 空间复杂度: O(n)
      * 应该尽量避免新建短的子序列
      * 1. 两个Map：map1(数字 -> 原数组中每个数字的剩余个数)，map2(数字 -> 以该数字结尾的子序列的数量)
      * 2. 对于一个数x：
@@ -61,6 +62,7 @@ public class Ex659 {
     }
 
     /**
+     * 时间复杂度: O(nlogn)，空间复杂度; o(n)
      * 应该尽可能满足那些子序列长度较小的
      * 1. 使用一个Map（子序列最后一个数字，以该字符结尾的子序列长度（使用最小优先队列存储））
      * 2. 对于一个字符x：
@@ -70,29 +72,27 @@ public class Ex659 {
      * 3. 当Map中所有子序列的长度都 >= 3时，说明可以组成
      */
     public boolean isPossible(int[] nums) {
-        // 数字 -> 以该字符结尾的子序列长度集合
+        // <x, 以x结尾的子序列的长度>
         Map<Integer, PriorityQueue<Integer>> map = new HashMap<>();
-        for (int x : nums) {
-            if (!map.containsKey(x)) {
-                map.put(x, new PriorityQueue<>());
-            }
-            // 如果包含以x-1结尾的子序列
-            if (map.containsKey(x - 1)) {
-                int preLength = map.get(x - 1).poll();
-                if (map.get(x - 1).isEmpty()) {
-                    map.remove(x - 1);
+        for (int num : nums) {
+            if (map.containsKey(num - 1)) {
+                PriorityQueue<Integer> que = map.get(num - 1);
+                int len = que.poll();
+                // 如果以num - 1结尾的子序列都为空，则移除键
+                if (que.isEmpty()) {
+                    map.remove(num - 1);
                 }
-                map.get(x).offer(preLength + 1);
+                // 以num结尾的子序列长度
+                map.computeIfAbsent(num, key -> new PriorityQueue<>()).offer(len + 1);
+                // 如果不包含，则创建一个新的子序列
             } else {
-                map.get(x).offer(1);
+                map.computeIfAbsent(num, key -> new PriorityQueue<>()).offer(1);
             }
         }
-        for (Map.Entry<Integer, PriorityQueue<Integer>> entry : map.entrySet()) {
-            PriorityQueue<Integer> priorityQueue = entry.getValue();
-            while (!priorityQueue.isEmpty()) {
-                if (priorityQueue.poll() < 3) {
-                    return false;
-                }
+        // 检查所有的子序列是否都满足长度要求
+        for (int num : map.keySet()) {
+            if (map.get(num).peek() < 3) {
+                return false;
             }
         }
         return true;

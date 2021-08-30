@@ -21,6 +21,7 @@ public class Ex221 {
                 if (i == 0 || j == 0) {
                     dp[i][j] = 1;
                 } else {
+                    // https://leetcode-cn.com/problems/count-square-submatrices-with-all-ones/solution/tong-ji-quan-wei-1-de-zheng-fang-xing-zi-ju-zhen-2/
                     // dp[i][j]的值取决于他左边，上边，左上方块的值
                     dp[i][j] = Math.min(dp[i - 1][j], Math.min(dp[i][j - 1], dp[i - 1][j - 1])) + 1;
                 }

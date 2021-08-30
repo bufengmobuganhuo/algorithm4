@@ -25,7 +25,7 @@ public class Ex787 {
             graph[flight[0]][flight[1]] = flight[2];
         }
         // {i,price,k}:{定点i,到达i的费用，剩余的中转次数}
-        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>((o1, o2) -> o1[1] - o2[1]);
+        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
         priorityQueue.offer(new int[]{src, 0, K+1});
         while (!priorityQueue.isEmpty()) {
             int[] info = priorityQueue.poll();
