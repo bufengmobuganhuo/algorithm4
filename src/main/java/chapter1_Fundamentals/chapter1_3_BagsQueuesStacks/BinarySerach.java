@@ -27,6 +27,7 @@ public class BinarySerach {
         while (leftPtr < rightPtr) {
             int mid = leftPtr + (rightPtr - leftPtr + 1) / 2;
             if (target <= arr[mid]) {
+                // 求的是<=target的最大值，那如果arr[mid] > target肯定不满足，则-1，下面会有判断=target的情况
                 rightPtr = mid - 1;
             } else {
                 leftPtr = mid;

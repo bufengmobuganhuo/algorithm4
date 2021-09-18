@@ -15,6 +15,7 @@ public class Ex376 {
     /**
      * 解法四：空间优化的动态规划
      * 1. 由解法三可知，up[i],down[i]只依赖于up[i-1],down[i-1]，故可以使用两个变量来表示，而不是使用数组
+     *
      * @param nums
      * @return
      */
@@ -24,24 +25,25 @@ public class Ex376 {
         } else if (nums.length < 2) {
             return nums.length;
         }
-        int up=1,down=1;
+        int up = 1, down = 1;
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i]>nums[i-1]){
-                up=down+1;
-            }else if (nums[i]<nums[i-1]){
-                down=up+1;
+            if (nums[i] > nums[i - 1]) {
+                up = down + 1;
+            } else if (nums[i] < nums[i - 1]) {
+                down = up + 1;
             }
         }
-        return Math.max(up,down);
+        return Math.max(up, down);
     }
 
     /**
      * 解法三：时间优化的动态规划
      * 1. 同样有up,down两个数组
      * 2. 对于第i个元素，有如下三种情况：
-     *  （1）nums[i]>nums[i-1]，说明第i个元素是上升元素，令up[i]=down[i-1]+1,down[i]=down[i-1]
-     *  （2）nums[i]<nums[i-1]，说明第i个元素是下降元素，令down[i]=up[i-1]+1,up[i]=up[i-1]
-     *  （3）nums[i]=nums[i-1]，令down[i]=down[i-1],up[i]=up[i-1]
+     * （1）nums[i]>nums[i-1]，说明第i个元素是上升元素，令up[i]=down[i-1]+1,down[i]=down[i-1]
+     * （2）nums[i]<nums[i-1]，说明第i个元素是下降元素，令down[i]=up[i-1]+1,up[i]=up[i-1]
+     * （3）nums[i]=nums[i-1]，令down[i]=down[i-1],up[i]=up[i-1]
+     *
      * @param nums
      * @return
      */
@@ -54,20 +56,20 @@ public class Ex376 {
         int len = nums.length;
         int[] up = new int[len];
         int[] down = new int[len];
-        up[0]=down[0]=1;
-        for (int i = 1; i <len; i++) {
-            if (nums[i]>nums[i-1]){
-                up[i]=down[i-1]+1;
-                down[i]=down[i-1];
-            }else if (nums[i]<nums[i-1]){
-                down[i]=up[i-1]+1;
-                up[i]=up[i-1];
-            }else {
-                down[i]=down[i-1];
-                up[i]=up[i-1];
+        up[0] = down[0] = 1;
+        for (int i = 1; i < len; i++) {
+            if (nums[i] > nums[i - 1]) {
+                up[i] = down[i - 1] + 1;
+                down[i] = down[i - 1];
+            } else if (nums[i] < nums[i - 1]) {
+                down[i] = up[i - 1] + 1;
+                up[i] = up[i - 1];
+            } else {
+                down[i] = down[i - 1];
+                up[i] = up[i - 1];
             }
         }
-        return Math.max(down[len-1],up[len-1]);
+        return Math.max(down[len - 1], up[len - 1]);
     }
 
     /**
@@ -90,14 +92,14 @@ public class Ex376 {
         int[] down = new int[len];
         for (int i = 1; i < len; i++) {
             for (int j = 0; j < i; j++) {
-                if (nums[i]>nums[j]){
-                    up[i]=Math.max(up[i],down[j]+1);
-                }else if (nums[i]<nums[j]){
-                    down[i]=Math.max(down[i],up[j]+1);
+                if (nums[i] > nums[j]) {
+                    up[i] = Math.max(up[i], down[j] + 1);
+                } else if (nums[i] < nums[j]) {
+                    down[i] = Math.max(down[i], up[j] + 1);
                 }
             }
         }
-        return 1+Math.max(up[len-1],down[len-1]);
+        return 1 + Math.max(up[len - 1], down[len - 1]);
     }
 
     /**
