@@ -1,19 +1,16 @@
 package leetcode.backtracking;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
 
 /**
- * @author yuzhang
- * @date 2021/3/11 上午11:12
- * TODO
+ * @author yu zhang
  */
-public class Ex306_1 {
+public class Ex306_2 {
     public static void main(String[] args) {
-        Ex306_1 ex306_1 = new Ex306_1();
-        System.out.println(ex306_1.isAdditiveNumber("112358"));
+        Ex306_2 ex306_2 = new Ex306_2();
+        System.out.println(ex306_2.isAdditiveNumber("1023"));
+        System.out.println(BigDecimal.valueOf(112).toString());
     }
-
     private String num;
     private int len;
     public boolean isAdditiveNumber(String num) {

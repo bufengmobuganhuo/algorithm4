@@ -15,8 +15,41 @@ public class Ex526 {
 
     public int countArrangement(int N) {
         boolean[] used = new boolean[N + 1];
-        backtracking(N, 0, used);
+        backtracking(N, 1, used);
         return count;
+    }
+
+    private void backtracking(int n, int idx, int mask) {
+        if (idx > n) {
+            count++;
+            return;
+        }
+        for (int i = 1; i < n + 1; i++) {
+            int pow = pow(2, i - 1);
+            if ((mask & pow) > 0) {
+                continue;
+            }
+            if (i % idx == 0 || idx % i == 0) {
+                mask = mask | pow;
+                backtracking(n, idx + 1, mask);
+                mask = mask ^ pow;
+            }
+        }
+    }
+
+    private int pow(int a, int b) {
+        if (b == 0) {
+            return 1;
+        }
+        int res = 1;
+        while (b != 0) {
+            if ((b & 1) == 1) {
+                res *= a;
+            }
+            a *= a;
+            b >>= 1;
+        }
+        return res;
     }
 
     private void backtracking(int N, int index, boolean[] used) {

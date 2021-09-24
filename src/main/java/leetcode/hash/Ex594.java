@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class Ex594 {
     public int findLHS(int[] nums) {
-        int res = Integer.MIN_VALUE;
+        int res = 0;
         Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
             int count = map.getOrDefault(num, 0);
@@ -21,10 +21,10 @@ public class Ex594 {
              * 假设数组中最长的和谐子序列的最后一个元素在数组中的位置为 i，那么在扫描到 nums[i] 时，u + v 和 v + w 中一定有一个就是答案
              */
             if (map.containsKey(num + 1)) {
-                res = Math.max(res, map.get(num + 1) + count);
+                res = Math.max(res, map.get(num + 1) + count + 1);
             }
             if (map.containsKey(num - 1)) {
-                res = Math.max(res, map.get(num - 1) + count);
+                res = Math.max(res, map.get(num - 1) + count + 1);
             }
         }
         return res;
