@@ -2,6 +2,7 @@ package leetcode.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class Ex406 {
     public int[][] reconstructQueue(int[][] people) {
         int len = people.length;
         sort(people, 0, len - 1);
-        List<int[]> ans = new ArrayList<>();
+        List<int[]> ans = new LinkedList<>();
         for (int[] person : people) {
             ans.add(person[1], person);
         }
