@@ -4,7 +4,7 @@ package leetcode.tree;
  * @author yuzhang
  * @date 2020/7/22 9:00 上午
  * leetcode222：完全二叉树的结点个数
- * 1. 计算完全二叉树的高度（从0开始）depth，可知对于从0~depth-1层，所有结点都是满的，0～depth-1的结点数=2^depth-1
+ * 1. 计算完全二叉树的高度（从0开始）depth，可知对于从0~depth-1层，所有结点都是满的，0～depth-1的结点总数=(2^depth)-1
  * 2. 对于最后一层，最多会有2^depth个，为该层每个结点从左到右编号（0开始，最多到2^depth-1），
  *    使用二分查找（left=0,right=2^depth-1）来确定某个结点编号为idx的结点是否存在：
  *                      / 根结点 \
