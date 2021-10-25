@@ -61,7 +61,7 @@ public class Ex449 {
         nums.removeLast();
         TreeNode root = new TreeNode(val);
         root.right = buildTree(val, upper, nums);
-        root.left = buildTree(lower, upper, nums);
+        root.left = buildTree(lower, val, nums);
         return root;
     }
 
