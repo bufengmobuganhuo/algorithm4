@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Algorithm4" />
         <module name="algorithm4" />
+        <module name="Algorithm4" />
+        <module name="com.mengyu.algs4" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
