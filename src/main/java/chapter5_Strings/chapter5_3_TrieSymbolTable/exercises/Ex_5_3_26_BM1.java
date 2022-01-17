@@ -1,6 +1,5 @@
 package chapter5_Strings.chapter5_3_TrieSymbolTable.exercises;
 
-import com.sun.xml.internal.rngom.digested.DPattern;
 
 import java.awt.image.ImageProducer;
 import java.util.HashMap;

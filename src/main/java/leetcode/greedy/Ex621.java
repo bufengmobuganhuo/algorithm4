@@ -1,9 +1,6 @@
 package leetcode.greedy;
 
-import sun.tools.jconsole.HTMLPane;
 
-import java.awt.*;
-import java.awt.image.ImageProducer;
 import java.util.ArrayList;
 import java.util.List;
 
