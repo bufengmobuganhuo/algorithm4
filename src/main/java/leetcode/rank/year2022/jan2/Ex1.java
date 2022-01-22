@@ -6,5 +6,16 @@ package leetcode.rank.year2022.jan2;
  * TODO
  */
 public class Ex1 {
-
+    public boolean checkString(String s) {
+        boolean flag = false;
+        for (char chr : s.toCharArray()) {
+            if (chr == 'b') {
+                flag = true;
+            }
+            if (chr == 'a' && flag) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
