@@ -38,7 +38,7 @@ public class TwoColor {
             if (!marked[vertex]) {
                 color[vertex] = !color[start];
                 dfs(graph, vertex);
-                //已经被标记过，且颜色和上一层顶点（上一层顶点就是即与该顶点相连的顶点）同色
+                //已经被标记过，且颜色和上一层顶点（上一层顶点就是与该顶点相连的顶点）同色
                 //说明不是二分图
             } else if (color[vertex] == color[start]) {
                 isTwoColorable = false;
