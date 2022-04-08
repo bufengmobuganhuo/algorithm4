@@ -23,7 +23,7 @@ public class Ex310 {
      *  所以应该是以内部节点作为根
      */
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        List<Integer> res = new ArrayList();
+        List<Integer> res = new ArrayList<>();
         if (n == 1) {
             res.add(0);
             return res;
