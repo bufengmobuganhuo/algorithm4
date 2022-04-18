@@ -19,40 +19,40 @@ public class Ex385 {
     private char[] chars;
 
     public NestedInteger deserialize(String s) {
-        if (!s.startsWith("[")){
+        if (!s.startsWith("[")) {
             return new NestedInteger(Integer.parseInt(s));
         }
-        curIdx=0;
-        chars=s.toCharArray();
+        curIdx = 0;
+        chars = s.toCharArray();
         return getNext();
     }
 
-    private NestedInteger getNext(){
-        NestedInteger nestedInteger=new NestedInteger();
+    private NestedInteger getNext() {
+        NestedInteger nestedInteger = new NestedInteger();
         // 表示整数
-        int num=0;
-        boolean isNegative=false;
-        while(curIdx!=chars.length-1){
+        int num = 0;
+        boolean isNegative = false;
+        while (curIdx != chars.length - 1) {
             curIdx++;
-            if (chars[curIdx]==','){
+            if (chars[curIdx] == ',') {
                 // 递归获取子集合
-            }else if (chars[curIdx]=='['){
+            } else if (chars[curIdx] == '[') {
                 nestedInteger.add(getNext());
-            }else if (chars[curIdx]=='-'){
-                isNegative=true;
-            }else if (chars[curIdx]==']'){
+            } else if (chars[curIdx] == '-') {
+                isNegative = true;
+            } else if (chars[curIdx] == ']') {
                 return nestedInteger;
-            }else{
-                if (isNegative){
-                    num=10*num-(chars[curIdx]-48);
-                }else{
-                    num=10*num+(chars[curIdx]-48);
+            } else {
+                if (isNegative) {
+                    num = 10 * num - (chars[curIdx] - 48);
+                } else {
+                    num = 10 * num + (chars[curIdx] - 48);
                 }
                 // 如果下一个为非数字，则说明数字组合完毕
-                if (chars[curIdx+1]==','||chars[curIdx+1]==']'){
+                if (chars[curIdx + 1] == ',' || chars[curIdx + 1] == ']') {
                     nestedInteger.add(new NestedInteger(num));
-                    num=0;
-                    isNegative=false;
+                    num = 0;
+                    isNegative = false;
                 }
             }
         }
