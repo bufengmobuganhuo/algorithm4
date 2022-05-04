@@ -7,7 +7,8 @@ package leetcode.rank.year2022.apr17;
  */
 public class Ex3 {
     public static void main(String[] args) {
-        int[][] grid = {{899,727,165,249,531,300,542,890},{981,587,565,943,875,498,582,672},{106,902,524,725,699,778,365,220}};
+        int[][] grid = {{899, 727, 165, 249, 531, 300, 542, 890}, {981, 587, 565, 943, 875, 498, 582, 672}, {106, 902
+                , 524, 725, 699, 778, 365, 220}};
         System.out.println(new Ex3().maxTrailingZeros(grid));
     }
 
