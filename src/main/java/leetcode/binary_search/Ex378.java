@@ -1,4 +1,4 @@
-package leetcode.array;
+package leetcode.binary_search;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
