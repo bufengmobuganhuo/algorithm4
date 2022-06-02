@@ -12,7 +12,7 @@ import java.util.Stack;
  */
 public class Topological {
     public static void main(String[] args) {
-        String path="/Volumes/F/Algorithm4/src/main/resources/tinyDG";
+        String path="../tinyDG";
         In in=new In(path);
         Digraph digraph=new Digraph(in);
         Topological topological=new Topological(digraph);
