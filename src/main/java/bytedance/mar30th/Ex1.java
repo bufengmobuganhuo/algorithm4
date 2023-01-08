@@ -1,6 +1,5 @@
 package bytedance.mar30th;
 
-import bytedance.mar29th.Ex3;
 
 /**
  * @author yuzhang
