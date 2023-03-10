@@ -24,7 +24,7 @@ public class Ex1487 {
             } else {
                 int intentionIdx = map.get(name) + 1;
                 String intentionName = name + "(" + intentionIdx + ")";
-                while (map.containsKey(intentionName.toString())) {
+                while (map.containsKey(intentionName)) {
                     intentionIdx++;
                     intentionName = name + "(" + intentionIdx + ")";
                 }
