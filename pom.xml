@@ -5,8 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mengyu.algs4</groupId>
-    <artifactId>com.mengyu.algs4</artifactId>
+    <artifactId>algorithm4</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>knowledge</module>
+        <module>exercise</module>
+        <module>utils</module>
+    </modules>
     <build>
         <plugins>
             <plugin>
