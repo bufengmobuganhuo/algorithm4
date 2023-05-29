@@ -24,7 +24,7 @@ public class SkipList {
     /**
      * 跳表的步长（一级索引每隔2个节点一个节点，二级索引每隔4个节点一个节点）
      */
-    private static final float SKIPLIST_P = 0.5f;
+    private static final float SKIP_LIST_P = 0.5f;
 
     /**
      * 记录当前层数
@@ -111,7 +111,7 @@ public class SkipList {
      */
     private int randomLevel(){
         int level = 1;
-        while (Math.random() < SKIPLIST_P && level < MAX_LEVEL){
+        while (Math.random() < SKIP_LIST_P && level < MAX_LEVEL){
             level += 1;
         }
         return level;

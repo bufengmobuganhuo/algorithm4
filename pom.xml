@@ -12,6 +12,7 @@
         <module>knowledge</module>
         <module>exercise</module>
         <module>utils</module>
+        <module>interview</module>
     </modules>
     <build>
         <plugins>

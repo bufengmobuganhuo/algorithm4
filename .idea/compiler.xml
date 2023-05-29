@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="exercise" />
         <module name="Algorithm4" />
+        <module name="interview" />
         <module name="utils" />
         <module name="knowledge" />
       </profile>
