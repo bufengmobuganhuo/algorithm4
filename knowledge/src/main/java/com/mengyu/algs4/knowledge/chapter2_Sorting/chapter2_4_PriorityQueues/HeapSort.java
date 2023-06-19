@@ -1,7 +1,7 @@
 package com.mengyu.algs4.knowledge.chapter2_Sorting.chapter2_4_PriorityQueues;
 
-import com.mengyu.algs4.utils.SortTemplate;
 import com.mengyu.algs4.utils.ArrayUtil;
+import com.mengyu.algs4.utils.SortTemplate;
 
 /**
  * @author zhangyu
@@ -24,7 +24,7 @@ public class HeapSort implements SortTemplate {
         }
         int length = arr.length;
         //构造堆
-        for (int k = (length - 1) / 2 - 1; k >= 0; k--) {
+        for (int k = (length - 1) / 2; k >= 0; k--) {
             sink(arr, k, length);
         }
         while (length > 0) {

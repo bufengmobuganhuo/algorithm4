@@ -1,5 +1,6 @@
 package com.mengyu.algs4.knowledge.chapter3_Searching.chapter3_2_BinarySearchTrees;
 
+import com.mengyu.algs4.utils.BinarySearchTreeTemplate;
 import com.mengyu.algs4.utils.TreeNode;
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -32,7 +33,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements Bin
         System.out.println(binarySearchTree.get(125));
         System.out.println(binarySearchTree.height());
         for (Integer key : binarySearchTree.keys(70, 130)) {
-            System.out.println(key);
+            System.out.print(key + " ");
         }
         System.out.println(binarySearchTree.randomKey());
     }

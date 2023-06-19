@@ -1,5 +1,6 @@
 package com.mengyu.algs4.exercise.leetcode.sort;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +9,8 @@ import java.util.List;
  */
 public class Ex406_1 {
     public static void main(String[] args) {
-
+        int[][] people = {{7,0},{4,4},{7,1},{5,0},{6,1},{5,2}};
+        System.out.println(Arrays.deepToString(new Ex406_1().reconstructQueue(people)));
     }
     public int[][] reconstructQueue(int[][] people) {
         int len = people.length;

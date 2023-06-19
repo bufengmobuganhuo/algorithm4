@@ -1,8 +1,7 @@
 package com.mengyu.algs4.knowledge.chapter3_Searching.chapter3_2_BinarySearchTrees.exercises;
 
-import com.mengyu.algs4.knowledge.chapter3_Searching.chapter3_2_BinarySearchTrees.BinarySearchTreeTemplate;
+import com.mengyu.algs4.utils.BinarySearchTreeTemplate;
 import com.mengyu.algs4.utils.TreeNode;
-
 import java.util.Random;
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package leetcode.rank.year2023.february12;
+package com.mengyu.algs4.exercise.leetcode.rank.year2023.february12;
 
 import java.util.Arrays;
 import java.util.HashMap;

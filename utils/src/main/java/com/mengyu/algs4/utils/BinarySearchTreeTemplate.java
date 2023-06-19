@@ -1,6 +1,4 @@
-package com.mengyu.algs4.knowledge.chapter3_Searching.chapter3_2_BinarySearchTrees;
-
-import com.mengyu.algs4.utils.TreeNode;
+package com.mengyu.algs4.utils;
 
 /**
  * @author zhangyu

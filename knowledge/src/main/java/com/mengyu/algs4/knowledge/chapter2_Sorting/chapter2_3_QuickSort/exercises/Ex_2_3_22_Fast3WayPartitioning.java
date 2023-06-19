@@ -1,8 +1,7 @@
 package com.mengyu.algs4.knowledge.chapter2_Sorting.chapter2_3_QuickSort.exercises;
 
-import com.mengyu.algs4.utils.SortTemplate;
 import com.mengyu.algs4.utils.ArrayUtil;
-
+import com.mengyu.algs4.utils.SortTemplate;
 import java.util.Random;
 
 /**
@@ -19,7 +18,7 @@ public class Ex_2_3_22_Fast3WayPartitioning implements SortTemplate {
             Ex_2_3_22_Fast3WayPartitioning ex_2_3_22_fast3WayPartitioning=new Ex_2_3_22_Fast3WayPartitioning();
             Comparable[] temp=arr.clone();
             ex_2_3_22_fast3WayPartitioning.sort(arr);
-            if (!ex_2_3_22_fast3WayPartitioning.isSorted(arr)){
+            if (ex_2_3_22_fast3WayPartitioning.isSorted(arr)){
                 ex_2_3_22_fast3WayPartitioning.show("不正确:",temp);
             }
         }

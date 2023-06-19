@@ -1,7 +1,6 @@
 package com.mengyu.algs4.utils;
 
 import edu.princeton.cs.algs4.StdOut;
-
 import java.util.Random;
 
 /**
@@ -11,8 +10,8 @@ public interface SortTemplate {
     /**
      * @return 判断value1是否小于value2
      */
-    default boolean less(Comparable value1,Comparable value2){
-        return value1.compareTo(value2)<0;
+    default boolean less(Comparable value1, Comparable value2){
+        return value1.compareTo(value2) < 0;
     }
 
     default void exchange(Comparable[] arr,int i,int j){
@@ -24,10 +23,10 @@ public interface SortTemplate {
     default boolean isSorted(Comparable[] arr){
         for (int i=1;i<arr.length;i++){
             if (less(arr[i],arr[i-1])){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     default void show(String msg, Comparable[] arr){

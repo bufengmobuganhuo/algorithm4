@@ -2,7 +2,6 @@ package com.mengyu.algs4.knowledge.chapter2_Sorting.chapter2_1_ElementarySorts.e
 
 import com.mengyu.algs4.utils.ArrayUtil;
 import com.mengyu.algs4.utils.SortTemplate;
-
 import java.util.Random;
 
 /**
@@ -19,7 +18,7 @@ public class EX_2_1_25_InsertionX implements SortTemplate {
             Comparable[] arr= ArrayUtil.createInt(length,(length+1)*2);
             Comparable[] temp=arr.clone();
             insertionX.sort(arr);
-            if (!insertionX.isSorted(arr)){
+            if (insertionX.isSorted(arr)){
                 insertionX.show("排序前:",temp);
             }
         }

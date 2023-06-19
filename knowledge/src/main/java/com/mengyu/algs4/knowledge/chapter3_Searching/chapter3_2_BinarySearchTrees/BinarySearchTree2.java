@@ -1,5 +1,6 @@
 package com.mengyu.algs4.knowledge.chapter3_Searching.chapter3_2_BinarySearchTrees;
 
+import com.mengyu.algs4.utils.BinarySearchTreeTemplate;
 import com.mengyu.algs4.utils.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
