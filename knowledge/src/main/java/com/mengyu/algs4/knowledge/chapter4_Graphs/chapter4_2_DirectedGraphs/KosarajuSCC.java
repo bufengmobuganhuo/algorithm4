@@ -1,7 +1,6 @@
 package com.mengyu.algs4.knowledge.chapter4_Graphs.chapter4_2_DirectedGraphs;
 
 import edu.princeton.cs.algs4.In;
-
 import java.util.Stack;
 
 /**
@@ -11,7 +10,7 @@ import java.util.Stack;
  */
 public class KosarajuSCC {
     public static void main(String[] args) {
-        String path="/Volumes/F/Algorithm4/src/main/resources/tinyDG";
+        String path="/Users/tiger/IdeaProjects/algorithm4/knowledge/src/main/resources/tinyDG";
         In in=new In(path);
         Digraph digraph=new Digraph(in);
         KosarajuSCC kosarajuSCC=new KosarajuSCC(digraph);
