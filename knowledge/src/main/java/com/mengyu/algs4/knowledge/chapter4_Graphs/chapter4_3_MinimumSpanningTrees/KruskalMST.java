@@ -2,7 +2,6 @@ package com.mengyu.algs4.knowledge.chapter4_Graphs.chapter4_3_MinimumSpanningTre
 
 import com.mengyu.algs4.knowledge.chapter1_Fundamentals.chapter1_5_UnionFind.UF_WeightedQuickUnion;
 import edu.princeton.cs.algs4.In;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -28,6 +27,7 @@ public class KruskalMST {
     }
 
     private Queue<Edge> mst;
+
     private double weight;
 
     public KruskalMST(EdgeWeightedGraph weightedGraph) {
