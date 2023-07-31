@@ -1,13 +1,12 @@
-package com.mengyu.algs4.knowledge.chapter5_Strings.chapter5_1_StringSorts;
+package com.mengyu.algs4.exercise.chapter5_1_stringsorts;
 
 import java.util.Arrays;
 
 /**
- * @author zhangyu
- * 2020/5/27 15:28
- * 键索引计数法
+ * @author yu zhang
  */
 public class KeyIndexedCounting {
+
     public static void main(String[] args) {
         Student[] students = {
                 new Student("Anderson", 2),
@@ -24,30 +23,25 @@ public class KeyIndexedCounting {
         System.out.println(Arrays.toString(students));
     }
 
-    /**
-     * @param students
-     * @param R        student.key为[0,R)内的一个整数
-     */
     public void count(Student[] students, int R) {
-        //第一步：频率统计
         int[] count = new int[R + 1];
-        for (int i = 0; i < students.length; i++) {
-            count[students[i].key + 1] += 1;
+        // 1. 频率统计
+        for (Student stu : students) {
+            count[stu.key + 1]++;
         }
-        //第二步：将count[]转化为组号对应的起始索引
+        // 2. 将频率转化为索引
         for (int i = 0; i < R; i++) {
             count[i + 1] += count[i];
         }
-        //第三步：使用aux数组，将元素分类
+        // 3. 数据分类
         Student[] aux = new Student[students.length];
-        for (int i = 0; i < aux.length; i++) {
+        for (int i = 0; i < students.length; i++) {
             aux[count[students[i].key]++] = students[i];
         }
-        //第四步：回写
         System.arraycopy(aux, 0, students, 0, aux.length);
     }
 
-    public static class Student {
+    private static class Student {
         public String name;
         public int key;
 
@@ -64,5 +58,4 @@ public class KeyIndexedCounting {
                     '}';
         }
     }
-
 }

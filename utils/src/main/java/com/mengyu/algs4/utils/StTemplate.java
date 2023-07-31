@@ -1,4 +1,4 @@
-package com.mengyu.algs4.knowledge.chapter5_Strings.chapter5_2_Tries;
+package com.mengyu.algs4.utils;
 
 import java.util.Queue;
 

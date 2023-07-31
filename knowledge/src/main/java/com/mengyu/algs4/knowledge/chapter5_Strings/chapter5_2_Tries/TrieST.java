@@ -1,5 +1,6 @@
 package com.mengyu.algs4.knowledge.chapter5_Strings.chapter5_2_Tries;
 
+import com.mengyu.algs4.utils.StTemplate;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -69,7 +70,7 @@ public class TrieST<Value> implements StTemplate<Value> {
             char chr = key.charAt(len);
             node.next[chr] = delete(node.next[chr], key, len + 1);
         }
-        //没有找到要删除的键
+        // node.val不为空，则可以直接返回，不需要考虑删除节点的问题
         if (node.val != null) {
             return node;
         }
