@@ -1,4 +1,4 @@
-package com.mengyu.algs4.exercise.leetcode.string;
+package com.mengyu.algs4.exercise.leetcode.slide_window;
 
 import java.util.HashMap;
 import java.util.Map;
