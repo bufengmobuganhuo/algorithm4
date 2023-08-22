@@ -6,6 +6,11 @@ package com.mengyu.algs4.exercise.leetcode.string;
  * TODO
  */
 public class Ex5 {
+
+    public static void main(String[] args) {
+        System.out.println(new Ex5().longestPalindrome("111121111"));
+    }
+
     public String longestPalindrome(String s) {
         if (s == null || s.length() == 0) {
             return "";

@@ -63,6 +63,7 @@ public class Ex698 {
                 }
                 groups[i] -= value;
             }
+            // 如果groups[i]中没有元素，那这个val一定得被选到（因为目前所有元素都是<sum的，所以一定要用到）
             if (groups[i] == 0) {
                 break;
             }
