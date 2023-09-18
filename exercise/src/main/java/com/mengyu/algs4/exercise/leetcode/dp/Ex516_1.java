@@ -3,7 +3,7 @@ package com.mengyu.algs4.exercise.leetcode.dp;
 /**
  * @author yu zhang
  */
-public class Ex516 {
+public class Ex516_1 {
 
     public int longestPalindromeSubseq2(String s) {
         int len = s.length();
@@ -15,7 +15,7 @@ public class Ex516 {
                 if (s.charAt(i) == s.charAt(j)) {
                     dp[1 - last][j] = dp[last][j - 1] + 2;
                 } else {
-                    dp[1 - last][j] = Math.max(dp[1 - last][j - 1], dp[last][j]);
+                    dp[1 - last][j] = Math.max(dp[last][j], dp[1 - last][j - 1]);
                 }
             }
             last = 1 - last;
@@ -23,12 +23,6 @@ public class Ex516 {
         return dp[last][len - 1];
     }
 
-    /**
-     * 1. dp[i][j]: s[i...j]之间的最长回文串的长度
-     * 2. 状态转移方程
-     * dp[i][j] = dp[i+1][j-1] + 2  s[i] == s[j]
-     * dp[i][j] = max{dp[i][j-1], dp[i+1][j]}   s[i] != s[j]
-     */
     public int longestPalindromeSubseq(String s) {
         int len = s.length();
         int[][] dp = new int[len][len];
@@ -38,7 +32,7 @@ public class Ex516 {
                 if (s.charAt(i) == s.charAt(j)) {
                     dp[i][j] = dp[i + 1][j - 1] + 2;
                 } else {
-                    dp[i][j] = Math.max(dp[i][j - 1], dp[i + 1][j]);
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
                 }
             }
         }
