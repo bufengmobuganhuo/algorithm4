@@ -4,6 +4,12 @@ package com.mengyu.algs4.exercise.leetcode.dp;
  * @author yu zhang
  */
 public class Ex309 {
+
+    public static void main(String[] args) {
+        int[] prices = {1, 2, 3, 0, 2};
+        System.out.println(new Ex309().maxProfit(prices));
+    }
+
     /**
      * 1. dp[i]:第i天"结束"时，能获取的最大利润，可知有三种状态：
      * (1)dp[i][0]：持有股票

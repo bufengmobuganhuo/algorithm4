@@ -1,14 +1,36 @@
 package com.mengyu.algs4.knowledge.chapter1_Fundamentals.chapter1_3_BagsQueuesStacks;
 
+import com.mengyu.algs4.utils.ArrayUtil;
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * 二分查找
  */
 public class BinarySerach {
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3, 4, 5, 5, 7, 8, 9, 11};
-        System.out.println(new BinarySerach().ceil(nums, 6));
-        System.out.println(new BinarySerach().floor(nums, 2));
+        Random random = new Random();
+        for (int i = 0; i < 100000; i++) {
+            int len = random.nextInt(100000);
+            while (len == 0) {
+                len = random.nextInt(100000);
+            }
+            Integer[] arr = ArrayUtil.createInt(len, len);
+            int idx = random.nextInt(len);
+            Arrays.sort(arr);
+            int target = arr[idx] + (random.nextBoolean() ? random.nextInt() : -1 * random.nextInt());
+            int floor1 = floor2(arr, target);
+            int floor2 = -1;
+            for (int j = len - 1; j >= 0; j--) {
+                if (arr[j] < target) {
+                    floor2 = j;
+                    break;
+                }
+            }
+            assert floor1 == floor2;
+            System.out.println(i);
+        }
     }
 
     public static int find(int target, Integer[] arr) {
@@ -28,30 +50,73 @@ public class BinarySerach {
         return -1;
     }
 
-    public int ceil(int[] arr, int target) {
+    // > target的最小值
+    public static int ceil2(Integer[] arr, int target) {
+        // 如果找不到，结果就是arr.length，这里为了能在二分中遇到arr.length，所以r=arr.length
         int l = 0, r = arr.length;
         while (l < r) {
-            int mid = (l + r) / 2;
-            if (arr[mid] < target) {
-                l = mid + 1;
+            int m = (r - l) / 2 + l;
+            if (arr[m] > target) {
+                r = m;
             } else {
-                r = mid;
+                l = m + 1;
+            }
+        }
+
+        return l;
+    }
+
+    // >= target的最小值
+    public static int ceil(Integer[] arr, int target) {
+        int l = 0, r = arr.length - 1;
+        int ceil = -1;
+        while (l <= r) {
+            int mid = (l + r) / 2;
+            if (arr[mid] == target) {
+                // 这里返回的不一定是最左边的
+                return arr[mid];
+            } else if (arr[mid] > target) {
+                ceil = arr[mid];
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return ceil;
+    }
+
+    // < target的最大值
+    public static int floor2(Integer[] arr, int target) {
+        // 如果找不到，结果就是-1，这里为了能在二分中遇到-1，所以l=-1
+        int l = 0, r = arr.length;
+        while (l < r) {
+            int m = (r - l) / 2 + l;
+            if (arr[m] > target) {
+                r = m;
+            } else {
+                l = m + 1;
             }
         }
         return r;
     }
 
-    public int floor(int[] arr, int target) {
-        int l = 0, r = arr.length;
-        while (l < r) {
-            int mid = (l + r) / 2;
-            if (arr[mid] < target) {
-                l = mid + 1;
+    // <= target的最大值
+    public static int floor(Integer[] arr, int target) {
+        int l = 0, r = arr.length - 1;
+        int floor = -1;
+        while (l <= r) {
+            int mid = (r + l) / 2;
+            if (arr[mid] == target) {
+                // 这里返回的不一定是最右边的
+                return arr[mid];
+            } else if (arr[mid] > target) {
+                r = mid - 1;
             } else {
-                r = mid;
+                floor = arr[mid];
+                l = mid + 1;
             }
         }
-        return l;
+        return floor;
     }
 
 //    // <=target的最大值

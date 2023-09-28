@@ -1,4 +1,4 @@
-package com.mengyu.algs4.exercise.leetcode.greedy;
+package com.mengyu.algs4.exercise.leetcode.dp;
 
 /**
  * @author yuzhang
