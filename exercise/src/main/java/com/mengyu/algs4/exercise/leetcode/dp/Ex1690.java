@@ -5,11 +5,11 @@ package com.mengyu.algs4.exercise.leetcode.dp;
  * @date 2020/12/14 上午9:53
  * TODO
  */
-public class Ex5627 {
+public class Ex1690 {
     public static void main(String[] args) {
-        Ex5627 ex5627 = new Ex5627();
+        Ex1690 ex1690 = new Ex1690();
         int[] stones = {5, 3, 1, 4, 2};
-        System.out.println(ex5627.stoneGameVII(stones));
+        System.out.println(ex1690.stoneGameVII(stones));
     }
 
     /**

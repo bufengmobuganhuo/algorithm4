@@ -65,7 +65,7 @@ public class Ex300 {
                 }
                 // 如果精确命中，则说明nums[i]并不能让递增序列更长
                 if (leftPtr < maxLen && dp[leftPtr + 1] == nums[i]) {
-                }else {
+                } else {
                     // dp[leftPtr] < nums[i] < dp[leftPtr+1]
                     dp[leftPtr + 1] = nums[i];
                 }
