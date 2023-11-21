@@ -1,4 +1,4 @@
-package com.mengyu.algs4.exercise.leetcode.prefix_sum;
+package com.mengyu.algs4.exercise.leetcode.dp;
 
 /**
  * @author yu zhang
