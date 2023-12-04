@@ -37,15 +37,15 @@ public class Ex907 {
                 int left = index - stack.peek();
                 int right = i - index;
                 // 用的取余的性质
-                ans = (ans + A[index] * left%mod*right%mod)%mod;
+                ans = (ans + (long) A[index] * left % mod * right % mod) % mod;
             }
             stack.push(i);
         }
-        while (stack.peek()!=-1){
+        while (stack.peek() != -1) {
             int index = stack.pop();
             int left = index - stack.peek();
-            int right = A.length-index;
-            ans=(ans+A[index]*left%mod*right%mod)%mod;
+            int right = A.length - index;
+            ans = (ans + (long) A[index] * left % mod * right % mod) % mod;
         }
         return (int) ans;
     }
