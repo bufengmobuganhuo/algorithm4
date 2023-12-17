@@ -5,12 +5,13 @@ import java.util.Random;
 /**
  * @author yu zhang
  */
-public class Ex398 {
-    private int[] nums;
+public class Ex398_1 {
 
-    private static final Random random = new Random();
+    private final int[] nums;
 
-    public Ex398(int[] nums) {
+    private final static Random RANDOM = new Random();
+
+    public Ex398_1(int[] nums) {
         this.nums = nums;
     }
 
@@ -20,7 +21,7 @@ public class Ex398 {
             int num = nums[i];
             if (num == target) {
                 cnt++;
-                if (random.nextInt(cnt) == 0) {
+                if (RANDOM.nextInt(cnt) == 0) {
                     /**
                      * cnt = 1时，RANDOM.nextInt(cnt)一定=0，所以是以1的概率保留
                      * cnt > 1时，RANDOM.nextInt(cnt)=0的概率为1/cnt，所以是以1/i的概率保留

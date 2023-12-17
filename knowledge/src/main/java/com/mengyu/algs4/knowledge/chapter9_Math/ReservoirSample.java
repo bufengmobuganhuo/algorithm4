@@ -19,10 +19,10 @@ public class ReservoirSample {
             ans[i] = list.get(i);
         }
         for (int i = k; i < list.size(); i++) {
-            // 概率就是1/k
             int rand = random.nextInt(i + 1);
-            // 以1/k的概率替换已选好的元素，就是保留下的概率就是k/i
             if (rand < k) {
+                // rand < k就是k/i的概率保留第i个数
+                // 同时rand在k内是随机的，所以是以1/k的概率替换
                 ans[rand] = list.get(i);
             }
         }
