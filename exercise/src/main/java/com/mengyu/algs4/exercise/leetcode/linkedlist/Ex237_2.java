@@ -1,5 +1,7 @@
 package com.mengyu.algs4.exercise.leetcode.linkedlist;
 
+import com.mengyu.algs4.utils.leetcode.ListNode;
+
 /**
  * @author yuzhang
  * @date 2021/11/6 10:22 上午

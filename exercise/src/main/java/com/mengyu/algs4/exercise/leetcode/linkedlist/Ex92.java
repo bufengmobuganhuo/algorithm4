@@ -1,5 +1,7 @@
 package com.mengyu.algs4.exercise.leetcode.linkedlist;
 
+import com.mengyu.algs4.utils.leetcode.ListNode;
+
 /**
  * @author yuzhang
  * @date 2020/6/27 10:01 上午
@@ -49,11 +51,3 @@ public class Ex92 {
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
