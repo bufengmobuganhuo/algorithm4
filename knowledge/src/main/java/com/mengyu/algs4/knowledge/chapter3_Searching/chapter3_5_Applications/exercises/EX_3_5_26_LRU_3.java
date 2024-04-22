@@ -1,6 +1,5 @@
 package com.mengyu.algs4.knowledge.chapter3_Searching.chapter3_5_Applications.exercises;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.locks.Lock;
@@ -19,7 +18,7 @@ public class EX_3_5_26_LRU_3<Key extends Comparable<Key>, Value> {
      */
     private ConcurrentHashMap<Key,Value> cache;
     /**
-     * 维护缓存键的相对顺序，队首 -> 队尾：老缓存 -> 旧缓存
+     * 维护缓存键的相对顺序，队首 -> 队尾：旧缓存 -> 新缓存
      */
     private ConcurrentLinkedDeque<Key> keyMap;
     /**
