@@ -13,7 +13,7 @@ public class Ex522 {
         int blue = Color.BLUE.getBlue();
         System.out.println("red:" + red);
         System.out.println("green:" + green);
-        System.out.println("blue:"+blue);
+        System.out.println("blue:" + blue);
         String hex = String.format("#%02X%02X%02X", red, green, blue);
         System.out.println(hex);
     }

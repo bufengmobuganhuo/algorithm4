@@ -22,7 +22,7 @@ public class Ex80 {
         int slow = 2, fast = 2;
         while (fast < n) {
             // 如果当前检查到的值与slow-2的值不相同，那这个值可以保留下来；
-            // 如果相同的话，就是1, 1, 1(slow), 1(false)这样，那fast处的值不应该填入slow处
+            // 如果相同的话，就是1, 1, 1(slow), 1(fast)这样，那fast处的值不应该填入slow处
             if (nums[slow - 2] != nums[fast]) {
                 nums[slow] = nums[fast];
                 slow++;
