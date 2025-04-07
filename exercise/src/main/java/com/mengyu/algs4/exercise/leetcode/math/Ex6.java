@@ -23,7 +23,6 @@ public class Ex6 {
                 if (i > 0 && idx - i < s.length()) {
                     res.append(s.charAt(idx - i));
                 }
-
             }
         }
         return res.toString();

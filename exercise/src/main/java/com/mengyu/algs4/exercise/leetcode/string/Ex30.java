@@ -1,6 +1,10 @@
 package com.mengyu.algs4.exercise.leetcode.string;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author yuzhang
@@ -11,90 +15,45 @@ import java.util.*;
 public class Ex30 {
     public static void main(String[] args) {
         String[] words = {"foo", "bar"};
-        String s = "foobarfoobar";
+        String s = "barfoothefoobarman";
         Ex30 ex30 = new Ex30();
         System.out.println(Arrays.toString(ex30.findSubstring(s, words).toArray()));
     }
+
     public List<Integer> findSubstring(String s, String[] words) {
-        List<Integer> res=new ArrayList<>();
-        if (s == null || s.length() == 0 || words == null || words.length == 0) {
-            return res;
-        }
-        // 数组中所有单词的出现次数
-        Map<String, Integer> allWords = collect(words);
-        int wordLen=words[0].length(),wordNum=words.length;
-        /**
-         * 将所有移动分成wordLen种情况，分别为:
-         * 从words[x]的第0位向右移动，从words[x]的第1位向右移动。。。
-         */
-        for (int i = 0; i < wordLen; i++) {
-            // 存放当前子串种匹配的单词个数
-            Map<String,Integer> hasWords=new HashMap<>();
-            // 匹配了多少个单词
-            int count=0;
-            // 有wordLen种情况，每次移动的个数都是一个单词的长度
-            for (int j = i; j < s.length()-wordLen*wordNum+1; j+=wordLen) {
-                // 情况3是否出现过
-                boolean hasRemoved=false;
-                while (count<wordNum){
-                    // 当前要判断的单词
-                    String curWord=s.substring(j+count*wordLen,j+(count+1)*wordLen);
-                    // 如果匹配，则放入已匹配的map中
-                    if (allWords.containsKey(curWord)){
-                        int hasValue=hasWords.getOrDefault(curWord,0);
-                        hasWords.put(curWord,++hasValue);
-                        count++;
-                        /**
-                         * 情况3：words={bar,foo,foo},s=f o o b a r b a r f o o b a r m a n
-                         * 有匹配，但是匹配的单词数量超出了words中数量（j=0开始:f o o ｜b a r｜ b a r）
-                         * 此时可以删除掉前面多出来的单词(从j=0开始移除)，从j=6开始匹配
-                         */
-                        int allValue=allWords.get(curWord);
-                        if (hasValue>allValue) {
-                            hasRemoved = true;
-                            // 移除了几个
-                            int removeCount = 0;
-                            while (allWords.get(curWord) < hasWords.get(curWord)) {
-                                // 从j=0开始移除
-                                String removedWord = s.substring(j + removeCount * wordLen, j + (removeCount + 1) * wordLen);
-                                hasWords.put(removedWord, hasWords.get(removedWord) - 1);
-                                removeCount++;
-                            }
-                            // 移除后，就不算到匹配次数中
-                            count -= removeCount;
-                            // 更新j，j在循环时还要+wordLen
-                            j += (removeCount - 1) * wordLen;
-                            break;
-                        }
-                        /**
-                         * 情况2：当前单词不匹配
-                         * s:b a r t h e f o o
-                         * 在第二个单词时不匹配，则直接移动到下一个单词开始匹配:
-                         * 此时j=0,count=1,前面已经匹配过一个了
-                         */
-                    } else{
-                        hasWords.clear();
-                        // 令j=6开始匹配，外面还要+wordLen
-                        j+=count*wordLen;
-                        count=0;
-                        break;
+        List<Integer> res = new ArrayList<Integer>();
+        int m = words.length, n = words[0].length(), ls = s.length();
+        for (int i = 0; i < n; i++) {
+            if (i + m * n > ls) {
+                break;
+            }
+            Map<String, Integer> differ = new HashMap<String, Integer>();
+            for (int j = 0; j < m; j++) {
+                String word = s.substring(i + j * n, i + (j + 1) * n);
+                differ.put(word, differ.getOrDefault(word, 0) + 1);
+            }
+            for (String word : words) {
+                differ.put(word, differ.getOrDefault(word, 0) - 1);
+                if (differ.get(word) == 0) {
+                    differ.remove(word);
+                }
+            }
+            for (int start = i; start < ls - m * n + 1; start += n) {
+                if (start != i) {
+                    String word = s.substring(start + (m - 1) * n, start + m * n);
+                    differ.put(word, differ.getOrDefault(word, 0) + 1);
+                    if (differ.get(word) == 0) {
+                        differ.remove(word);
+                    }
+                    word = s.substring(start - n, start);
+                    differ.put(word, differ.getOrDefault(word, 0) - 1);
+                    if (differ.get(word) == 0) {
+                        differ.remove(word);
                     }
                 }
-                if (count==wordNum){
-                    res.add(j);
+                if (differ.isEmpty()) {
+                    res.add(start);
                 }
-                /**
-                 * 第一种情况：匹配成功,并且情况3没有出现
-                 * s : b a r |f o o f o o| f o o
-                 * j=0时，匹配成功，此时||范围内的已经校验过，j可以直接从9开始
-                 */
-                if (count>0&&!hasRemoved){
-                    // 移除匹配成功的第一个单词
-                    String firstWord=s.substring(j,j+wordLen);
-                    hasWords.put(firstWord,hasWords.get(firstWord)-1);
-                    count--;
-                }
-
             }
         }
         return res;
